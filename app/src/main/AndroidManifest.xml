@@ -14,6 +14,18 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".SignInScreenAtFirst"
+            android:exported="false" />
+        <activity
+            android:name=".FrequencyChoiceScreen"
+            android:exported="false" />
+        <activity
+            android:name=".WorkoutAreaChoiceScreen"
+            android:exported="false" />
+        <activity
+            android:name=".InformationScreen2Firstly"
+            android:exported="false" />
+        <activity
             android:name=".SignInScreenFirstly"
             android:exported="false" />
         <activity
@@ -26,7 +38,7 @@
             android:name=".AccountConfirmScreen"
             android:exported="false" />
         <activity
-            android:name=".InformationScreen2Firstly"
+            android:name=".TargetChoiceScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

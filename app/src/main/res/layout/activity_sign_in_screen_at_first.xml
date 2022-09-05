@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WelcomeScreen"
+    android:orientation="vertical"
+    android:background="@drawable/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="6"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:background="#00FFFFFF"
+            android:text=" Back"
+            android:textSize="14dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtNameApp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GYM LIFE"
+        android:textSize="28dp"
+        android:textColor="#ECBB0D"
+        android:textStyle="italic|bold"
+        android:textAlignment="center"
+        android:shadowColor="#000"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="1.5" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign in, please"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="35dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/txtQuestion1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Email/username:"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="50dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"/>
+    <EditText
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:background="@drawable/rounded_white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="50dp"/>
+    <TextView
+        android:id="@+id/txtQuestion2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Password:"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="50dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"/>
+    <EditText
+        android:layout_marginTop="20dp"
+        android:padding="15dp"
+        android:background="@drawable/rounded_white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="50dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_margin="20dp"
+        android:paddingHorizontal="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign in"
+        android:layout_gravity="center"
+        android:background="@drawable/roundedbutton"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_margin="10dp"
+        android:paddingEnd="60dp"
+        android:paddingStart="10dp"
+        android:paddingVertical="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="\t \t \t Sign in with google"
+        android:drawableStart="@drawable/gicon"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:background="@drawable/rounded_white"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:textSize="18dp"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_margin="10dp"
+        android:paddingEnd="60dp"
+        android:paddingStart="10dp"
+        android:paddingVertical="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="\t \t \t Sign in with facebook"
+        android:drawableStart="@drawable/fbicon"
+        android:layout_gravity="center"
+        android:textSize="16dp"
+        android:background="@drawable/rounded_white"/>
+</LinearLayout>
