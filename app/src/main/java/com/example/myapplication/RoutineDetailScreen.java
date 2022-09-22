@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class AccountConfirmScreen extends AppCompatActivity {
+public class RoutineDetailScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_account_confirm_screen);
+        setContentView(R.layout.activity_routine_detail_screen);
     }
 }
