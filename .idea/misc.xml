@@ -20,18 +20,21 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/roundedbutton.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_account_confirm_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_collections_screen.xml" value="0.16799999999999998" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_routine_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_exercises_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_frequency_choice_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_home_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen1_firstly.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen2_firstly.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_routine_detail_screen.xml" value="0.264" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_setting_new_rountine_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_sign_in_screen_at_first.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_target_choice_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_welcom_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_welcome_screen.xml" value="0.4" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_workout_area_choice_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_exercise_dialog.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_routine_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/exercise_detail_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/routine_pager.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/set_pager.xml" value="0.253125" />
