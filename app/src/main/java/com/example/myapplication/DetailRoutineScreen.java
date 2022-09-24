@@ -9,6 +9,6 @@ public class DetailRoutineScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_routine_screen);
+        setContentView(R.layout.activity_detail_set_screen);
     }
 }
