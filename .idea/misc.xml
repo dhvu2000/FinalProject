@@ -7,6 +7,8 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/background_linechart.xml" value="0.124" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/bottom_navigation_background.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/chosen_side.xml" value="0.2555" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/drawable/circle_blue.xml" value="0.2585" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/drawable/circle_progress_bar_blue.xml" value="0.1" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/nav_color.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded.xml" value="0.2555" />
@@ -21,6 +23,7 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_account_confirm_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_collections_screen.xml" value="0.16799999999999998" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_routine_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_set_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_exercises_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_frequency_choice_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_home_screen.xml" value="0.264" />
@@ -32,12 +35,15 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_target_choice_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_welcom_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_welcome_screen.xml" value="0.4" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_work_out_process_screen1.xml" value="0.2" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_workout_area_choice_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_workout_process_screen2.xml" value="0.16799999999999998" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_exercise_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_exercise_set_dialog.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_routine_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/exercise_detail_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/find_and_add_exercise_dialog.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/pick_repetation_day_dialog.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/routine_pager.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/set_pager.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/setting_exercise_in_set_dialog.xml" value="0.253125" />
