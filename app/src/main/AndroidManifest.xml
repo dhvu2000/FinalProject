@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.myapplication">
+    package="com.example.myapplication" >
 
     <application
         android:allowBackup="true"
@@ -12,58 +12,70 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
-            android:name=".WorkoutProcessScreen2"
+            android:name=".Views.InforScreen"
             android:exported="false" />
         <activity
-            android:name=".CollectionsScreen.CollectionsScreen"
+            android:name=".Views.WorkOutProcessScreen1"
             android:exported="false" />
         <activity
-            android:name=".DetailRoutineScreen"
+            android:name=".Views.CountingTimerScreen"
             android:exported="false" />
         <activity
-            android:name=".SettingNewRountineScreen"
+            android:name=".Views.TimerScreen"
             android:exported="false" />
         <activity
-            android:name=".RoutineDetailScreen"
+            android:name=".Views.WorkoutProcessScreen2"
             android:exported="false" />
         <activity
-            android:name=".HomeScreen"
+            android:name=".Views.CollectionsScreen.CollectionsScreen"
             android:exported="false" />
         <activity
-            android:name=".ExercisesScreen"
+            android:name=".Views.DetailRoutineScreen"
             android:exported="false" />
         <activity
-            android:name=".TargetChoiceScreen"
+            android:name=".Views.SettingNewRountineScreen"
             android:exported="false" />
         <activity
-            android:name=".SignInScreenAtFirst"
+            android:name=".Views.RoutineDetailScreen"
             android:exported="false" />
         <activity
-            android:name=".FrequencyChoiceScreen"
+            android:name=".Views.HomeScreen"
             android:exported="false" />
         <activity
-            android:name=".WorkoutAreaChoiceScreen"
+            android:name=".Views.ExercisesScreen"
             android:exported="false" />
         <activity
-            android:name=".InformationScreen2Firstly"
+            android:name=".Views.TargetChoiceScreen"
             android:exported="false" />
         <activity
-            android:name=".SignInScreenFirstly"
+            android:name=".Views.SignInScreenAtFirst"
             android:exported="false" />
         <activity
-            android:name=".WelcomeScreen"
+            android:name=".Views.FrequencyChoiceScreen"
             android:exported="false" />
         <activity
-            android:name=".InformationScreen1Firstly"
+            android:name=".Views.WorkoutAreaChoiceScreen"
             android:exported="false" />
         <activity
-            android:name=".AccountConfirmScreen"
+            android:name=".Views.InformationScreen2Firstly"
             android:exported="false" />
         <activity
-            android:name=".WorkOutProcessScreen1"
-            android:exported="true">
+            android:name=".Views.SignInScreenFirstly"
+            android:exported="false" />
+        <activity
+            android:name=".Views.WelcomeScreen"
+            android:exported="false" />
+        <activity
+            android:name=".Views.InformationScreen1Firstly"
+            android:exported="false" />
+        <activity
+            android:name=".Views.AccountConfirmScreen"
+            android:exported="false" />
+        <activity
+            android:name=".Views.AccountScreen"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

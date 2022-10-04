@@ -6,6 +6,7 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/background_linechart.xml" value="0.124" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/bottom_navigation_background.xml" value="0.2555" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/drawable/button_click.xml" value="0.148" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/chosen_side.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/circle_blue.xml" value="0.2585" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/circle_progress_bar_blue.xml" value="0.1" />
@@ -20,19 +21,25 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded_red_button.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded_white.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/roundedbutton.xml" value="0.2555" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/drawable/stroke_black.xml" value="0.148" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_account_confirm_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_account_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_collections_screen.xml" value="0.16799999999999998" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_counting_timer_scree.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_routine_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_set_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_exercises_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_frequency_choice_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_home_screen.xml" value="0.264" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_infor_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen1_firstly.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen2_firstly.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_routine_detail_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_setting_new_rountine_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_sign_in_screen_at_first.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_target_choice_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_timer_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_welcom_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_welcome_screen.xml" value="0.4" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_work_out_process_screen1.xml" value="0.2" />
@@ -41,6 +48,8 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_exercise_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_exercise_set_dialog.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_routine_dialog.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/detail_exercise_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/editing_text_infos_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/exercise_detail_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/find_and_add_exercise_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/pick_repetation_day_dialog.xml" value="0.264" />
