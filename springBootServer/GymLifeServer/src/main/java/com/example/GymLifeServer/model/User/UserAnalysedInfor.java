@@ -1,8 +1,15 @@
-package com.example.myapplication.Model.User;
+package com.example.GymLifeServer.model.User;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "tblUserAnalysedInfor")
 public class UserAnalysedInfor {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private double weight = 0;
     private double height = 0;
     private String target;
@@ -33,11 +40,10 @@ public class UserAnalysedInfor {
         this.weight = weight;
     }
 
-
-    public double getBMI()
-    {
+    public double getBmi() {
         return weight/(height * height);
     }
+
     public double getHeight() {
         return height;
     }
