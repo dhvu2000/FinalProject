@@ -1,22 +1,30 @@
-package com.example.myapplication.Model.WorkOutUnit.Routine;
+package com.example.GymLifeServer.model.WorkOutUnit.Routine;
 
-import com.example.myapplication.Model.User.Users;
-import com.example.myapplication.Model.WorkOutUnit.WorkOutUnit;
+import com.example.GymLifeServer.model.User.Users;
+import com.example.GymLifeServer.model.WorkOutUnit.WorkOutUnit;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Routine extends WorkOutUnit implements Serializable {
+    @Column
     private int dayNum;
+    @Column
     private int level;
+
+    @OneToMany(mappedBy = "routine")
     private List<RoutineDay> days;
 
     public Routine() {
     }
 
     public Routine(int id, String name, Users createdBy,
-                   int dayNum, int level, List<RoutineDay> days) {
+                   int dayNum, int level, ArrayList<RoutineDay> days) {
         super(id, name, createdBy);
         this.dayNum = dayNum;
         this.level = level;

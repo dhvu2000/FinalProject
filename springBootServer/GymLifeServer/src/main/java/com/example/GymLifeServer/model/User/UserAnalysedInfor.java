@@ -1,21 +1,30 @@
 package com.example.GymLifeServer.model.User;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "tblUserAnalysedInfor")
-public class UserAnalysedInfor {
+public class UserAnalysedInfor implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private double weight = 0;
+    @Column
     private double height = 0;
+    @Column
     private String target;
+    @Column
     private String frequency;
+    @Column
     private String focusedArea;
+    @Column
     private Date updatedDate;
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    private Users user;
 
     public UserAnalysedInfor() {
     }
@@ -29,6 +38,22 @@ public class UserAnalysedInfor {
         this.frequency = frequency;
         this.focusedArea = focusedArea;
         this.updatedDate = updatedDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public double getWeight() {

@@ -1,24 +1,27 @@
-package com.example.myapplication.Model.WorkOutUnit.Routine;
+package com.example.GymLifeServer.model.WorkOutUnit.Routine;
 
-import com.example.myapplication.Model.User.Users;
-import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.SetExercise;
-import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
+import com.example.GymLifeServer.model.User.Users;
+import com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet.SetExercise;
+import com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet.WorkOutSet;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@Entity
 public class RoutineDay extends WorkOutSet implements Serializable {
 
+
+    @Column
     private int sequence;
+    @ManyToOne
+    @JoinColumn(name = "routine_id", nullable = false)
     private Routine routine;
 
-    public Routine getRoutine() {
-        return routine;
-    }
 
-    public void setRoutine(Routine routine) {
-        this.routine = routine;
-    }
 
     public RoutineDay() {
     }
@@ -38,5 +41,13 @@ public class RoutineDay extends WorkOutSet implements Serializable {
 
     public void setSequence(int sequence) {
         this.sequence = sequence;
+    }
+
+    public Routine getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(Routine routine) {
+        this.routine = routine;
     }
 }

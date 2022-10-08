@@ -1,12 +1,24 @@
-package com.example.myapplication.Model.WorkOutUnit;
+package com.example.GymLifeServer.model.WorkOutUnit;
 
-import com.example.myapplication.Model.User.Users;
+import ch.qos.logback.classic.db.names.ColumnName;
+import com.example.GymLifeServer.model.User.Users;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class WorkOutUnit implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private String name;
+    @ManyToOne
+    @Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
+    @JoinColumn(name = "createdBy", nullable = false)
     private Users createdBy;
 
     public WorkOutUnit() {

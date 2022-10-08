@@ -1,13 +1,21 @@
-package com.example.myapplication.Model.WorkOutUnit.Routine;
+package com.example.GymLifeServer.model.WorkOutUnit.Routine;
 
-import com.example.myapplication.Model.User.Users;
+import com.example.GymLifeServer.model.User.Users;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
+@Entity
 public class RoutineAct implements Serializable {
+    @Column
     private Date actTime;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private Users user;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "routine_day_id", nullable = false)
     private RoutineDay routineDay;
 
     public RoutineAct() {

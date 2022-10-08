@@ -1,9 +1,10 @@
 package com.example.myapplication.Model.User;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class User {
+public class Users implements Serializable {
     private int id;
     private String username;
     private Date dob;
@@ -13,12 +14,12 @@ public class User {
     private String type;
     private ArrayList<UserAnalysedInfor> infor;
 
-    public User() {
+    public Users() {
     }
 
-    public User(int id, String username, Date dob,
-                String password, String email, String gender,
-                String type, ArrayList<UserAnalysedInfor> infor) {
+    public Users(int id, String username, Date dob,
+                 String password, String email, String gender,
+                 String type, ArrayList<UserAnalysedInfor> infor) {
         this.id = id;
         this.username = username;
         this.dob = dob;

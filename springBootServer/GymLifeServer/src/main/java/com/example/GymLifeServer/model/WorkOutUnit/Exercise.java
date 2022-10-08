@@ -1,14 +1,22 @@
-package com.example.myapplication.Model.WorkOutUnit;
+package com.example.GymLifeServer.model.WorkOutUnit;
 
-import com.example.myapplication.Model.User.Users;
+import com.example.GymLifeServer.model.User.Users;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 
+@Entity
 public class Exercise extends WorkOutUnit implements Serializable {
 
+    @Column
     private String introduction;
+    @Column
     private String guideline;
+    @Column
     private String img;
+    @Column
     private String type;
 
     public Exercise() {

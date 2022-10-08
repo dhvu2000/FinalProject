@@ -1,29 +1,34 @@
-package com.example.myapplication.Model.WorkOutUnit.WorkOutSet;
+package com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet;
 
-import com.example.myapplication.Model.User.Users;
-import com.example.myapplication.Model.WorkOutUnit.WorkOutUnit;
+import com.example.GymLifeServer.model.User.Users;
+import com.example.GymLifeServer.model.WorkOutUnit.WorkOutUnit;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class WorkOutSet extends WorkOutUnit implements Serializable {
 
+    @Column
     private int preTime;
+    @Column
     private int restTime;
+    @OneToMany(mappedBy = "workOutSet")
     private List<SetExercise> exercises;
 
     public WorkOutSet() {
     }
 
     public WorkOutSet(int id, String name, Users createdBy,
-                      int preTime, int restTime, List<SetExercise> exercises) {
+                      int preTime, int restTime, ArrayList<SetExercise> exercises) {
         super(id, name, createdBy);
         this.preTime = preTime;
         this.restTime = restTime;
         this.exercises = exercises;
     }
-
 
     public int getPreTime() {
         return preTime;

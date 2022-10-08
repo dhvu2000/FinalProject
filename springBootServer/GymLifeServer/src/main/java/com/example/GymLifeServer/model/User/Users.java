@@ -3,12 +3,12 @@ package com.example.GymLifeServer.model.User;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "tblUser")
-public class Users {
+public class Users implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class Users {
     @NotNull
     private String type;
 
-    @OneToMany(mappedBy = "tblUser")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private List<UserAnalysedInfor> infor;
 
     public Users() {
@@ -48,6 +48,14 @@ public class Users {
         this.email = email;
         this.gender = gender;
         this.type = type;
+    }
+
+    public List<UserAnalysedInfor> getInfor() {
+        return infor;
+    }
+
+    public void setInfor(List<UserAnalysedInfor> infor) {
+        this.infor = infor;
     }
 
     public int getId() {

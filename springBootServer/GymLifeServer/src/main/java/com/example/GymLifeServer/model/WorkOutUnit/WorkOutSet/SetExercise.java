@@ -1,16 +1,33 @@
-package com.example.myapplication.Model.WorkOutUnit.WorkOutSet;
+package com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet;
 
-import com.example.myapplication.Model.WorkOutUnit.Exercise;
+import com.example.GymLifeServer.model.WorkOutUnit.Exercise;
+import com.example.GymLifeServer.model.WorkOutUnit.WorkOutUnit;
+import org.springframework.context.annotation.Primary;
 
+import javax.persistence.*;
 import java.io.Serializable;
 
+@Entity
 public class SetExercise implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private int timeLength;
+    @Column
     private int repNum;
+    @Column
     private int Sequence;
+
+
+    @ManyToOne
+    @JoinColumn(name = "exercise_id", nullable = false)
     private Exercise exercise;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "set_id", nullable = false)
+    private WorkOutSet workOutSet;
 
     public SetExercise() {
     }
@@ -20,14 +37,6 @@ public class SetExercise implements Serializable {
         this.repNum = repNum;
         Sequence = sequence;
         this.exercise = exercise;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getTimeLength() {

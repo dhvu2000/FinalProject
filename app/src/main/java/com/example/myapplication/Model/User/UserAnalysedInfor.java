@@ -1,14 +1,17 @@
 package com.example.myapplication.Model.User;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserAnalysedInfor {
+public class UserAnalysedInfor implements Serializable {
+    int id;
     private double weight = 0;
     private double height = 0;
     private String target;
     private String frequency;
     private String focusedArea;
     private Date updatedDate;
+    private Users user;
 
     public UserAnalysedInfor() {
     }
@@ -22,6 +25,22 @@ public class UserAnalysedInfor {
         this.frequency = frequency;
         this.focusedArea = focusedArea;
         this.updatedDate = updatedDate;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public double getWeight() {
