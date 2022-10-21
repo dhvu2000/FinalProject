@@ -23,9 +23,9 @@ public class Routine extends WorkOutUnit implements Serializable {
     public Routine() {
     }
 
-    public Routine(int id, String name, Users createdBy,
+    public Routine(int id, String name, Users createdBy, String img,
                    int dayNum, int level, ArrayList<RoutineDay> days) {
-        super(id, name, createdBy);
+        super(id, name, createdBy,img);
         this.dayNum = dayNum;
         this.level = level;
         this.days = days;

@@ -6,13 +6,15 @@
     android:background="@drawable/rounded_white"
     android:layout_marginHorizontal="20dp">
     <ImageView
+        android:id="@+id/img"
         android:layout_marginVertical="20dp"
         android:layout_width="250dp"
         android:layout_height="200dp"
         android:src="@drawable/push_up"
         android:layout_gravity="center"/>
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/txtName"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Push-up"
         android:textSize="20dp"
@@ -21,7 +23,8 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginBottom="10dp"/>
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/txtIntroduction"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Chống đẩy là một bài tập cơ đơn giản và hiệu quả giúp gia tăng cơ ngực và tay sau. "
         android:layout_marginHorizontal="20dp"
@@ -29,7 +32,7 @@
         android:textSize="14dp"
         android:textColor="@color/black"/>
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="Guide: "
         android:textSize="16dp"
@@ -41,7 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/txtGuide"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:text="Bước 1: Đưa cơ thể về tư thế Plank (tấm ván cao). Đặt hai tay rộng hơn vai một chút. Lưu ý, không chùng lưng hoặc đẩy hông lên cao. Cơ thể tạo thành 1 đường thẳng từ đầu đến chân. Hai chân đặt gần nhau hoặc rộng hơn một chút miễn sao người tập cảm thấy thoải mái.\n\n
 Bước 2: Co cơ bụng lại và siết cơ bằng cách kéo rốn về phía cột sống. Siết cơ bụng trong toàn bộ quá trình chống đẩy.\n\n

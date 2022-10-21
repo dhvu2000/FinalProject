@@ -27,8 +27,9 @@ public class RoutineDay extends WorkOutSet implements Serializable {
         this.sequence = sequence;
     }
 
-    public RoutineDay(int id, String name, Users createdBy, int preTime, int restTime, ArrayList<SetExercise> exercises, int sequence) {
-        super(id, name, createdBy, preTime, restTime, exercises);
+    public RoutineDay(int id, String name, Users createdBy, String img,
+                      int preTime, int restTime, ArrayList<SetExercise> exercises, int sequence) {
+        super(id, name, createdBy, img,  preTime, restTime, exercises);
         this.sequence = sequence;
     }
 

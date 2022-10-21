@@ -1,5 +1,7 @@
 package com.example.myapplication.Model.WorkOutUnit;
 
+import androidx.annotation.NonNull;
+
 import com.example.myapplication.Model.User.Users;
 
 import java.io.Serializable;
@@ -8,18 +10,24 @@ public class Exercise extends WorkOutUnit implements Serializable {
 
     private String introduction;
     private String guideline;
-    private String img;
     private String type;
 
     public Exercise() {
     }
 
-    public Exercise(int id, String name, Users createdBy,
-                    String introduction, String guideline, String img, String type) {
-        super(id, name, createdBy);
+    public Exercise(int id, String name, Users createdBy, String img,
+                    String introduction, String guideline, String type) {
+        super(id, name, createdBy, img);
         this.introduction = introduction;
         this.guideline = guideline;
-        this.img = img;
+        this.type = type;
+    }
+
+    public Exercise(String name, Users createdBy, String img,
+                    String introduction, String guideline, String type) {
+        super(name, createdBy, img);
+        this.introduction = introduction;
+        this.guideline = guideline;
         this.type = type;
     }
 
@@ -39,19 +47,22 @@ public class Exercise extends WorkOutUnit implements Serializable {
         this.guideline = guideline;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "name='"+super.getName()+'\''+
+                ", introduction='" + introduction + '\'' +
+                ", guideline='" + guideline + '\'' +
+                ", type='" + type + '\'' +
+                ", createdBy='" + super.getCreatedBy().getUsername() + '\'' +
+                '}';
     }
 }

@@ -35,6 +35,7 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen1_firstly.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen2_firstly.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_routine_detail_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_setting_new_rountine_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_sign_in_screen_at_first.xml" value="0.25416666666666665" />
@@ -48,10 +49,14 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_exercise_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_exercise_set_dialog.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_routine_dialog.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/collections_page_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/detail_exercise_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/editing_text_infos_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/exercise_detail_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/find_and_add_exercise_dialog.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/fragment_collections_page.xml" value="0.25025641025641027" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/fragment_exercise_page.xml" value="0.1" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_exercise_item.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/pick_repetation_day_dialog.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/routine_pager.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/set_pager.xml" value="0.253125" />

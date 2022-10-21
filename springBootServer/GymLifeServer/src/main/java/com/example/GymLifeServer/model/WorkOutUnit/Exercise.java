@@ -15,19 +15,24 @@ public class Exercise extends WorkOutUnit implements Serializable {
     @Column
     private String guideline;
     @Column
-    private String img;
-    @Column
     private String type;
 
     public Exercise() {
     }
 
-    public Exercise(int id, String name, Users createdBy,
-                    String introduction, String guideline, String img, String type) {
-        super(id, name, createdBy);
+    public Exercise(int id, String name, Users createdBy, String img,
+                    String introduction, String guideline, String type) {
+        super(id, name, createdBy, img);
         this.introduction = introduction;
         this.guideline = guideline;
-        this.img = img;
+        this.type = type;
+    }
+
+    public Exercise(String name, Users createdBy, String img,
+                    String introduction, String guideline, String type) {
+        super(name, createdBy, img);
+        this.introduction = introduction;
+        this.guideline = guideline;
         this.type = type;
     }
 
@@ -47,13 +52,6 @@ public class Exercise extends WorkOutUnit implements Serializable {
         this.guideline = guideline;
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
 
     public String getType() {
         return type;

@@ -1,25 +1,37 @@
 package com.example.myapplication.Model.User;
 
+import org.intellij.lang.annotations.PrintFormat;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
+
 
 public class Users implements Serializable {
+
     private int id;
+
     private String username;
-    private Date dob;
+
+    private String dob;
+
     private String password;
+
     private String email;
+
     private String gender;
+
     private String type;
-    private ArrayList<UserAnalysedInfor> infor;
+
+    private List<UserAnalysedInfor> infor;
 
     public Users() {
     }
 
-    public Users(int id, String username, Date dob,
+    public Users(int id, String username, String dob,
                  String password, String email, String gender,
-                 String type, ArrayList<UserAnalysedInfor> infor) {
+                 String type, List<UserAnalysedInfor> infor) {
         this.id = id;
         this.username = username;
         this.dob = dob;
@@ -27,6 +39,26 @@ public class Users implements Serializable {
         this.email = email;
         this.gender = gender;
         this.type = type;
+        this.infor = infor;
+    }
+
+    public Users(String username, String dob,
+                 String password, String email, String gender,
+                 String type, List<UserAnalysedInfor> infor) {
+        this.username = username;
+        this.dob = dob;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+        this.type = type;
+        this.infor = infor;
+    }
+
+    public List<UserAnalysedInfor> getInfor() {
+        return infor;
+    }
+
+    public void setInfor(List<UserAnalysedInfor> infor) {
         this.infor = infor;
     }
 
@@ -46,11 +78,11 @@ public class Users implements Serializable {
         this.username = username;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 
@@ -86,11 +118,17 @@ public class Users implements Serializable {
         this.type = type;
     }
 
-    public ArrayList<UserAnalysedInfor> getInfor() {
-        return infor;
-    }
-
-    public void setInfor(ArrayList<UserAnalysedInfor> infor) {
-        this.infor = infor;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", dob=" + dob +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", type='" + type + '\'' +
+                '}';
     }
 }
+

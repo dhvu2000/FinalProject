@@ -27,6 +27,7 @@ public class UserAnalysedInfor implements Serializable {
         this.updatedDate = updatedDate;
     }
 
+
     public int getId() {
         return id;
     }

@@ -1,9 +1,14 @@
 package com.example.GymLifeServer.model.User;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +23,7 @@ public class Users implements Serializable {
     private String username;
 
     @NotNull
-    private Date dob;
+    private String dob;
 
     @NotNull
     private String password;
@@ -38,9 +43,9 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(int id, String username, Date dob,
+    public Users(int id, String username, String dob,
                  String password, String email, String gender,
-                 String type) {
+                 String type, List<UserAnalysedInfor> infor) {
         this.id = id;
         this.username = username;
         this.dob = dob;
@@ -48,6 +53,19 @@ public class Users implements Serializable {
         this.email = email;
         this.gender = gender;
         this.type = type;
+        this.infor = infor;
+    }
+
+    public Users(String username, String dob,
+                 String password, String email, String gender,
+                 String type, List<UserAnalysedInfor> infor) {
+        this.username = username;
+        this.dob = dob;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+        this.type = type;
+        this.infor = infor;
     }
 
     public List<UserAnalysedInfor> getInfor() {
@@ -74,11 +92,11 @@ public class Users implements Serializable {
         this.username = username;
     }
 
-    public Date getDob() {
+    public String getDob() {
         return dob;
     }
 
-    public void setDob(Date dob) {
+    public void setDob(String dob) {
         this.dob = dob;
     }
 

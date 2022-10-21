@@ -17,17 +17,34 @@ public class WorkOutUnit implements Serializable {
     @Column
     private String name;
     @ManyToOne
-    @Cascade(value= {org.hibernate.annotations.CascadeType.SAVE_UPDATE, org.hibernate.annotations.CascadeType.DELETE})
     @JoinColumn(name = "createdBy", nullable = false)
     private Users createdBy;
+
+    @Column
+    private String img;
 
     public WorkOutUnit() {
     }
 
-    public WorkOutUnit(int id, String name, Users createdBy) {
+    public WorkOutUnit(int id, String name, Users createdBy, String img) {
         this.id = id;
         this.name = name;
         this.createdBy = createdBy;
+        this.img = img;
+    }
+
+    public WorkOutUnit(String name, Users createdBy, String img) {
+        this.name = name;
+        this.createdBy = createdBy;
+        this.img = img;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public int getId() {
