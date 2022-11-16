@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
+import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
+import com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen.RoutineSidePage;
+
 import java.util.List;
 
 public class CollectionScreenSlider extends FragmentStatePagerAdapter {
@@ -36,5 +39,35 @@ public class CollectionScreenSlider extends FragmentStatePagerAdapter {
             return "SETS";
         }
         else return "ROUTINE";
+    }
+
+    public void deleteRoutine(int position)
+    {
+        for (Fragment f: fragementList)
+        {
+            if(f instanceof RoutineSidePage)
+            {
+                ((RoutineSidePage)f).deleteRoutine(position);
+            }
+//            else if(f instanceof SetsSidePage)
+//            {
+//                ((SetsSidePage)f).listenToKeyChange(s);
+//            }
+        }
+    }
+
+    public void listenToKeyChange(String s)
+    {
+        for (Fragment f: fragementList)
+        {
+            if(f instanceof RoutineSidePage)
+            {
+                ((RoutineSidePage)f).listenToKeyChange(s);
+            }
+//            else if(f instanceof SetsSidePage)
+//            {
+//                ((SetsSidePage)f).listenToKeyChange(s);
+//            }
+        }
     }
 }

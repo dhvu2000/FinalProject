@@ -7,13 +7,18 @@ import java.io.Serializable;
 import java.util.Date;
 @Entity
 public class RoutineAct implements Serializable {
+
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private int id;
+
     @Column
-    private Date actTime;
-    @Id
+    private String actTime;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
-    @Id
+
     @ManyToOne
     @JoinColumn(name = "routine_day_id", nullable = false)
     private RoutineDay routineDay;
@@ -21,17 +26,25 @@ public class RoutineAct implements Serializable {
     public RoutineAct() {
     }
 
-    public RoutineAct(Date actTime, Users user, RoutineDay routineDay) {
+    public RoutineAct(String actTime, Users user, RoutineDay routineDay) {
         this.actTime = actTime;
         this.user = user;
         this.routineDay = routineDay;
     }
 
-    public Date getActTime() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getActTime() {
         return actTime;
     }
 
-    public void setActTime(Date actTime) {
+    public void setActTime(String actTime) {
         this.actTime = actTime;
     }
 

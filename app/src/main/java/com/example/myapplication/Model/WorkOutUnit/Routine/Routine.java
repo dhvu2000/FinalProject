@@ -1,5 +1,7 @@
 package com.example.myapplication.Model.WorkOutUnit.Routine;
 
+import androidx.annotation.NonNull;
+
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutUnit;
 
@@ -7,17 +9,34 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Routine extends WorkOutUnit implements Serializable {
+public class Routine extends WorkOutUnit implements Serializable, Cloneable {
     private int dayNum;
     private int level;
-    private List<RoutineDay> days;
+    private List<RoutineDay> days = new ArrayList<>();
 
     public Routine() {
+    }
+
+    @NonNull
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Routine r = (Routine) super.clone();
+        return r;
     }
 
     public Routine(int id, String name, Users createdBy, String img,
                    int dayNum, int level, ArrayList<RoutineDay> days) {
         super(id, name, createdBy,img);
+        this.dayNum = dayNum;
+        this.level = level;
+        this.days = days;
+    }
+
+
+
+    public Routine( String name, Users createdBy, String img,
+                   int dayNum, int level, ArrayList<RoutineDay> days) {
+        super(name, createdBy,img);
         this.dayNum = dayNum;
         this.level = level;
         this.days = days;

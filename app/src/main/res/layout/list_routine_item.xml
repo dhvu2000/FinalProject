@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/routineCardView"
+    android:layout_width="350dp"
+    android:layout_gravity="center|top"
+    android:layout_height="100dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rounded_blue"
+    android:orientation="horizontal"
+    android:weightSum="3">
+
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:src="@drawable/random" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Routine Name"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"/>
+
+        <TextView
+            android:id="@+id/txtDaysNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Days: 0"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+</LinearLayout>

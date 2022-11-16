@@ -26,7 +26,9 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_account_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_collections_screen.xml" value="0.16799999999999998" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_counting_timer_scree.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_collection_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_routine_screen.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_set_save_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_detail_set_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_exercises_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_frequency_choice_screen.xml" value="0.25416666666666665" />
@@ -51,16 +53,27 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/add_routine_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/collections_page_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/detail_exercise_dialog.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_add_exercise.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_add_exercise_set.xml" value="0.11666666666666667" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_find_and_add_exercise.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_pick_repetation_day.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_setting_exercise_in_set.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/editing_text_infos_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/exercise_detail_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/find_and_add_exercise_dialog.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/fragment_collections_page.xml" value="0.25025641025641027" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/fragment_exercise_page.xml" value="0.1" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_chosen_day_item.xml" value="0.3756218905472637" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_exercise_item.xml" value="0.264" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_find_exercise_item.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_routine_day_item.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_routine_item.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_set_exercise_item.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/pick_repetation_day_dialog.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/routine_pager.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/set_pager.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/setting_exercise_in_set_dialog.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/slide_page_routine_pager.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.253125" />
       </map>
     </option>

@@ -17,6 +17,9 @@ public class Exercise extends WorkOutUnit implements Serializable {
     @Column
     private String type;
 
+    @Column
+    private int calories = 0;
+
     public Exercise() {
     }
 
@@ -34,6 +37,14 @@ public class Exercise extends WorkOutUnit implements Serializable {
         this.introduction = introduction;
         this.guideline = guideline;
         this.type = type;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
     }
 
     public String getIntroduction() {

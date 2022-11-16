@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -20,10 +21,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".WorkOutProcessEnd"
+            android:exported="false" />
+        <activity
+            android:name=".Views.CollectionsScreen.BothUseScreen.DetailCollectionScreen"
+            android:exported="false" />
+        <activity
             android:name=".Views.InforScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.WorkOutProcessScreen1"
+            android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessScreen1"
             android:exported="false" />
         <activity
             android:name=".Views.CountingTimerScreen"
@@ -32,16 +39,16 @@
             android:name=".Views.TimerScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.WorkoutProcessScreen2"
+            android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkoutProcessScreen2"
             android:exported="false" />
         <activity
-            android:name=".Views.DetailRoutineScreen"
+            android:name=".Views.CollectionsScreen.BothUseScreen.UpdateSaveCollectionScreen"
             android:exported="false" />
         <activity
             android:name=".Views.SettingNewRountineScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.RoutineDetailScreen"
+            android:name=".Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen"
             android:exported="false" />
         <activity
             android:name=".Views.HomeScreen"
@@ -78,7 +85,8 @@
             android:exported="false" />
         <activity
             android:name=".Views.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

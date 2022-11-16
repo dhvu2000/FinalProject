@@ -11,6 +11,7 @@ public class Exercise extends WorkOutUnit implements Serializable {
     private String introduction;
     private String guideline;
     private String type;
+    private int calories = 0;
 
     public Exercise() {
     }
@@ -31,6 +32,14 @@ public class Exercise extends WorkOutUnit implements Serializable {
         this.type = type;
     }
 
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
     public String getIntroduction() {
         return introduction;
     }
@@ -46,6 +55,7 @@ public class Exercise extends WorkOutUnit implements Serializable {
     public void setGuideline(String guideline) {
         this.guideline = guideline;
     }
+
 
     public String getType() {
         return type;

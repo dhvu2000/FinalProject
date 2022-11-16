@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.WorkOutProcessScreen1"
+    tools:context=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessScreen1"
     android:orientation="vertical"
     android:gravity="center">
     <TextView
+        android:id="@+id/txtHead"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
             android:id="@+id/progressTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:30"
+            android:text="30 secs"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintBottom_toBottomOf="@+id/progressBar"
             android:textColor="@color/bluesky"
@@ -44,7 +45,7 @@
             app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/skipButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/translucent"
@@ -60,9 +61,9 @@
             android:text="Skip"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            app:layout_constraintRight_toRightOf="@id/imageButton"
-            app:layout_constraintLeft_toLeftOf="@id/imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/skipButton"
+            app:layout_constraintRight_toRightOf="@id/skipButton"
+            app:layout_constraintLeft_toLeftOf="@id/skipButton"
             tools:layout_editor_absoluteX="297dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -77,7 +78,7 @@
             android:layout_weight="1">
 
             <ImageButton
-                android:id="@+id/btnPause"
+                android:id="@+id/btnPauseContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/translucent"
@@ -88,14 +89,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/txtBtnPauseContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pause"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/btnPause"
-                app:layout_constraintRight_toRightOf="@id/btnPause"
-                app:layout_constraintLeft_toLeftOf="@id/btnPause" />
+                app:layout_constraintTop_toBottomOf="@+id/btnPauseContinue"
+                app:layout_constraintRight_toRightOf="@id/btnPauseContinue"
+                app:layout_constraintLeft_toLeftOf="@id/btnPauseContinue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,6 +137,7 @@
         android:layout_marginTop="20dp"
         android:paddingStart="20dp">
         <TextView
+            android:id="@+id/txtNextExerciseName"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1.25"
@@ -144,6 +147,7 @@
             android:gravity="left|center"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/txtNextReps"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -153,6 +157,7 @@
             android:gravity="left|center"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/txtNextTime"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -164,6 +169,7 @@
 
     </LinearLayout>
     <ImageView
+        android:id="@+id/img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/squad"

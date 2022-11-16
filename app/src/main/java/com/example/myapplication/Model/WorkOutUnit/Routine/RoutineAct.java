@@ -6,24 +6,34 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class RoutineAct implements Serializable {
-    private Date actTime;
+
+    private int id;
+    private String actTime;
     private Users user;
     private RoutineDay routineDay;
 
     public RoutineAct() {
     }
 
-    public RoutineAct(Date actTime, Users user, RoutineDay routineDay) {
+    public RoutineAct(String actTime, Users user, RoutineDay routineDay) {
         this.actTime = actTime;
         this.user = user;
         this.routineDay = routineDay;
     }
 
-    public Date getActTime() {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getActTime() {
         return actTime;
     }
 
-    public void setActTime(Date actTime) {
+    public void setActTime(String actTime) {
         this.actTime = actTime;
     }
 

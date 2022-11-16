@@ -11,12 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ExerciseListItem.ExerciseAdapter;
@@ -26,6 +29,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.ExerciseApi;
 import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.UsersApi;
+import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -44,13 +48,14 @@ public class ExercisePageFragment extends Fragment{
 
 
     Button btnAddExercise;
+    EditText txtSearch;
     RecyclerView recyclerView;
     Users user;
     private StorageReference mStorageRef;
     RetrofitApi retrofitApi = new RetrofitApi();
-    UsersApi usersApi = retrofitApi.getRetrofit().create(UsersApi.class);
     ExerciseApi exerciseApi = retrofitApi.getRetrofit().create(ExerciseApi.class);
     String uploadUrl;
+    ArrayList<Exercise> dbList = new ArrayList<>();
     ArrayList<Exercise> exercises = new ArrayList<>();
 
     public ExercisePageFragment() {
@@ -68,9 +73,12 @@ public class ExercisePageFragment extends Fragment{
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_exercise_page, container, false);
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        txtSearch = view.findViewById(R.id.txtSearch);
         btnAddExercise = view.findViewById(R.id.btnAddExercise);
         recyclerView = view.findViewById(R.id.exerciseList_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,34 +90,45 @@ public class ExercisePageFragment extends Fragment{
             }
         });
 
-        Call<Users> usersCall = usersApi.getUserById(8);
-        usersCall.enqueue(new Callback<Users>() {
+        txtSearch.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onResponse(Call<Users> call, Response<Users> response) {
-                System.out.println("getUserSuccess");
-                user = response.body();
-                System.out.println(user);
-                setExerciseList();
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
-            public void onFailure(Call<Users> call, Throwable t) {
-                System.out.println("fail" + t.getMessage());
-                showNotice(t.getMessage());
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filterExercise();
             }
         });
+
+        user = (Users) (new SharePreferenceManager(getActivity())).getObject("User",Users.class);
+        setExerciseList();
         return view;
     }
 
     private void setExerciseList()
     {
-        Call<ArrayList<Exercise>> call = exerciseApi.getExercisesByUserId(user.getId());
+        int id = 0;
+        if(user != null){
+            id = user.getId();
+        }
+        Call<ArrayList<Exercise>> call = exerciseApi.getExercisesByUserId(id);
         call.enqueue(new Callback<ArrayList<Exercise>>() {
             @Override
             public void onResponse(Call<ArrayList<Exercise>> call, Response<ArrayList<Exercise>> response) {
                 if(response.body()!= null && response.body().size()>0)
-                      exercises = response.body();
+                {
+                    ArrayList<Exercise> responseBody = response.body();
+                    dbList.clear();
+                    dbList.addAll(responseBody);
+                    exercises = responseBody;
+                }
                 System.out.println(exercises.size());
                 populateListView(exercises);
             }
@@ -189,8 +208,8 @@ public class ExercisePageFragment extends Fragment{
             public void onResponse(Call<Exercise> call, Response<Exercise> response) {
                 if(response.body() != null)
                 {
-                    exercises.add(response.body());
-                    recyclerView.getAdapter().notifyDataSetChanged();
+                    dbList.add(response.body());
+                    filterExercise();
                 }
                 showNotice("new exercise added");
             }
@@ -210,8 +229,14 @@ public class ExercisePageFragment extends Fragment{
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                exercises.remove(position);
-                recyclerView.getAdapter().notifyDataSetChanged();
+                for(int i = 0; i< dbList.size(); i++)
+                {
+                    if(dbList.get(i).getId() == deletedExercise.getId())
+                    {
+                        dbList.remove(i);
+                    }
+                }
+                filterExercise();
             }
 
             @Override
@@ -222,10 +247,27 @@ public class ExercisePageFragment extends Fragment{
 
     }
 
+    private void filterExercise()
+    {
+        if(txtSearch != null)
+        {
+            String key = txtSearch.getText().toString();
+            exercises.clear();
+            for(Exercise i: dbList)
+            {
+                if(i.getName().contains(key))
+                {
+                    exercises.add(i);
+                }
+            }
+            recyclerView.getAdapter().notifyDataSetChanged();
+        }
+    }
+
     private void showNotice(String s)
     {
         if(getActivity()!= null)
-             Toast.makeText(getActivity(),s,Toast.LENGTH_LONG);
+             Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
     }
 
 

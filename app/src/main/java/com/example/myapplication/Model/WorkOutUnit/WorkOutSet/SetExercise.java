@@ -9,8 +9,9 @@ public class SetExercise implements Serializable {
     private int id;
     private int timeLength;
     private int repNum;
-    private int Sequence;
+    private int sequence;
     private Exercise exercise;
+    private WorkOutSet workOutSet;
 
     public SetExercise() {
     }
@@ -18,8 +19,16 @@ public class SetExercise implements Serializable {
     public SetExercise(int timeLength, int repNum, int sequence, Exercise exercise) {
         this.timeLength = timeLength;
         this.repNum = repNum;
-        Sequence = sequence;
+        this.sequence = sequence;
         this.exercise = exercise;
+    }
+
+    public WorkOutSet getWorkOutSet() {
+        return workOutSet;
+    }
+
+    public void setWorkOutSet(WorkOutSet workOutSet) {
+        this.workOutSet = workOutSet;
     }
 
     public int getId() {
@@ -47,11 +56,11 @@ public class SetExercise implements Serializable {
     }
 
     public int getSequence() {
-        return Sequence;
+        return sequence;
     }
 
     public void setSequence(int sequence) {
-        Sequence = sequence;
+        this.sequence = sequence;
     }
 
     public Exercise getExercise() {

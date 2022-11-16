@@ -2,23 +2,18 @@ package com.example.myapplication.Views.ExerciseScreen;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,18 +22,10 @@ import androidx.fragment.app.DialogFragment;
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.R;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 import com.squareup.picasso.Picasso;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class AddExerciseDialog extends DialogFragment {
@@ -66,7 +53,7 @@ public class AddExerciseDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          super.onCreateView(inflater, container, savedInstanceState);
-        View addExerciseDialog =  inflater.inflate(R.layout.add_exercise_dialog,container,false);
+        View addExerciseDialog =  inflater.inflate(R.layout.dialog_add_exercise,container,false);
 
         btnSave = addExerciseDialog.findViewById(R.id.btnSave);
         txtNote = addExerciseDialog.findViewById(R.id.note);
@@ -90,7 +77,6 @@ public class AddExerciseDialog extends DialogFragment {
                 exercise = getExercise();
                 if(exercise != null)
                 {
-                    System.out.println("dialog: " +exercise );
                     mOnInputListener.sendInput(exercise);
                     getDialog().dismiss();
                 }
@@ -118,7 +104,6 @@ public class AddExerciseDialog extends DialogFragment {
         String name = txtName.getText().toString();
         String introduction = txtIntroduction.getText().toString();
         String guide = txtGuide.getText().toString();
-        Exercise res = new Exercise(name,users,imageUrl.toString(),introduction,guide,null);
         if(name == null || name.trim().isEmpty())
         {
             txtNote.setText("please, fill all information");
@@ -126,19 +111,20 @@ public class AddExerciseDialog extends DialogFragment {
         }
         if(introduction == null || introduction.trim().isEmpty())
         {
-            txtNote.setText("please, fill all information");
-            return null;
+            introduction = "";
         }
         if(guide == null || guide.trim().isEmpty())
         {
-            txtNote.setText("please, fill all information");
-            return null;
+            guide="";
         }
         if(users == null)
         {
             txtNote.setText("No account, please sign in");
             return null;
         }
+        Exercise res = new Exercise(name,users,imageUrl.toString(),introduction,guide,null);
+
+
         return res;
     }
 

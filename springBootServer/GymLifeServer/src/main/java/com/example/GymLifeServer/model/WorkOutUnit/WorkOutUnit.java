@@ -17,7 +17,7 @@ public class WorkOutUnit implements Serializable {
     @Column
     private String name;
     @ManyToOne
-    @JoinColumn(name = "createdBy", nullable = false)
+    @JoinColumn(name = "createdBy")
     private Users createdBy;
 
     @Column

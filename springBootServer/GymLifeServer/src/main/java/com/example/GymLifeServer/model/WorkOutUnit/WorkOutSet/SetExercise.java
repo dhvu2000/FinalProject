@@ -2,6 +2,7 @@ package com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet;
 
 import com.example.GymLifeServer.model.WorkOutUnit.Exercise;
 import com.example.GymLifeServer.model.WorkOutUnit.WorkOutUnit;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -17,7 +18,7 @@ public class SetExercise implements Serializable {
     @Column
     private int repNum;
     @Column
-    private int Sequence;
+    private int sequence;
 
 
     @ManyToOne
@@ -25,8 +26,8 @@ public class SetExercise implements Serializable {
     private Exercise exercise;
 
     @ManyToOne
-    @PrimaryKeyJoinColumn
     @JoinColumn(name = "set_id", nullable = false)
+    @JsonBackReference
     private WorkOutSet workOutSet;
 
     public SetExercise() {
@@ -35,8 +36,24 @@ public class SetExercise implements Serializable {
     public SetExercise(int timeLength, int repNum, int sequence, Exercise exercise) {
         this.timeLength = timeLength;
         this.repNum = repNum;
-        Sequence = sequence;
+        this.sequence = sequence;
         this.exercise = exercise;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public WorkOutSet getWorkOutSet() {
+        return workOutSet;
+    }
+
+    public void setWorkOutSet(WorkOutSet workOutSet) {
+        this.workOutSet = workOutSet;
     }
 
     public int getTimeLength() {
@@ -56,11 +73,11 @@ public class SetExercise implements Serializable {
     }
 
     public int getSequence() {
-        return Sequence;
+        return sequence;
     }
 
     public void setSequence(int sequence) {
-        Sequence = sequence;
+        sequence = sequence;
     }
 
     public Exercise getExercise() {

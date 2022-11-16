@@ -1,0 +1,200 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="600dp"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
+    android:background="@drawable/rounded_white"
+    android:gravity="center|top"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginVertical="20dp"
+        android:src="@drawable/push_up" />
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Push-up"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:text="Reps:"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnMinusReps"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/translucent"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtRepsNum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnPlusReps"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/translucent"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:weightSum="4">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="left|center"
+            android:text="Time (secs):"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnMinusTime"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/translucent"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtTime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btnPlusTime"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/translucent"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:padding="0dp"
+        android:text="OK"
+        android:textAllCaps="false" />
+
+
+    <TextView
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Guide: "
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="340dp"
+        android:layout_height="150dp">
+
+        <TextView
+            android:id="@+id/txtGuide"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="Bước 1: Đưa cơ thể về tư thế Plank (tấm ván cao). Đặt hai tay rộng hơn vai một chút. Lưu ý, không chùng lưng hoặc đẩy hông lên cao. Cơ thể tạo thành 1 đường thẳng từ đầu đến chân. Hai chân đặt gần nhau hoặc rộng hơn một chút miễn sao người tập cảm thấy thoải mái.\n\n
+Bước 2: Co cơ bụng lại và siết cơ bằng cách kéo rốn về phía cột sống. Siết cơ bụng trong toàn bộ quá trình chống đẩy.\n\n
+Bước 3: Hít vào, từ từ uốn cong khuỷu tay và hạ người xuống cho đến khi khuỷu tay vuông góc với mặt sàn.\n\n
+Bước 4: Thở ra khi siết cơ ngực và đẩy khuỷu tay về vị trí bắt đầu. Lặp lại động tác cho đến khi đủ số lần tập yêu cầu.\n\n"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+    </ScrollView>
+
+
+</LinearLayout>

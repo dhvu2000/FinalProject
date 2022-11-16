@@ -2,6 +2,7 @@ package com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet;
 
 import com.example.GymLifeServer.model.User.Users;
 import com.example.GymLifeServer.model.WorkOutUnit.WorkOutUnit;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,18 +17,24 @@ public class WorkOutSet extends WorkOutUnit implements Serializable {
     private int preTime;
     @Column
     private int restTime;
-    @OneToMany(mappedBy = "workOutSet")
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "workOutSet")
+    @JsonManagedReference
     private List<SetExercise> exercises;
+
+    @Column
+    private String type;
 
     public WorkOutSet() {
     }
 
-    public WorkOutSet(int id, String name, Users createdBy, String img,
-                      int preTime, int restTime, List<SetExercise> exercises) {
-        super(id, name, createdBy, img);
+    public WorkOutSet( String name, Users createdBy, String img,
+                      int preTime, int restTime, List<SetExercise> exercises,
+                        String type) {
+        super(name, createdBy, img);
         this.preTime = preTime;
         this.restTime = restTime;
         this.exercises = exercises;
+        this.type = type;
     }
 
     public int getPreTime() {
@@ -52,5 +59,13 @@ public class WorkOutSet extends WorkOutUnit implements Serializable {
 
     public void setExercises(ArrayList<SetExercise> exercises) {
         this.exercises = exercises;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

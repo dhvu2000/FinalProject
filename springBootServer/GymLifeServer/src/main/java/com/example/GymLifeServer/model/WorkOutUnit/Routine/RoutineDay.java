@@ -3,11 +3,9 @@ package com.example.GymLifeServer.model.WorkOutUnit.Routine;
 import com.example.GymLifeServer.model.User.Users;
 import com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet.SetExercise;
 import com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet.WorkOutSet;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -18,7 +16,8 @@ public class RoutineDay extends WorkOutSet implements Serializable {
     @Column
     private int sequence;
     @ManyToOne
-    @JoinColumn(name = "routine_id", nullable = false)
+    @JoinColumn(name = "routine_id")
+    @JsonBackReference
     private Routine routine;
 
 
@@ -30,9 +29,9 @@ public class RoutineDay extends WorkOutSet implements Serializable {
         this.sequence = sequence;
     }
 
-    public RoutineDay(int id, String name, Users createdBy, String img,
-                      int preTime, int restTime, ArrayList<SetExercise> exercises, int sequence) {
-        super(id, name, createdBy, img,  preTime, restTime, exercises);
+    public RoutineDay(String name, Users createdBy, String img,
+                      int preTime, int restTime, ArrayList<SetExercise> exercises, String type,int sequence) {
+        super(name, createdBy, img,  preTime, restTime, exercises, type);
         this.sequence = sequence;
     }
 

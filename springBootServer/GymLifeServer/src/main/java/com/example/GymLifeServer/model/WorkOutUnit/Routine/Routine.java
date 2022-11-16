@@ -2,7 +2,9 @@ package com.example.GymLifeServer.model.WorkOutUnit.Routine;
 
 import com.example.GymLifeServer.model.User.Users;
 import com.example.GymLifeServer.model.WorkOutUnit.WorkOutUnit;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -17,7 +19,8 @@ public class Routine extends WorkOutUnit implements Serializable {
     @Column
     private int level;
 
-    @OneToMany(mappedBy = "routine")
+    @OneToMany(cascade = {CascadeType.REMOVE}, mappedBy = "routine")
+    @JsonManagedReference
     private List<RoutineDay> days;
 
     public Routine() {
@@ -26,6 +29,14 @@ public class Routine extends WorkOutUnit implements Serializable {
     public Routine(int id, String name, Users createdBy, String img,
                    int dayNum, int level, ArrayList<RoutineDay> days) {
         super(id, name, createdBy,img);
+        this.dayNum = dayNum;
+        this.level = level;
+        this.days = days;
+    }
+
+    public Routine( String name, Users createdBy, String img,
+                    int dayNum, int level, ArrayList<RoutineDay> days) {
+        super(name, createdBy,img);
         this.dayNum = dayNum;
         this.level = level;
         this.days = days;

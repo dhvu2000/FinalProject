@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.WorkoutProcessScreen2"
+    tools:context=".Views.CollectionsScreen.WorkOutProcessScreen.WorkoutProcessScreen2"
     android:orientation="vertical"
     android:gravity="center">
     <TextView
-        android:id="@+id/exerciseName"
+        android:id="@+id/txtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -18,6 +18,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="20dp"/>
     <ImageView
+        android:id="@+id/img"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/squad"
@@ -30,6 +31,7 @@
         android:weightSum="2"
         android:layout_marginBottom="30dp">
         <TextView
+            android:id="@+id/txtRepsNum"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -39,12 +41,12 @@
             android:textColor="@color/bluesky"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/timer"
+            android:id="@+id/txtTime"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:text="00:30"
+            android:text="30 secs"
             android:textStyle="bold"
             android:textColor="@color/bluesky"
             android:gravity="center"/>
@@ -61,7 +63,7 @@
             android:layout_weight="1">
 
             <ImageButton
-                android:id="@+id/btnPause"
+                android:id="@+id/btnPauseContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/translucent"
@@ -72,14 +74,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/txtBtnPauseContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pause"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/btnPause"
-                app:layout_constraintRight_toRightOf="@id/btnPause"
-                app:layout_constraintLeft_toLeftOf="@id/btnPause" />
+                app:layout_constraintTop_toBottomOf="@+id/btnPauseContinue"
+                app:layout_constraintRight_toRightOf="@id/btnPauseContinue"
+                app:layout_constraintLeft_toLeftOf="@id/btnPauseContinue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout

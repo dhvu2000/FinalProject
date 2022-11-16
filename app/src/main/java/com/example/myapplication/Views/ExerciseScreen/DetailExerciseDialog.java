@@ -32,7 +32,7 @@ public class DetailExerciseDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        View view =  inflater.inflate(R.layout.detail_exercise_dialog,container,false);
+        View view =  inflater.inflate(R.layout.dialog_detail_exercise,container,false);
 
         img = view.findViewById(R.id.img);
         txtName = view.findViewById(R.id.txtName);

@@ -1,5 +1,7 @@
 package com.example.myapplication.Model.WorkOutUnit.Routine;
 
+import androidx.annotation.NonNull;
+
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.SetExercise;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
@@ -7,7 +9,7 @@ import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RoutineDay extends WorkOutSet implements Serializable {
+public class RoutineDay extends WorkOutSet implements Serializable{
 
     private int sequence;
     private Routine routine;
@@ -27,9 +29,10 @@ public class RoutineDay extends WorkOutSet implements Serializable {
         this.sequence = sequence;
     }
 
-    public RoutineDay(int id, String name, Users createdBy, String img,
-                      int preTime, int restTime, ArrayList<SetExercise> exercises, int sequence) {
-        super(id, name, createdBy, img,  preTime, restTime, exercises);
+
+    public RoutineDay(String name, Users createdBy, String img,
+                      int preTime, int restTime, ArrayList<SetExercise> exercises,String type, int sequence) {
+        super(name, createdBy, img,  preTime, restTime, exercises, type);
         this.sequence = sequence;
     }
 

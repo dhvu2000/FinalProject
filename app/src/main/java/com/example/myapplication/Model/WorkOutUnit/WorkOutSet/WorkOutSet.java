@@ -12,16 +12,18 @@ public class WorkOutSet extends WorkOutUnit implements Serializable {
     private int preTime;
     private int restTime;
     private List<SetExercise> exercises;
+    private String type;
 
     public WorkOutSet() {
     }
 
-    public WorkOutSet(int id, String name, Users createdBy, String img,
-                      int preTime, int restTime, List<SetExercise> exercises) {
-        super(id, name, createdBy, img);
+    public WorkOutSet(String name, Users createdBy, String img,
+                      int preTime, int restTime, List<SetExercise> exercises, String type) {
+        super(name, createdBy, img);
         this.preTime = preTime;
         this.restTime = restTime;
         this.exercises = exercises;
+        this.type = type;
     }
 
 
@@ -47,5 +49,13 @@ public class WorkOutSet extends WorkOutUnit implements Serializable {
 
     public void setExercises(ArrayList<SetExercise> exercises) {
         this.exercises = exercises;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

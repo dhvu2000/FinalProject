@@ -29,7 +29,7 @@ public class ExerciseController {
         for(Exercise i: exercises)
         {
             Users u = i.getCreatedBy();
-            if(u.getId() == userId || i.getType().equals("admin"))
+            if(u.getId() == userId || u.getType().equals("admin"))
             {
                 res.add(i);
             }
@@ -54,7 +54,7 @@ public class ExerciseController {
     }
 
     @DeleteMapping("/exercise/delete/{exerciseId}")
-    public void deleteUserById(@PathVariable int exerciseId)
+    public void deleteExerciseById(@PathVariable int exerciseId)
     {
          workOutUnitRepository.deleteById(exerciseId);
     }

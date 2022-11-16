@@ -49,7 +49,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
         Exercise exercise = exercises.get(position);
         if(exercise.getImg()!=null && !exercise.getImg().isEmpty())
         {
-            Picasso.get().load(exercise.getImg()).into(holder.img);
+            Picasso.get().load(exercise.getImg()).error(R.drawable.add_image).into(holder.img);
         }else
         {
             Picasso.get().load(R.drawable.add_image).into(holder.img);
