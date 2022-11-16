@@ -10,12 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapplication.Adapter.SetExerciseItem.SetExerciseAdapter;
 import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.SetExercise;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import com.example.myapplication.R;
+import com.example.myapplication.Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessScreen1;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,7 +80,15 @@ public class DetailCollectionScreen extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(workOutSet == null || workOutSet.getExercises().size() == 0)
+                {
+                    Toast.makeText(DetailCollectionScreen.this, "No exercise yet", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                Intent intent = new Intent(DetailCollectionScreen.this, WorkOutProcessScreen1.class);
+                intent.putExtra("set", workOutSet);
+                intent.putExtra("sequence", 0);
+                startActivity(intent);
             }
         });
     }

@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
     tools:context=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessEnd">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/img"/>
+    <TextView
+        android:id="@+id/txtFinish"
+        android:layout_width="wrap_content"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:text="Well done,"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="@color/bluesky"/>
+    <TextView
+        android:id="@+id/txtCongrats"
+        android:layout_width="wrap_content"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:text="You have finished the exercise"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="@color/bluesky"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="20dp">
+        <LinearLayout
+            android:padding="15dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time:"
+                android:textSize="16dp"
+                android:textColor="@color/bluesky"/>
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="160 secs"
+                android:textColor="@color/bluesky"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:padding="15dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories burnt:"
+                android:textSize="16dp"
+                android:textColor="@color/bluesky"/>
+            <TextView
+                android:id="@+id/txtCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4500 cal"
+                android:textColor="@color/bluesky"
+                android:textSize="20dp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btnDone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Done"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/img"/>
+
+
+</LinearLayout>
