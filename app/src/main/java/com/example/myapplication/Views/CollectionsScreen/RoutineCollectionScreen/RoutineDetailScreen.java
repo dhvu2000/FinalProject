@@ -159,7 +159,8 @@ public class RoutineDetailScreen extends AppCompatActivity {
     }
 
     private void updateRoutine() {
-        routine.setDayNum(routine.getDays().get(routine.getDays().size()-1).getSequence());
+        if(routine.getDays() == null || routine.getDays().size() == 0) routine.setDayNum(0);
+        else routine.setDayNum(routine.getDays().get(routine.getDays().size()-1).getSequence());
         txtDaysNum.setText("Days: "+routine.getDayNum());
         new SharePreferenceManager(RoutineDetailScreen.this).saveRoutine(routine);
         Call<Routine> call  = routineApi.save(routine);

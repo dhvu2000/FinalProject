@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.R;
 import com.example.myapplication.Views.ExerciseScreen.AddExerciseDialog;
@@ -49,7 +50,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
         Exercise exercise = exercises.get(position);
         if(exercise.getImg()!=null && !exercise.getImg().isEmpty())
         {
-            Picasso.get().load(exercise.getImg()).error(R.drawable.add_image).into(holder.img);
+            Glide.with(context).asBitmap().centerCrop().load(exercise.getImg()).error(R.drawable.add_image).into(holder.img);
         }else
         {
             Picasso.get().load(R.drawable.add_image).into(holder.img);
@@ -108,10 +109,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
     private void openDeleteAlertDialog(int position)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Do you want to delete the exercise");
+        builder.setMessage("What you want to the exercise?");
         builder.setCancelable(true);
         builder.setPositiveButton(
-                "Yes",
+                "Delete",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //delete the exercise
@@ -120,8 +121,17 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
                     }
                 });
         builder.setNegativeButton(
-                "No",
+                "Fix",
                 new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Exercise e = exercises.get(position);
+                        AddExerciseDialog addExerciseDialog = new AddExerciseDialog(e);
+                        addExerciseDialog.show(((AppCompatActivity)context).getSupportFragmentManager(), "AddExerciseDialog");
+                    }
+                });
+        builder.setNeutralButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }

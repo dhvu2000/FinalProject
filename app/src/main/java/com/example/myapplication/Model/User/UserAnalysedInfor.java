@@ -4,29 +4,29 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class UserAnalysedInfor implements Serializable {
-    int id;
-    private double weight = 0;
-    private double height = 0;
+
+    private int id;
+
     private String target;
+
     private String frequency;
+
     private String focusedArea;
-    private Date updatedDate;
+
+    private String updatedDate;
+
     private Users user;
 
     public UserAnalysedInfor() {
     }
 
-    public UserAnalysedInfor(double weight, double height,
-                             String target, String frequency,
-                             String focusedArea, Date updatedDate) {
-        this.weight = weight;
-        this.height = height;
+    public UserAnalysedInfor(String target, String frequency,
+                             String focusedArea, String updatedDate) {
         this.target = target;
         this.frequency = frequency;
         this.focusedArea = focusedArea;
         this.updatedDate = updatedDate;
     }
-
 
     public int getId() {
         return id;
@@ -42,28 +42,6 @@ public class UserAnalysedInfor implements Serializable {
 
     public void setUser(Users user) {
         this.user = user;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-
-        this.weight = weight;
-    }
-
-
-    public double getBMI()
-    {
-        return weight/(height * height);
-    }
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
     }
 
     public String getTarget() {
@@ -90,11 +68,11 @@ public class UserAnalysedInfor implements Serializable {
         this.focusedArea = focusedArea;
     }
 
-    public Date getUpdatedDate() {
+    public String getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
+    public void setUpdatedDate(String updatedDate) {
         this.updatedDate = updatedDate;
     }
 }

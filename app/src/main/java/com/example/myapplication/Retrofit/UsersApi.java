@@ -2,6 +2,7 @@ package com.example.myapplication.Retrofit;
 
 import com.example.myapplication.Model.User.Users;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -18,7 +19,11 @@ public interface UsersApi {
     @GET("/user/get/{userId}")
     Call<Users> getUserById(@Path("userId") int userId);
 
+
     @POST("/user/save")
     Call<Users> save(@Body Users user);
+
+    @POST("/user/log_in")
+    Call<Users> logInUser(@Body Users u);
 
 }

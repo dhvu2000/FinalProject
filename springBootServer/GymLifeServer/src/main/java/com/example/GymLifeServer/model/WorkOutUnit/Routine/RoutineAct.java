@@ -15,21 +15,25 @@ public class RoutineAct implements Serializable {
     @Column
     private String actTime;
 
+    @Column
+    private int progress;
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Users user;
 
     @ManyToOne
-    @JoinColumn(name = "routine_day_id", nullable = false)
-    private RoutineDay routineDay;
+    @JoinColumn(name = "routine_id", nullable = false)
+    private Routine routine;
 
     public RoutineAct() {
     }
 
-    public RoutineAct(String actTime, Users user, RoutineDay routineDay) {
+    public RoutineAct(String actTime, int progress, Users user, Routine routine) {
         this.actTime = actTime;
+        this.progress = progress;
         this.user = user;
-        this.routineDay = routineDay;
+        this.routine = routine;
     }
 
     public int getId() {
@@ -56,11 +60,19 @@ public class RoutineAct implements Serializable {
         this.user = user;
     }
 
-    public RoutineDay getRoutineDay() {
-        return routineDay;
+    public int getProgress() {
+        return progress;
     }
 
-    public void setRoutineDay(RoutineDay routineDay) {
-        this.routineDay = routineDay;
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public Routine getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(Routine routine) {
+        this.routine = routine;
     }
 }

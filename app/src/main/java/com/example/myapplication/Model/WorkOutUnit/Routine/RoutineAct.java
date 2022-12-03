@@ -8,17 +8,23 @@ import java.util.Date;
 public class RoutineAct implements Serializable {
 
     private int id;
+
     private String actTime;
+
+    private int progress;
+
     private Users user;
-    private RoutineDay routineDay;
+
+    private Routine routine;
 
     public RoutineAct() {
     }
 
-    public RoutineAct(String actTime, Users user, RoutineDay routineDay) {
+    public RoutineAct(String actTime, int progress, Users user, Routine routine) {
         this.actTime = actTime;
+        this.progress = progress;
         this.user = user;
-        this.routineDay = routineDay;
+        this.routine = routine;
     }
 
     public int getId() {
@@ -45,11 +51,19 @@ public class RoutineAct implements Serializable {
         this.user = user;
     }
 
-    public RoutineDay getRoutineDay() {
-        return routineDay;
+    public int getProgress() {
+        return progress;
     }
 
-    public void setRoutineDay(RoutineDay routineDay) {
-        this.routineDay = routineDay;
+    public void setProgress(int progress) {
+        this.progress = progress;
+    }
+
+    public Routine getRoutine() {
+        return routine;
+    }
+
+    public void setRoutine(Routine routine) {
+        this.routine = routine;
     }
 }

@@ -1,4 +1,4 @@
-package com.example.myapplication.Views;
+package com.example.myapplication.Views.WelcomeScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.myapplication.R;
+import com.example.myapplication.Views.AccountConfirmScreen;
 
 public class WelcomeScreen extends AppCompatActivity {
 
@@ -50,7 +51,7 @@ public class WelcomeScreen extends AppCompatActivity {
         btnContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(WelcomeScreen.this, AccountConfirmScreen.class);
+                Intent intent = new Intent(WelcomeScreen.this, LogInScreen.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);
                 WelcomeScreen.this.finish();

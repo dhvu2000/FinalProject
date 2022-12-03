@@ -1,10 +1,6 @@
 package com.example.myapplication.Model.User;
 
-import org.intellij.lang.annotations.PrintFormat;
-
 import java.io.Serializable;
-import java.sql.Date;
-import java.sql.Timestamp;
 import java.util.List;
 
 
@@ -24,7 +20,12 @@ public class Users implements Serializable {
 
     private String type;
 
+    private String img;
+
     private List<UserAnalysedInfor> infor;
+
+    private List<UserSchema> schemas;
+
 
     public Users() {
     }
@@ -44,7 +45,7 @@ public class Users implements Serializable {
 
     public Users(String username, String dob,
                  String password, String email, String gender,
-                 String type, List<UserAnalysedInfor> infor) {
+                 String type, List<UserAnalysedInfor> infor, List<UserSchema> schemas) {
         this.username = username;
         this.dob = dob;
         this.password = password;
@@ -52,6 +53,23 @@ public class Users implements Serializable {
         this.gender = gender;
         this.type = type;
         this.infor = infor;
+        this.schemas = schemas;
+    }
+
+    public List<UserSchema> getSchemas() {
+        return schemas;
+    }
+
+    public void setSchemas(List<UserSchema> schemas) {
+        this.schemas = schemas;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public List<UserAnalysedInfor> getInfor() {

@@ -2,14 +2,18 @@ package com.example.myapplication.Views.ExerciseScreen;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -22,17 +26,30 @@ import androidx.fragment.app.DialogFragment;
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.R;
+import com.example.myapplication.Retrofit.ExerciseApi;
+import com.example.myapplication.Retrofit.RetrofitApi;
+import com.example.myapplication.Supporter.SharePreferenceManager;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class AddExerciseDialog extends DialogFragment {
 
     private static final String TAG = "AddExerciseDialog";
     public interface OnInputListener {
-        void sendInput(Exercise input);
+        void sendChangedNotify();
     }
 
     private String uploadUrl = "";
@@ -42,11 +59,27 @@ public class AddExerciseDialog extends DialogFragment {
     private EditText txtName;
     private EditText txtGuide;
     private EditText txtIntroduction;
+    private EditText txtCalories;
     private ImageView img;
     int SELECT_PICTURE = 200;
+    private StorageReference mStorageRef;
+    RetrofitApi retrofitApi = new RetrofitApi();
+    ExerciseApi exerciseApi = retrofitApi.getRetrofit().create(ExerciseApi.class);
     Uri imageUrl = Uri.parse("");
+    boolean imageAvailabe = false;
     Users users;
-    Exercise  exercise;
+
+    private Exercise  exercise;
+
+    public AddExerciseDialog()
+    {
+
+    }
+
+    public AddExerciseDialog(Exercise exercise)
+    {
+        this.exercise = exercise;
+    }
 
 
     @Nullable
@@ -58,11 +91,31 @@ public class AddExerciseDialog extends DialogFragment {
         btnSave = addExerciseDialog.findViewById(R.id.btnSave);
         txtNote = addExerciseDialog.findViewById(R.id.note);
         img = addExerciseDialog.findViewById(R.id.img);
-        users = (Users) getArguments().getSerializable("users");
+        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        users = (Users) new SharePreferenceManager(getActivity()).getObject("User", Users.class);
         txtName = addExerciseDialog.findViewById(R.id.txtName);
         txtIntroduction = addExerciseDialog.findViewById(R.id.txtIntroduction);
         txtGuide = addExerciseDialog.findViewById(R.id.txtGuide);
+        txtCalories = addExerciseDialog.findViewById(R.id.txtCalories);
 
+
+
+        if(exercise != null)
+        {
+            if(exercise.getImg()!=null && !exercise.getImg().isEmpty())
+            {
+                Picasso.get().load(exercise.getImg()).into(img);
+                imageAvailabe = true;
+            }else
+            {
+                Picasso.get().load(R.drawable.add_image).into(img);
+            }
+            if (exercise.getName()!=null)  txtName.setText(exercise.getName());
+            if (exercise.getIntroduction()!=null)  txtIntroduction.setText(exercise.getIntroduction());
+            if (exercise.getGuideline()!=null)  txtGuide.setText(exercise.getGuideline());
+            txtCalories.setText(exercise.getCalories()+"");
+
+        }
 
         img.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,8 +130,9 @@ public class AddExerciseDialog extends DialogFragment {
                 exercise = getExercise();
                 if(exercise != null)
                 {
-                    mOnInputListener.sendInput(exercise);
-                    getDialog().dismiss();
+                    saveExercise();
+//                    mOnInputListener.sendInput(exercise);
+//                    getDialog().dismiss();
                 }
             }
         });
@@ -104,10 +158,27 @@ public class AddExerciseDialog extends DialogFragment {
         String name = txtName.getText().toString();
         String introduction = txtIntroduction.getText().toString();
         String guide = txtGuide.getText().toString();
+        String caloriesString = txtCalories.getText().toString();
+        double calories;
         if(name == null || name.trim().isEmpty())
         {
-            txtNote.setText("please, fill all information");
+            txtNote.setText("please, fill name");
             return null;
+        }
+        if(caloriesString == null || caloriesString.trim().isEmpty())
+        {
+            calories = 0;
+        }
+        else
+        {
+            try {
+                calories = Double.parseDouble(caloriesString);
+            }
+            catch (Exception ex)
+            {
+                System.out.println(ex);
+                calories = 0;
+            }
         }
         if(introduction == null || introduction.trim().isEmpty())
         {
@@ -122,8 +193,14 @@ public class AddExerciseDialog extends DialogFragment {
             txtNote.setText("No account, please sign in");
             return null;
         }
-        Exercise res = new Exercise(name,users,imageUrl.toString(),introduction,guide,null);
-
+        String imgString = imageUrl.toString();
+        if(exercise != null && exercise.getImg()!=null && !exercise.getImg().isEmpty() && imageAvailabe == true)
+        {
+            imgString = exercise.getImg();
+        }
+        Exercise res = new Exercise(name,users,imgString,introduction,guide,null);
+        res.setCalories(calories);
+        if(exercise != null) res.setId(exercise.getId());
 
         return res;
     }
@@ -176,10 +253,86 @@ public class AddExerciseDialog extends DialogFragment {
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
                     imageUrl = selectedImageUri;
+                    imageAvailabe = false;
                     Picasso.get().load(imageUrl.toString()).into(img);
                 }
             }
         }
+    }
+
+    private void saveExercise()
+    {
+        Uri uri = null;
+        if(exercise.getImg() != null && !exercise.getImg().trim().equals("") && imageAvailabe == false)
+        {
+            uri = Uri.parse(exercise.getImg());
+            StorageReference fileReference = mStorageRef.child("exercise/"+
+                    System.currentTimeMillis()
+                    +"."+getFileExtension(uri));
+            fileReference.putFile(uri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            System.out.println("Upload img successfully");
+                            Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                            while (!urlTask.isSuccessful());//wait for the task done;
+                            Uri downloadUrl = urlTask.getResult();
+                            System.out.println(downloadUrl);
+                            uploadUrl = downloadUrl.toString();
+                            if(!uploadUrl.equals(null) && !uploadUrl.equals(""))
+                            {
+                                exercise.setImg(uploadUrl);
+                                saveExerciseToDB();
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            System.out.println("Upload img fail");
+                            txtNote.setText("Save Fail");
+                        }
+                    });
+        }
+        else
+        {
+            saveExerciseToDB();
+        }
+    }
+
+    private String getFileExtension(Uri uri)
+    {
+        ContentResolver cR = getActivity().getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void saveExerciseToDB()
+    {
+        Call<Exercise> saveExerciseCall = exerciseApi.save(exercise);
+        saveExerciseCall.enqueue(new Callback<Exercise>() {
+            @Override
+            public void onResponse(Call<Exercise> call, Response<Exercise> response) {
+                if(response.body() != null)
+                {
+                    exercise = response.body();
+                    updateSharedPreference();
+                    dismiss();
+                }
+                txtNote.setText("new exercise added");
+            }
+
+            @Override
+            public void onFailure(Call<Exercise> call, Throwable t) {
+                System.out.println(t.toString());
+                txtNote.setText("Save Fail");
+            }
+        });
+    }
+
+    private void updateSharedPreference() {
+        new SharePreferenceManager(getActivity()).saveExercise(exercise);
+        mOnInputListener.sendChangedNotify();
     }
 
 

@@ -52,7 +52,7 @@
                 android:id="@+id/txtTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="160 secs"
+                android:text="0:00:00"
                 android:textColor="@color/bluesky"
                 android:textSize="20dp"
                 android:textStyle="bold"/>

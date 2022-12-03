@@ -3,6 +3,9 @@ package com.example.myapplication.Supporter;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.myapplication.Model.User.UserSchema;
+import com.example.myapplication.Model.User.Users;
+import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
 import com.google.gson.Gson;
 
@@ -99,5 +102,64 @@ public class SharePreferenceManager {
             }
         }
         return null;
+    }
+
+    public boolean saveExercise(Exercise exercise)
+    {
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        Exercise[] data = (Exercise[]) getObject("Exercises", Exercise[].class);
+        if (data != null) exercises = new ArrayList<>(Arrays.asList(data));
+        boolean checkNew = true;
+        for(int i =  0; i < exercises.size(); i++)
+        {
+            Exercise r = exercises.get(i);
+            if(r.getId() == exercise.getId())
+            {
+                exercises.set(i, exercise);
+                checkNew = false;
+            }
+        }
+        if(checkNew)
+        {
+            exercises.add(exercise);
+        }
+        return saveObject("Exercises", exercises);
+    }
+
+    public boolean deleteExercise(int id)
+    {
+        ArrayList<Exercise> exercises = new ArrayList<>();
+        Exercise[] data = (Exercise[]) getObject("Exercises", Exercise[].class);
+        if (data != null)
+        {
+            exercises = new ArrayList<>(Arrays.asList(data));
+            for(int i =  0; i < exercises.size(); i++)
+            {
+                Exercise r = exercises.get(i);
+                if(r.getId() == id)
+                {
+                    exercises.remove(i);
+                }
+            }
+        }
+        return saveObject("Exercises", exercises);
+    }
+
+    public boolean deleteSchema(int id)
+    {
+
+        Users user = (Users) getObject("User", Users.class);
+        if (user != null && user.getSchemas() != null)
+        {
+            for(int i =  0; i < user.getSchemas().size(); i++)
+            {
+                UserSchema us = user.getSchemas().get(i);
+                if(us.getId() == id)
+                {
+                    user.getSchemas().remove(i);
+                }
+            }
+        }
+        return saveObject("User", user);
     }
 }

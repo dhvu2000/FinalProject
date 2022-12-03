@@ -86,13 +86,16 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
         if(type != null && type.equals("routine"))
         {
             workOutSet = (RoutineDay) intent.getSerializableExtra("set");
+            if(((RoutineDay)workOutSet).getSequence() != 0) txtName.setText("Day " + ((RoutineDay)workOutSet).getSequence());
         }
         else
         {
             workOutSet = (WorkOutSet) intent.getSerializableExtra("set");
+            if(workOutSet.getName()!= null && !workOutSet.getName().trim().equals("")) txtName.setText(workOutSet.getName());
         }
 
-        if(workOutSet.getName()!= null && !workOutSet.getName().trim().equals("")) txtName.setText(workOutSet.getName());
+        if(workOutSet.getPreTime() < 5) workOutSet.setPreTime(5);
+        if(workOutSet.getRestTime() < 5) workOutSet.setRestTime(5);
         txtPre.setText(workOutSet.getPreTime()+"");
         txtRest.setText(workOutSet.getRestTime()+"");
 
@@ -196,19 +199,19 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
         {
             case "plusRest":
                 pre = Integer.parseInt(txtRest.getText().toString()) + 1;
-                if(pre >= 0) txtRest.setText(pre + "");
+                if(pre >= 5) txtRest.setText(pre + "");
                 break;
             case "minusRest":
                 pre = Integer.parseInt(txtRest.getText().toString()) - 1;
-                if(pre >= 0) txtRest.setText(pre + "");
+                if(pre >= 5) txtRest.setText(pre + "");
                 break;
             case "plusPre":
                 pre = Integer.parseInt(txtPre.getText().toString()) + 1;
-                if(pre >= 0) txtPre.setText(pre + "");
+                if(pre >= 5) txtPre.setText(pre + "");
                 break;
             case "minusPre":
                 pre = Integer.parseInt(txtPre.getText().toString()) - 1;
-                if(pre >= 0) txtPre.setText(pre + "");
+                if(pre >= 5) txtPre.setText(pre + "");
                 break;
         }
     }

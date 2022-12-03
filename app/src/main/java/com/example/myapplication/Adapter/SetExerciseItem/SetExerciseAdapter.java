@@ -8,11 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.SetExercise;
 import com.example.myapplication.R;
 import com.example.myapplication.Views.CollectionsScreen.BothUseScreen.UpdateSaveCollectionScreen;
+import com.example.myapplication.Views.ExerciseScreen.DetailExerciseDialog;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -52,7 +54,8 @@ public class SetExerciseAdapter extends RecyclerView.Adapter<SetExerciseHolder> 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                DetailExerciseDialog detailExerciseDialog = new DetailExerciseDialog(setExercise.getExercise());
+                detailExerciseDialog.show(((AppCompatActivity)context).getSupportFragmentManager(),"DetailExerciseDialog");
             }
         });
 

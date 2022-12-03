@@ -21,6 +21,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".Views.HomeScreen.SchemaScreen"
+            android:exported="false" />
+        <activity
             android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessEnd"
             android:exported="false" />
         <activity
@@ -51,16 +54,10 @@
             android:name=".Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.HomeScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Views.AccountScreen"
-            android:exported="false" />
-        <activity
             android:name=".Views.TargetChoiceScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.SignInScreenAtFirst"
+            android:name=".Views.WelcomeScreen.LogInScreen"
             android:exported="false" />
         <activity
             android:name=".Views.FrequencyChoiceScreen"
@@ -69,16 +66,13 @@
             android:name=".Views.WorkoutAreaChoiceScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.InformationScreen2Firstly"
+            android:name=".Views.InformationScreen1"
             android:exported="false" />
         <activity
-            android:name=".Views.SignInScreenFirstly"
+            android:name=".Views.WelcomeScreen.WelcomeScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.WelcomeScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Views.InformationScreen1Firstly"
+            android:name=".Views.WelcomeScreen.CreateAccountScreen"
             android:exported="false" />
         <activity
             android:name=".Views.AccountConfirmScreen"
@@ -86,13 +80,26 @@
         <activity
             android:name=".Views.MainActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustPan|adjustResize">
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".Supporter.FirebaseNotification"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".Supporter.NotificationReceiver"
+            android:enabled="true"
+            android:exported="true" />
     </application>
 
 </manifest>

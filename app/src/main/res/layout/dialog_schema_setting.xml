@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_blue"
+    android:padding="20dp">
+    <TextView
+        android:id="@+id/txtName1"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="Cân năng (kg): "
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginBottom="10dp"/>
+    <EditText
+        android:id="@+id/txtWeight"
+        android:lines="1"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_white"
+        android:layout_marginBottom="10dp"/>
+    <TextView
+        android:id="@+id/txtName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chiều cao (cm):"
+        android:visibility="visible"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginBottom="10dp"/>
+    <EditText
+        android:id="@+id/txtHeight"
+        android:lines="1"
+        android:inputType="numberDecimal"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingHorizontal="10dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:background="@drawable/rounded_white"
+        android:layout_marginBottom="10dp"/>
+
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OK"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/lightgrey"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/txtNotice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#FBCEB1"
+        android:text=""
+        android:textSize="18dp"
+        android:textStyle="bold|italic"/>
+
+
+
+</LinearLayout>

@@ -3,8 +3,10 @@ package com.example.GymLifeServer.controller;
 import com.example.GymLifeServer.model.WorkOutUnit.Exercise;
 import com.example.GymLifeServer.model.WorkOutUnit.Routine.RoutineDay;
 import com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet.SetExercise;
+import com.example.GymLifeServer.model.WorkOutUnit.WorkOutSet.WorkOutRecord;
 import com.example.GymLifeServer.model.repository.RoutineDayRepository;
 import com.example.GymLifeServer.model.repository.SetExerciseRepository;
+import com.example.GymLifeServer.model.repository.WorkOutRecordRepository;
 import com.example.GymLifeServer.model.repository.WorkOutSetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
@@ -24,6 +26,9 @@ public class RoutineDayController {
 
     @Autowired
     WorkOutSetRepository workOutSetRepository;
+
+    @Autowired
+    WorkOutRecordRepository workOutRecordRepository;
 
     @PostMapping("/routine-day/save")
     private RoutineDay saveRoutineDay(@RequestBody RoutineDay routineDay)

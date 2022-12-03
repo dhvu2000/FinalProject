@@ -18,7 +18,7 @@ public class Exercise extends WorkOutUnit implements Serializable {
     private String type;
 
     @Column
-    private int calories = 0;
+    private double calories;
 
     public Exercise() {
     }
@@ -39,11 +39,11 @@ public class Exercise extends WorkOutUnit implements Serializable {
         this.type = type;
     }
 
-    public int getCalories() {
+    public double getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(double calories) {
         this.calories = calories;
     }
 

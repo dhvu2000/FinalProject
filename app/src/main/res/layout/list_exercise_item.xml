@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/exerciseCardView"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="130dp"
     android:layout_margin="10dp"
     android:background="@drawable/rounded_white"
     android:orientation="horizontal"
@@ -11,6 +11,7 @@
     <ImageView
         android:id="@+id/img"
         android:layout_width="0dp"
+        android:layout_margin="5dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:src="@drawable/push_up" />

@@ -1,5 +1,7 @@
 package com.example.GymLifeServer.model.User;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -11,29 +13,23 @@ public class UserAnalysedInfor implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
-    private double weight = 0;
-    @Column
-    private double height = 0;
-    @Column
     private String target;
     @Column
     private String frequency;
     @Column
     private String focusedArea;
     @Column
-    private Date updatedDate;
+    private String updatedDate;
     @ManyToOne
     @JoinColumn(name="user_id", nullable=false)
+    @JsonBackReference
     private Users user;
 
     public UserAnalysedInfor() {
     }
 
-    public UserAnalysedInfor(double weight, double height,
-                             String target, String frequency,
-                             String focusedArea, Date updatedDate) {
-        this.weight = weight;
-        this.height = height;
+    public UserAnalysedInfor(String target, String frequency,
+                             String focusedArea, String updatedDate) {
         this.target = target;
         this.frequency = frequency;
         this.focusedArea = focusedArea;
@@ -54,27 +50,6 @@ public class UserAnalysedInfor implements Serializable {
 
     public void setUser(Users user) {
         this.user = user;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-
-        this.weight = weight;
-    }
-
-    public double getBmi() {
-        return weight/(height * height);
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
     }
 
     public String getTarget() {
@@ -101,11 +76,11 @@ public class UserAnalysedInfor implements Serializable {
         this.focusedArea = focusedArea;
     }
 
-    public Date getUpdatedDate() {
+    public String getUpdatedDate() {
         return updatedDate;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
+    public void setUpdatedDate(String updatedDate) {
         this.updatedDate = updatedDate;
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.WelcomeScreen"
+    tools:context=".Views.WelcomeScreen.WelcomeScreen"
     android:orientation="vertical">
 
     <LinearLayout
@@ -36,6 +36,7 @@
             android:textStyle="bold" />
 
         <Button
+            android:id="@+id/btnInfor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_click"
@@ -46,11 +47,13 @@
              android:textColor="@color/black"
              android:gravity="left|center"/>
         <Button
+            android:id="@+id/btnLogOut"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button_click"
-            android:drawableLeft="@drawable/sign_info_icon"
-            android:text=" Thông tin cá nhân"
+            android:drawableLeft="@drawable/log_out_icon"
+            android:text="Đăng xuất"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
@@ -59,13 +62,4 @@
 
     </LinearLayout>
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:background="@drawable/bottom_navigation_background"
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation_menu"
-        app:itemTextColor="@color/nav_color"
-        app:itemIconTint="@color/nav_color"/>
 </RelativeLayout>

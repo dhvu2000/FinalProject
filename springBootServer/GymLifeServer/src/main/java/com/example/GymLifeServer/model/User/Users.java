@@ -1,15 +1,10 @@
 package com.example.GymLifeServer.model.User;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -19,26 +14,37 @@ public class Users implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+    @Column(unique=true)
     private String username;
 
-    @NotNull
+    @Column
     private String dob;
 
-    @NotNull
+
+    @Column
     private String password;
 
-    @NotNull
+
+    @Column(unique=true)
     private String email;
 
-    @NotNull
+
+    @Column
     private String gender;
 
-    @NotNull
+    @Column
     private String type;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    @Column
+    private String img;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    @JsonManagedReference
     private List<UserAnalysedInfor> infor;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    @JsonManagedReference
+    private List<UserSchema> schemas;
 
     public Users() {
     }
@@ -58,7 +64,7 @@ public class Users implements Serializable {
 
     public Users(String username, String dob,
                  String password, String email, String gender,
-                 String type, List<UserAnalysedInfor> infor) {
+                 String type, List<UserAnalysedInfor> infor, List<UserSchema> schemas) {
         this.username = username;
         this.dob = dob;
         this.password = password;
@@ -66,6 +72,23 @@ public class Users implements Serializable {
         this.gender = gender;
         this.type = type;
         this.infor = infor;
+        this.schemas = schemas;
+    }
+
+    public List<UserSchema> getSchemas() {
+        return schemas;
+    }
+
+    public void setSchemas(List<UserSchema> schemas) {
+        this.schemas = schemas;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public List<UserAnalysedInfor> getInfor() {

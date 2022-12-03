@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.ViewGroup;
@@ -13,27 +14,38 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.example.myapplication.Model.User.UserSchema;
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.ExerciseApi;
+import com.example.myapplication.Retrofit.NotificationApi;
 import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.RoutineApi;
 import com.example.myapplication.Retrofit.UsersApi;
 import com.example.myapplication.Supporter.SharePreferenceManager;
+import com.example.myapplication.Views.AccountScreen.AccountPageFragment;
 import com.example.myapplication.Views.CollectionsScreen.CollectionsPageFragment;
 import com.example.myapplication.Views.ExerciseScreen.AddExerciseDialog;
 import com.example.myapplication.Views.ExerciseScreen.ExercisePageFragment;
+import com.example.myapplication.Views.HomeScreen.HomePageFragment;
+import com.example.myapplication.Views.WelcomeScreen.WelcomeScreen;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity
         implements  AddExerciseDialog.OnInputListener{
@@ -41,6 +53,8 @@ public class MainActivity extends AppCompatActivity
     public static String RANDOM_IMG_1 = "https://firebasestorage.googleapis.com/v0/b/gymlife-22ff7.appspot.com/o/uploads%2Fuploads%2FrandomImg%2Frandom.png?alt=media&token=bc61f81e-9582-48fe-86d4-e3074bc77273";
     public static String RANDOM_IMG_2 = "https://firebasestorage.googleapis.com/v0/b/gymlife-22ff7.appspot.com/o/uploads%2Fuploads%2FrandomImg%2Frandom1.png?alt=media&token=a29d0834-5652-4833-9f82-ad492de40df4";
     public static String RANDOM_IMG_3 = "https://firebasestorage.googleapis.com/v0/b/gymlife-22ff7.appspot.com/o/uploads%2Fuploads%2FrandomImg%2Frandom2.png?alt=media&token=5d990c5f-c77e-45f5-ab96-292ee660040e";
+
+    public static int DELETE_EXERCISE_REQUEST = 1;
 
     public static String getRandomImg()
     {
@@ -58,26 +72,41 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
+    private void loadDefaultFragment()
+    {
+        chosenItem = R.id.btnHome;
+        replaceFragment(new HomePageFragment());
+    }
+
     BottomNavigationView bottomNavigationView;
     FrameLayout frameLayout;
     Fragment fragment;
     int chosenItem;
     RetrofitApi retrofitApi = new RetrofitApi();
     Users user;
+    ArrayList<Routine> routines = new ArrayList<>();
+    ArrayList<Exercise> exercises = new ArrayList<>();
     UsersApi usersApi = retrofitApi.getRetrofit().create(UsersApi.class);
     ExerciseApi exerciseApi = retrofitApi.getRetrofit().create((ExerciseApi.class));
     RoutineApi routineApi = retrofitApi.getRetrofit().create(RoutineApi.class);
+    NotificationApi notificationApi = RetrofitApi.getClient("https://fcm.googleapis.com/").create(NotificationApi.class);
+    SharePreferenceManager sharePreferenceManager;
+    private boolean onMission = false;
+    private int request;
+    private String token;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
         frameLayout = findViewById(R.id.frameLayout);
-
-//        frameLayout.setLayoutParams(new FrameLayout.LayoutParams(,-60));
-        chosenItem = R.id.btnExercises;
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        sharePreferenceManager = new SharePreferenceManager(this);
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,6 +120,11 @@ public class MainActivity extends AppCompatActivity
                         }
                         break;
                     case R.id.btnHome:
+                        if(chosenItem != R.id.btnHome)
+                        {
+                            chosenItem = R.id.btnHome;
+                            replaceFragment(new HomePageFragment());
+                        }
                         break;
                     case R.id.btnTimer:
                         break;
@@ -102,6 +136,11 @@ public class MainActivity extends AppCompatActivity
                         }
                         break;
                     case R.id.btnAccount:
+                        if(chosenItem != R.id.btnAccount)
+                        {
+                            chosenItem = R.id.btnAccount;
+                            replaceFragment(new AccountPageFragment());
+                        }
                         break;
                 }
 
@@ -110,35 +149,67 @@ public class MainActivity extends AppCompatActivity
         });
 
         getUser();
+        //----Notification
+//        FirebaseMessaging.getInstance().getToken()
+//                .addOnCompleteListener(new OnCompleteListener<String>() {
+//                    @Override
+//                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<String> task) {
+//                        if (!task.isSuccessful()) {
+//                            return;
+//                        }
+//                        token = task.getResult();
+//                        System.out.println("-------------Token-----------: "+token);
+//                        sendNotification();
+//                    }
+//
+//                });
 
+    }
+
+    private void sendNotification() {
+        String message = "You are weak";
+        String noti = "{" +
+                "    \"to\":\"" + token + "\"," +
+                " \"priority\": \"high\"," +
+                " \"data\" : {" +
+                " \"id\":" + (new Date().getSeconds()+ new Random().nextInt()) + "," +
+                "  \"title\" : \"You have a task on due\"," +
+                "  \"message\" :\"" + message  + "\"," +
+                "  \"isScheduled\" : \"false\"," +
+                "  \"scheduledTime\" : \"\" }" +
+                "}";
+
+        System.out.println(noti);
+        JsonObject convertnoti= new Gson().fromJson(noti,JsonObject.class);
+        Call<JsonObject> setschedule= notificationApi.setNotificationDueDate(convertnoti);
+        setschedule.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                System.out.println(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                System.out.println(t.toString());
+            }
+        });
     }
 
 
     public void getUser()
     {
-        Call<Users> usersCall = usersApi.getUserById(8);
-        usersCall.enqueue(new Callback<Users>() {
-            @Override
-            public void onResponse(Call<Users> call, Response<Users> response) {
-                
-                user = response.body();
-                boolean isSaveDone = (new SharePreferenceManager(MainActivity.this)).saveObject("User",user);
-                if(!isSaveDone)
-                {
-                    showNotice("Error: Store User Error!!!");
-                }
-                else
-                {
-                    getExercises();
-                }
-
-            }
-            @Override
-            public void onFailure(Call<Users> call, Throwable t) {
-                showNotice("error:" + t.getMessage());
-                System.out.println("error:" + t.getMessage());
-            }
-        });
+        user = (Users) sharePreferenceManager.getObject("User", Users.class);
+        if(user != null)
+        {
+            getExercises();
+            return;
+        }
+        else
+        {
+            Intent intent = new Intent(MainActivity.this, WelcomeScreen.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void getExercises()
@@ -153,15 +224,8 @@ public class MainActivity extends AppCompatActivity
             public void onResponse(Call<ArrayList<Exercise>> call, Response<ArrayList<Exercise>> response) {
                 if(response.body()!= null && response.body().size()>0)
                 {
-                    ArrayList<Exercise> responseBody = response.body();
-                    boolean isSaveDone = (new SharePreferenceManager(MainActivity.this)).saveObject("Exercises",responseBody.toArray());
-                    if(!isSaveDone)
-                    {
-                        showNotice("Error: Store Exercises Error!!!");
-                    }
-                    else {
-                        getRoutines();
-                    }
+                    exercises = response.body();
+                    getRoutines();
 
                 }
             }
@@ -183,12 +247,7 @@ public class MainActivity extends AppCompatActivity
         call.enqueue(new Callback<ArrayList<Routine>>() {
             @Override
             public void onResponse(Call<ArrayList<Routine>> call, Response<ArrayList<Routine>> response) {
-                ArrayList<Routine> responseBody = response.body();
-                boolean isSaveDone = (new SharePreferenceManager(MainActivity.this)).saveObject("Routines",responseBody.toArray());
-                if(!isSaveDone)
-                {
-                    showNotice("Error: Store Routines Error!!!");
-                }
+                routines = response.body();
                 loadAllSuccess();
             }
 
@@ -209,10 +268,10 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void sendInput(Exercise input) {
+    public void sendChangedNotify() {
         FragmentManager manager = getSupportFragmentManager();
         fragment = manager.findFragmentById(R.id.frameLayout);
-        ((ExercisePageFragment) fragment).sendInput(input);
+        ((ExercisePageFragment) fragment).sendChangedNotify();
     }
 
     public void sendDeleteExercisesInExercisePage(int position)
@@ -234,9 +293,46 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(MainActivity.this,s, Toast.LENGTH_LONG).show();
     }
 
-    public void loadAllSuccess()
+    public void deleteExercise()
     {
-        replaceFragment(new ExercisePageFragment());
+        request = DELETE_EXERCISE_REQUEST;
+        getExercises();
     }
+
+
+    private void loadAllSuccess()
+    {
+        sharePreferenceManager.saveObject("User",user);
+        sharePreferenceManager.saveObject("Exercises",exercises.toArray());
+        sharePreferenceManager.saveObject("Routines",routines.toArray());
+        if(onMission == false)
+        {
+            loadDefaultFragment();
+
+        }else if(request == DELETE_EXERCISE_REQUEST)
+        {
+            FragmentManager manager = getSupportFragmentManager();
+            fragment = manager.findFragmentById(R.id.frameLayout);
+            ((ExercisePageFragment) fragment).sendChangedNotify();
+            request = 0;
+        }
+        onMission = true;
+    }
+
+    public void updateSchema(UserSchema userSchema)
+    {
+        Users u = (Users) sharePreferenceManager.getObject("User", Users.class);
+        if(u.getSchemas() ==  null)
+        {
+            u.setSchemas(new ArrayList<>());
+        }
+        u.getSchemas().add(userSchema);
+        sharePreferenceManager.saveObject("User",u);
+        FragmentManager manager = getSupportFragmentManager();
+        fragment = manager.findFragmentById(R.id.frameLayout);
+        ((HomePageFragment) fragment).updateSchema();
+    }
+
+
 
 }

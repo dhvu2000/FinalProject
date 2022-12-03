@@ -99,13 +99,15 @@ public class DetailCollectionScreen extends AppCompatActivity {
         if(type != null && type.equals("routine"))
         {
             workOutSet = (RoutineDay) intent.getSerializableExtra("set");
+            if(((RoutineDay)workOutSet).getSequence() != 0) txtName.setText("Day " + ((RoutineDay)workOutSet).getSequence());
         }
         else
         {
             workOutSet = (WorkOutSet) intent.getSerializableExtra("set");
+            if(workOutSet.getName()!= null && !workOutSet.getName().trim().equals("")) txtName.setText(workOutSet.getName());
         }
 
-        if(workOutSet.getName()!= null && !workOutSet.getName().trim().equals("")) txtName.setText(workOutSet.getName());
+
         txtPre.setText(workOutSet.getPreTime()+"");
         txtRest.setText(workOutSet.getRestTime()+"");
 

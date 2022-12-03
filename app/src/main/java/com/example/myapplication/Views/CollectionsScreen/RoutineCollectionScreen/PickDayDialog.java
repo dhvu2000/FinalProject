@@ -161,7 +161,7 @@ public class PickDayDialog extends DialogFragment {
 
         for(int i: pickDays)
         {
-            RoutineDay newDay = new RoutineDay("Day "+i,routine.getCreatedBy(),R.drawable.add_image+"",
+            RoutineDay newDay = new RoutineDay("Day "+i + "of " + routine.getName(),routine.getCreatedBy(),R.drawable.add_image+"",
                     savedRoutineDay.getPreTime(),savedRoutineDay.getRestTime(),cloneExercises, savedRoutineDay.getType(), i);
             savedRoutineDays.add(newDay);
         }

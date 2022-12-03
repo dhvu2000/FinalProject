@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.R;
 import com.squareup.picasso.Picasso;
@@ -41,7 +42,7 @@ public class DetailExerciseDialog extends DialogFragment {
         System.out.println("Exercise: "+ exercise);
         if(exercise.getImg()!=null && !exercise.getImg().isEmpty())
         {
-            Picasso.get().load(exercise.getImg()).into(img);
+            Glide.with(getContext()).load(exercise.getImg()).error(R.drawable.add_image).into(img);
         }else
         {
             Picasso.get().load(R.drawable.add_image).into(img);
