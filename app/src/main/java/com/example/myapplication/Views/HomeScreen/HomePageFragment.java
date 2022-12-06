@@ -1,5 +1,6 @@
 package com.example.myapplication.Views.HomeScreen;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import com.example.myapplication.Adapter.SchemaListItem.SchemaAdapter;
 import com.example.myapplication.Model.User.UserSchema;
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.R;
+import com.example.myapplication.Supporter.NotificationCreator;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Supporter.TimeFormatter;
 import com.jjoe64.graphview.DefaultLabelFormatter;

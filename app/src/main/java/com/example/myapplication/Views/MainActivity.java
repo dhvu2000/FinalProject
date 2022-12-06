@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -24,6 +26,7 @@ import com.example.myapplication.Retrofit.NotificationApi;
 import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.RoutineApi;
 import com.example.myapplication.Retrofit.UsersApi;
+import com.example.myapplication.Supporter.NotificationCreator;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.AccountScreen.AccountPageFragment;
 import com.example.myapplication.Views.CollectionsScreen.CollectionsPageFragment;
@@ -39,6 +42,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -90,11 +94,9 @@ public class MainActivity extends AppCompatActivity
     UsersApi usersApi = retrofitApi.getRetrofit().create(UsersApi.class);
     ExerciseApi exerciseApi = retrofitApi.getRetrofit().create((ExerciseApi.class));
     RoutineApi routineApi = retrofitApi.getRetrofit().create(RoutineApi.class);
-    NotificationApi notificationApi = RetrofitApi.getClient("https://fcm.googleapis.com/").create(NotificationApi.class);
     SharePreferenceManager sharePreferenceManager;
     private boolean onMission = false;
     private int request;
-    private String token;
 
 
 
@@ -149,52 +151,29 @@ public class MainActivity extends AppCompatActivity
         });
 
         getUser();
-        //----Notification
-//        FirebaseMessaging.getInstance().getToken()
-//                .addOnCompleteListener(new OnCompleteListener<String>() {
-//                    @Override
-//                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<String> task) {
-//                        if (!task.isSuccessful()) {
-//                            return;
-//                        }
-//                        token = task.getResult();
-//                        System.out.println("-------------Token-----------: "+token);
-//                        sendNotification();
-//                    }
-//
-//                });
 
+
+        //----Notification
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.DATE, 1);
+        c.setTimeInMillis(SystemClock.elapsedRealtime());
+
+        date  = c.getTime();
+                new NotificationCreator().sendNotification("Tập cho 1 ngày đẹp", "Có vẻ lâu rồi không thấy bạn tập",
+                        c.getTimeInMillis(), AlarmManager.INTERVAL_DAY,"remindNotify");
+//        new NotificationCreator().deleteNotification("remindNotify");
     }
 
     private void sendNotification() {
-        String message = "You are weak";
-        String noti = "{" +
-                "    \"to\":\"" + token + "\"," +
-                " \"priority\": \"high\"," +
-                " \"data\" : {" +
-                " \"id\":" + (new Date().getSeconds()+ new Random().nextInt()) + "," +
-                "  \"title\" : \"You have a task on due\"," +
-                "  \"message\" :\"" + message  + "\"," +
-                "  \"isScheduled\" : \"false\"," +
-                "  \"scheduledTime\" : \"\" }" +
-                "}";
 
-        System.out.println(noti);
-        JsonObject convertnoti= new Gson().fromJson(noti,JsonObject.class);
-        Call<JsonObject> setschedule= notificationApi.setNotificationDueDate(convertnoti);
-        setschedule.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                System.out.println(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                System.out.println(t.toString());
-            }
-        });
     }
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();;
+    }
 
     public void getUser()
     {
@@ -233,7 +212,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onFailure(Call<ArrayList<Exercise>> call, Throwable t) {
                 System.out.println("fail get Exercises" + t.getMessage());
-                showNotice(t.getMessage());
+                loadDefault();
             }
         });
     }
@@ -254,10 +233,25 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onFailure(Call<ArrayList<Routine>> call, Throwable t) {
                 System.out.println("fail get Routines" + t.getMessage());
-                showNotice(t.getMessage());
+                loadDefault();
             }
         });
     }
+
+    private void loadDefault()
+    {
+        Exercise[] data1 = (Exercise[]) sharePreferenceManager.getObject("Exercises", Exercise[].class);
+        Routine[] data2 = (Routine[]) sharePreferenceManager.getObject("Routines", Routine[].class);
+        if(data1 != null || data2 != null)
+        {
+            if(onMission == false)
+            {
+                loadDefaultFragment();
+            }
+            onMission = true;
+        }
+    }
+
 
     private void replaceFragment(Fragment fragment)
     {

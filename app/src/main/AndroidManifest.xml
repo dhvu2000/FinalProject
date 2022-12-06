@@ -89,7 +89,7 @@
         </activity>
 
         <service
-            android:name=".Supporter.FirebaseNotification"
+            android:name=".Supporter.NotificationCreator"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

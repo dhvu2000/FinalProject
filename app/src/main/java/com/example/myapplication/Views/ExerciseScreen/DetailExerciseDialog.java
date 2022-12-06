@@ -23,6 +23,7 @@ public class DetailExerciseDialog extends DialogFragment {
     private TextView txtName;
     private TextView txtIntroduction;
     private TextView txtGuide;
+    private TextView txtCalories;
 
     public DetailExerciseDialog(Exercise exercise)
     {
@@ -39,6 +40,7 @@ public class DetailExerciseDialog extends DialogFragment {
         txtName = view.findViewById(R.id.txtName);
         txtIntroduction = view.findViewById(R.id.txtIntroduction);
         txtGuide = view.findViewById(R.id.txtGuide);
+        txtCalories = view.findViewById(R.id.txtCalories);
         System.out.println("Exercise: "+ exercise);
         if(exercise.getImg()!=null && !exercise.getImg().isEmpty())
         {
@@ -50,6 +52,7 @@ public class DetailExerciseDialog extends DialogFragment {
         if (exercise.getName()!=null)  txtName.setText(exercise.getName());
         if (exercise.getIntroduction()!=null)  txtIntroduction.setText(exercise.getIntroduction());
         if (exercise.getGuideline()!=null)  txtGuide.setText(exercise.getGuideline());
+        txtCalories.setText(exercise.getCalories()+ " cal/giờ");
 
         return view;
     }

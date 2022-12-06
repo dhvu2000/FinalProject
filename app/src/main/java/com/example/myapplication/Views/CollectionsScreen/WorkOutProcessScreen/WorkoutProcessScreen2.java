@@ -273,10 +273,14 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
             if(workOutSet instanceof RoutineDay)
             {
                 saveProgress();
+                updateSharedPreference();
+                moveToEnd();
             }
             else
             {
                 saveRecord();
+                updateSharedPreference();
+                moveToEnd();
             }
         }
         else{
@@ -295,19 +299,18 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
         call.enqueue(new Callback<RoutineAct>() {
             @Override
             public void onResponse(Call<RoutineAct> call, Response<RoutineAct> response) {
-                updateSharedPreference();
                 saveRecord();
             }
 
             @Override
             public void onFailure(Call<RoutineAct> call, Throwable t) {
                 System.out.println(t.getMessage());
-                moveToEnd();
             }
         });
     }
 
     private void updateSharedPreference() {
+
     }
 
     private void saveRecord() {
@@ -318,18 +321,16 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
             ((RoutineDay) workOutSet).setRoutine(null);
         }
         WorkOutRecord workOutRecord = new WorkOutRecord(user,workOutSet, datetime, time, calories);
+        updateSharedPreference();
         Call<WorkOutRecord> call = workOutRecordApi.save(workOutRecord);
         call.enqueue(new Callback<WorkOutRecord>() {
             @Override
             public void onResponse(Call<WorkOutRecord> call, Response<WorkOutRecord> response) {
-                updateSharedPreference();
-                moveToEnd();
             }
 
             @Override
             public void onFailure(Call<WorkOutRecord> call, Throwable t) {
                 System.out.println(t.getMessage());
-                moveToEnd();
             }
         });
     }
@@ -363,7 +364,6 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
                     {
                         double calPerSec = workOutSet.getExercises().get(sequence).getExercise().getCalories()/60;
                         calories += calPerSec;
-                        calories += 10;
                         time ++;
                     }
                 });
