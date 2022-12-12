@@ -63,8 +63,11 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_add_exercise.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_add_exercise_set.xml" value="0.11666666666666667" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_detail_exercise.xml" value="0.25416666666666665" />
-        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_editing_text_infos.xml" value="0.11666666666666667" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_edit_gender.xml" value="0.176" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_edit_information.xml" value="0.25" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_editing_text_infos.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_find_and_add_exercise.xml" value="0.25416666666666665" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_multiple_choice.xml" value="0.24895833333333334" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_pick_repetation_day.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_schema_setting.xml" value="0.2" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/dialog_setting_exercise_in_set.xml" value="0.25416666666666665" />

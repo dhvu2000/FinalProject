@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_blue"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/txtName4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Giới tính:"
+        android:visibility="visible"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_marginBottom="10dp"/>
+
+    <RadioGroup
+        android:layout_marginStart="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/choiceMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nam"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginEnd="50dp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/choiceFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nữ"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+    </RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sửa"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/lightgrey"
+        android:layout_gravity="center"/>
+
+
+</LinearLayout>

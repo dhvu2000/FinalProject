@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Views.InforScreen"
+    tools:context=".Views.AccountScreen.InforScreen"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
             android:padding="20dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/profile_image"
+                android:id="@+id/img"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
@@ -45,14 +45,15 @@
                 android:src="@drawable/avatar" />
 
             <Button
+                android:id="@+id/btnUserAnalysedCreate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Thay đổi ảnh cá nhân"
+                android:layout_gravity = "center"
+                android:text="Tạo thông tin tập luyện"
                 android:textAllCaps="false"
                 android:background="@drawable/rounded_blue"
-                android:layout_gravity="center"
-                android:layout_marginBottom="30dp"/>
-            
+                android:layout_marginBottom="20dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -60,6 +61,7 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="40dp">
                 <LinearLayout
+                    android:id="@+id/areaUserName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -70,7 +72,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Username:"
+                        android:text="Tên tài khoản:"
                         android:textSize="16dp"
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
@@ -92,6 +94,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -124,6 +127,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -135,7 +139,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Password:"
+                        android:text="Mật khẩu:"
                         android:textColor="@color/black"
                         android:textSize="16dp"
                         android:textStyle="bold" />
@@ -161,6 +165,7 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="40dp">
                 <LinearLayout
+                    android:id="@+id/areaHeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -171,7 +176,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Chiều cao:"
+                        android:text="Chiều cao (cm):"
                         android:textSize="16dp"
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
@@ -193,6 +198,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaWeight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -203,7 +209,7 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="Cân nặng:"
+                        android:text="Cân nặng (kg):"
                         android:textSize="16dp"
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
@@ -225,6 +231,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -257,6 +264,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaDOB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -287,12 +295,14 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/areaAnalysedInfor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rounded_white"
                 android:orientation="vertical"
                 android:layout_marginBottom="40dp">
                 <LinearLayout
+                    android:id="@+id/areaQ1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -308,7 +318,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/txtTarget"
+                        android:id="@+id/txtQ1"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -325,6 +335,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaQ2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -340,7 +351,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/txtFrequency"
+                        android:id="@+id/txtQ2"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -357,6 +368,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaQ3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -372,7 +384,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold"/>
                     <TextView
-                        android:id="@+id/txtFocusArea"
+                        android:id="@+id/txtQ3"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
@@ -389,6 +401,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:layout_marginBottom="10dp"/>
                 <LinearLayout
+                    android:id="@+id/areaQ4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:weightSum="2"
@@ -406,6 +419,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/txtQ4"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"

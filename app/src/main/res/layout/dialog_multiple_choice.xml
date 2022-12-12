@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginHorizontal="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_blue"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/txtQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Question:"
+        android:visibility="visible"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        android:layout_marginBottom="10dp"/>
+
+    <RadioGroup
+        android:layout_marginStart="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/choice1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:layout_marginEnd="50dp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/choice2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+        <RadioButton
+            android:id="@+id/choice3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+        <RadioButton
+            android:id="@+id/choice4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="14dp" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sửa"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/lightgrey"
+        android:layout_gravity="center"/>
+
+
+
+</LinearLayout>

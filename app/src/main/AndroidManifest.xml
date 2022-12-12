@@ -30,7 +30,7 @@
             android:name=".Views.CollectionsScreen.BothUseScreen.DetailCollectionScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.InforScreen"
+            android:name=".Views.AccountScreen.InforScreen"
             android:exported="false" />
         <activity
             android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessScreen1"
