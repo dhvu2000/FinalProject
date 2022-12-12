@@ -8,14 +8,24 @@
     android:orientation="vertical"
     android:gravity="center">
     <TextView
+        android:id="@+id/txtHead"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Preparation"
+        android:text="Khởi động"
         android:textSize="24dp"
         android:textColor="@color/black"
         android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/txtProcess"
+        android:layout_marginBottom="14dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="0/15 hiệp"
+        android:textSize="24dp"
+        android:textColor="@color/black"/>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -32,10 +42,10 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <TextView
-            android:id="@+id/progressTime"
+            android:id="@+id/txtTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:30"
+            android:text="30 s"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
             app:layout_constraintBottom_toBottomOf="@+id/progressBar"
             android:textColor="@color/bluesky"
@@ -44,7 +54,7 @@
             app:layout_constraintTop_toTopOf="@+id/progressBar" />
 
         <ImageButton
-            android:id="@+id/imageButton"
+            android:id="@+id/btnSkip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/translucent"
@@ -60,9 +70,9 @@
             android:text="Skip"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/black"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton"
-            app:layout_constraintRight_toRightOf="@id/imageButton"
-            app:layout_constraintLeft_toLeftOf="@id/imageButton"
+            app:layout_constraintTop_toBottomOf="@+id/btnSkip"
+            app:layout_constraintRight_toRightOf="@id/btnSkip"
+            app:layout_constraintLeft_toLeftOf="@id/btnSkip"
             tools:layout_editor_absoluteX="297dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -78,7 +88,7 @@
             android:layout_weight="1">
 
             <ImageButton
-                android:id="@+id/btnPause"
+                android:id="@+id/btnPauseContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/translucent"
@@ -89,14 +99,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:id="@+id/txtBtnPauseContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pause"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/btnPause"
-                app:layout_constraintRight_toRightOf="@id/btnPause"
-                app:layout_constraintLeft_toLeftOf="@id/btnPause" />
+                app:layout_constraintTop_toBottomOf="@+id/btnPauseContinue"
+                app:layout_constraintRight_toRightOf="@id/btnPauseContinue"
+                app:layout_constraintLeft_toLeftOf="@id/btnPauseContinue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout

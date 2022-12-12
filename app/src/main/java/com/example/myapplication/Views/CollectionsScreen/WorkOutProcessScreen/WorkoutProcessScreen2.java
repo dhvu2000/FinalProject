@@ -3,10 +3,12 @@ package com.example.myapplication.Views.CollectionsScreen.WorkOutProcessScreen;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -25,11 +27,15 @@ import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.RoutineActApi;
 import com.example.myapplication.Retrofit.WorkOutRecordApi;
+import com.example.myapplication.Supporter.NotificationCreator;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Supporter.TimeFormatter;
 import com.example.myapplication.Views.ExerciseScreen.DetailExerciseDialog;
+import com.example.myapplication.Views.MainActivity;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -273,15 +279,13 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
             if(workOutSet instanceof RoutineDay)
             {
                 saveProgress();
-                updateSharedPreference();
-                moveToEnd();
             }
             else
             {
                 saveRecord();
-                updateSharedPreference();
-                moveToEnd();
             }
+            updateSharedPreference();
+            moveToEnd();
         }
         else{
             moveToNext();
@@ -292,6 +296,8 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
         String actTime = TimeFormatter.FormatDateTime(new Date());
         int progress = ((RoutineDay)workOutSet).getSequence();
         Users user = (Users) new SharePreferenceManager(this).getObject("User", Users.class);
+        sendNotification();
+        //////////
         Routine routine = ((RoutineDay) workOutSet).getRoutine();
         routine.setDays(null);
         RoutineAct routineAct = new RoutineAct(actTime, progress, user, routine);
@@ -307,6 +313,33 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
                 System.out.println(t.getMessage());
             }
         });
+    }
+
+    private void sendNotification() {
+        RoutineDay routineDay = (RoutineDay)workOutSet;
+        SharePreferenceManager sharePreferenceManager = new SharePreferenceManager(this);
+        String oldWorkOutID = (String) sharePreferenceManager.getObject("OldWorkOutID",  String.class);
+        ArrayList<RoutineDay> rds = (ArrayList<RoutineDay>) routineDay.getRoutine().getDays();
+        int currentDayPos =  -1;
+        for(int i = 0; i < rds.size() - 1; i++)
+        {
+            if(rds.get(i).getId() == routineDay.getId())
+            {
+                currentDayPos = i;
+            }
+        }
+        Calendar c = Calendar.getInstance();
+        c.add(Calendar.MILLISECOND, 30000);
+        NotificationCreator notificationCreator = new NotificationCreator(this);
+        notificationCreator.deleteNotificationChannel(MainActivity.ROUTINE_ALARM_ID,MainActivity.ROUTINE_CHANNEL_ID);
+        System.out.println("now: "+ new Date());
+        if(currentDayPos != -1)
+        {
+            int distance = rds.get(currentDayPos + 1).getSequence() - rds.get(currentDayPos).getSequence();
+            c.add(Calendar.DATE, distance);
+            notificationCreator.setNextRoutineReminder(MainActivity.ROUTINE_ALARM_ID,c.getTimeInMillis(),rds.get(currentDayPos + 1).getName(),
+                    "Your next work-out is coming",  MainActivity.ROUTINE_CHANNEL_ID);
+        }
     }
 
     private void updateSharedPreference() {

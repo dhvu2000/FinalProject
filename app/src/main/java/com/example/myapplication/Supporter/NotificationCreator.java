@@ -39,6 +39,17 @@ public class NotificationCreator extends FirebaseMessagingService {
 
 
     private String token;
+    private Context context;
+
+    public NotificationCreator(Context context)
+    {
+        this.context = context;
+    }
+
+    public NotificationCreator()
+    {
+        this.context = this;
+    }
 
 
     NotificationApi notificationApi = RetrofitApi.getClient("https://fcm.googleapis.com/").create(NotificationApi.class);
@@ -143,11 +154,11 @@ public class NotificationCreator extends FirebaseMessagingService {
             long due= Long.parseLong(scheduled);
             if(type.equals("add"))
             {
-                scheduleDueDate(id,due,title,body,channel, repeatedTime);
+//                scheduleDueDate(id,due,title,body,channel, repeatedTime);
             }
             else if (type.equals("delete"))
             {
-                receivedDeleteNotification(channel);
+//                deleteNotificationChannel(channel);
             }
 //            else{
 //                showNotification(title,body,"duedate");
@@ -155,24 +166,40 @@ public class NotificationCreator extends FirebaseMessagingService {
         }
     }
 
-    private Notification receiveNotification(String title, String messageBody, String channel){
+    private Notification receiveNotification(String title, String messageBody, String channelID){
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = new NotificationChannel(
-                    channel,
-                    channel,
-                    NotificationManager.IMPORTANCE_DEFAULT);
-            try{
-                notificationManager.deleteNotificationChannel(channel);
-            }catch (Exception ex)
-            {
-                ex.getStackTrace();
+            String description = channelID;
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(channelID, channelID, importance);
+            channel.setDescription(description);
+            NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
             }
-            notificationManager.createNotificationChannel(notificationChannel);
         }
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                NotificationManager notificationManager =  getSystemService(NotificationManager.class);
+//                NotificationChannel notificationChannel = new NotificationChannel(
+//                        channelID,
+//                        channelID,
+//                        NotificationManager.IMPORTANCE_DEFAULT);
+//
+//                if(notificationManager != null)
+//                {
+//                    try{
+//                        notificationManager.deleteNotificationChannel(channelID);
+//                    }catch (Exception ex)
+//                    {
+//                        ex.getStackTrace();
+//                    }
+//                    notificationManager.createNotificationChannel(notificationChannel);
+//                }
+//            }
+
+
         NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this, channel)
+                new NotificationCompat.Builder(context, channelID)
                         .setSmallIcon(R.drawable.icon)
                         .setContentTitle(title)
                         .setContentText(messageBody)
@@ -183,35 +210,65 @@ public class NotificationCreator extends FirebaseMessagingService {
         return  notificationBuilder.build();
     }
 
-    private void receivedDeleteNotification(String channel)
+    public void deleteNotificationChannel(int id, String channel)
     {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            try{
-                notificationManager.deleteNotificationChannel(channel);
-            }catch (Exception ex)
+            if(notificationManager != null)
             {
-                ex.getStackTrace();
+                try{
+                    notificationManager.cancel(id);
+                    notificationManager.deleteNotificationChannel(channel);
+                }catch (Exception ex)
+                {
+                    ex.getStackTrace();
+                }
             }
         }
     }
 
-    public void scheduleDueDate(int id,long due,String title, String body,String channel, long repeatedTime) {
+//    public void scheduleDueDate(int id,long due,String title, String body,String channel, long repeatedTime) {
+      public void setReminder(int id,long due,String title, String body,String channel, long repeatedTime) {
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+          deleteNotificationChannel(id, channel);
+          Notification n= receiveNotification(title,body,channel);
+          Intent i = new Intent(context,NotificationReceiver.class);
+          i.putExtra("id",id);
+          i.putExtra("notification",n);
+          System.out.println(due);
+        PendingIntent pdi= PendingIntent.getBroadcast(context,id,i,PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,due, repeatedTime, pdi );
+    }
+
+    public void setNextRoutineReminder(int id,long due,String title, String body,String channel) {
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Notification n= receiveNotification(title,body,channel);
-        Intent i = new Intent(this,NotificationReceiver.class);
+        Intent i = new Intent(context,NotificationReceiver.class);
         i.putExtra("id",id);
         i.putExtra("notification",n);
         System.out.println(due);
-        PendingIntent pdi= PendingIntent.getBroadcast(this,id,i,PendingIntent.FLAG_MUTABLE);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        //test
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,due, repeatedTime, pdi );
+        PendingIntent pdi= PendingIntent.getBroadcast(context,id,i,PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,due, pdi);
     }
 
     @Override
     public void onNewToken(@NonNull String token) {
         super.onNewToken(token);
     }
+
+//    public void destroyNotification(int id,long due,String title, String body,String channel)
+//    {
+//        Notification n= receiveNotification(title,body,channel);
+//        Intent i = new Intent(context,NotificationReceiver.class);
+//        i.putExtra("id",id);
+//        i.putExtra("notification",n);
+//        System.out.println(due);
+//        PendingIntent pdi= PendingIntent.getBroadcast(context,id,i,PendingIntent.FLAG_MUTABLE);
+//        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//
+//        alarmManager.cancel(pdi);
+//        receivedDeleteNotification(channel);
+//    }
 
 
 

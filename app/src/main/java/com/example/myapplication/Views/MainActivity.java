@@ -33,6 +33,7 @@ import com.example.myapplication.Views.CollectionsScreen.CollectionsPageFragment
 import com.example.myapplication.Views.ExerciseScreen.AddExerciseDialog;
 import com.example.myapplication.Views.ExerciseScreen.ExercisePageFragment;
 import com.example.myapplication.Views.HomeScreen.HomePageFragment;
+import com.example.myapplication.Views.TimerScreen.TimerPageFragment;
 import com.example.myapplication.Views.WelcomeScreen.WelcomeScreen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -57,8 +58,14 @@ public class MainActivity extends AppCompatActivity
     public static String RANDOM_IMG_1 = "https://firebasestorage.googleapis.com/v0/b/gymlife-22ff7.appspot.com/o/uploads%2Fuploads%2FrandomImg%2Frandom.png?alt=media&token=bc61f81e-9582-48fe-86d4-e3074bc77273";
     public static String RANDOM_IMG_2 = "https://firebasestorage.googleapis.com/v0/b/gymlife-22ff7.appspot.com/o/uploads%2Fuploads%2FrandomImg%2Frandom1.png?alt=media&token=a29d0834-5652-4833-9f82-ad492de40df4";
     public static String RANDOM_IMG_3 = "https://firebasestorage.googleapis.com/v0/b/gymlife-22ff7.appspot.com/o/uploads%2Fuploads%2FrandomImg%2Frandom2.png?alt=media&token=5d990c5f-c77e-45f5-ab96-292ee660040e";
-
     public static int DELETE_EXERCISE_REQUEST = 1;
+    public static String REMINDER_CHANNEL_ID = "Reminding Notification";
+    public static String ROUTINE_CHANNEL_ID = "Routine Notification";
+    public static int REMINDER_ALARM_ID = 233;
+    public static int ROUTINE_ALARM_ID = 235;
+    public static int REMINDER_DELAY_TIME = 120000;
+    public static int ROUTINE_REMINDING_DELAY_TIME = 120000;
+    public static long REPEATED_TIME = AlarmManager.INTERVAL_HALF_DAY;
 
     public static String getRandomImg()
     {
@@ -129,6 +136,11 @@ public class MainActivity extends AppCompatActivity
                         }
                         break;
                     case R.id.btnTimer:
+                        if(chosenItem != R.id.btnTimer)
+                        {
+                            chosenItem = R.id.btnTimer;
+                            replaceFragment(new TimerPageFragment());
+                        }
                         break;
                     case R.id.btnCollections:
                         if(chosenItem != R.id.btnCollections)
@@ -154,14 +166,14 @@ public class MainActivity extends AppCompatActivity
 
 
         //----Notification
-        Date date = new Date();
-        Calendar c = Calendar.getInstance();
-        c.add(Calendar.DATE, 1);
-        c.setTimeInMillis(SystemClock.elapsedRealtime());
-
-        date  = c.getTime();
-                new NotificationCreator().sendNotification("Tập cho 1 ngày đẹp", "Có vẻ lâu rồi không thấy bạn tập",
-                        c.getTimeInMillis(), AlarmManager.INTERVAL_DAY,"remindNotify");
+//        Date date = new Date();
+//        Calendar c = Calendar.getInstance();
+//        c.add(Calendar.DATE, 1);
+//        c.setTimeInMillis(SystemClock.elapsedRealtime());
+//
+//        date  = c.getTime();
+//        new NotificationCreator().sendNotification("Tập cho 1 ngày đẹp", "Có vẻ lâu rồi không thấy bạn tập",
+//                        c.getTimeInMillis(), AlarmManager.INTERVAL_DAY,"remindNotify");
 //        new NotificationCreator().deleteNotification("remindNotify");
     }
 

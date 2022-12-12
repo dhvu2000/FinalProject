@@ -3,25 +3,25 @@
         android:id="@+id/btnHome"
         android:enabled="true"
         android:icon="@drawable/home_icon"
-        android:title="Home"/>
+        android:title="Trang chủ"/>
     <item
         android:id="@+id/btnCollections"
         android:enabled="true"
         android:icon="@drawable/collection_icon"
-        android:title="Collections"/>
+        android:title="Bài tập"/>
     <item
         android:id="@+id/btnExercises"
         android:enabled="true"
         android:icon="@drawable/exercise_icon"
-        android:title="Exercises"/>
+        android:title="Động tác"/>
     <item
         android:id="@+id/btnTimer"
         android:enabled="true"
         android:icon="@drawable/timer_icon"
-        android:title="Timer"/>
+        android:title="Đếm giờ"/>
     <item
         android:id="@+id/btnAccount"
         android:enabled="true"
         android:icon="@drawable/account_icon"
-        android:title="Account"/>
+        android:title="Tài khoản"/>
 </menu>

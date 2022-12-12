@@ -15,6 +15,7 @@ import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.UserSchemaApi;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Supporter.TimeFormatter;
+import com.example.myapplication.Views.HomeScreen.SchemaScreen;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -69,6 +70,10 @@ public class SchemaAdapter extends RecyclerView.Adapter<SchemaHolder> {
             public void onResponse(Call<Void> call, Response<Void> response) {
                 new SharePreferenceManager(context).deleteSchema(userSchema.getId());
                 userSchemas.remove(position);
+                if(context instanceof SchemaScreen)
+                {
+                    ((SchemaScreen)context).setStatistic();
+                }
                 notifyDataSetChanged();
             }
             @Override

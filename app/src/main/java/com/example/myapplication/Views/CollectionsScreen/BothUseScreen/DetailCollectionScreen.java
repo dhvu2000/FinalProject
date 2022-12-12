@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlarmManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -17,11 +19,17 @@ import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.SetExercise;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import com.example.myapplication.R;
+import com.example.myapplication.Supporter.NotificationCreator;
+import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessScreen1;
+import com.example.myapplication.Views.MainActivity;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.Random;
 
 public class DetailCollectionScreen extends AppCompatActivity {
 
@@ -32,6 +40,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
     private WorkOutSet workOutSet;
     private String type;
     private ArrayList<SetExercise> setExercises = new ArrayList<>();
+    private SharePreferenceManager sharePreferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
         txtRest = findViewById(R.id.txtRestTime);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        sharePreferenceManager = new SharePreferenceManager(this);
 
         setWorkOutSet();
         populateListView();
@@ -80,6 +90,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sendNotification();
                 if(workOutSet == null || workOutSet.getExercises().size() == 0)
                 {
                     Toast.makeText(DetailCollectionScreen.this, "No exercise yet", Toast.LENGTH_LONG).show();
@@ -91,6 +102,20 @@ public class DetailCollectionScreen extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void sendNotification()
+    {
+        NotificationCreator notificationCreator = new NotificationCreator(this);
+        int id = new Date().getSeconds()+ new Random().nextInt();
+        Date date = new Date();
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time: "+ c);
+        c.add(Calendar.DATE,  2);
+//        new NotificationCreator(this).receivedDeleteNotification(MainActivity.REMINDER_CHANNEL_ID);
+        notificationCreator.setReminder(MainActivity.REMINDER_ALARM_ID,c.getTimeInMillis(),"Reminder",
+                "Long time since your last work out", MainActivity.REMINDER_CHANNEL_ID, MainActivity.REPEATED_TIME );
+
     }
 
     public void setWorkOutSet(){

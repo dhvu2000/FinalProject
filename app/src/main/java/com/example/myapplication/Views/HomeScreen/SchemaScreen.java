@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.myapplication.Adapter.SchemaListItem.SchemaAdapter;
 import com.example.myapplication.Model.User.UserSchema;
@@ -21,6 +22,8 @@ public class SchemaScreen extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private Button btnBack;
+    ArrayList<UserSchema> userSchemas;
+    private TextView txtMaxHeight, txtMinHeight, txtMaxWeight, txtMinWeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,12 +31,20 @@ public class SchemaScreen extends AppCompatActivity {
         setContentView(R.layout.activity_schema_screen);
         recyclerView  = findViewById(R.id.recyclerView);
         btnBack = findViewById(R.id.btnBack);
+        txtMaxHeight = findViewById(R.id.txtMaxHeight);
+        txtMinHeight = findViewById(R.id.txtMinHeight);
+        txtMaxWeight = findViewById(R.id.txtMaxWeight);
+        txtMinWeight = findViewById(R.id.txtMinWeight);
 
         Users user = (Users) new SharePreferenceManager(this).getObject("User", Users.class);
-        ArrayList<UserSchema> userSchemas = (ArrayList<UserSchema>) user.getSchemas();
-        if(userSchemas == null)
+        userSchemas = (ArrayList<UserSchema>) user.getSchemas();
+        if(userSchemas == null || userSchemas.size() == 0)
         {
             userSchemas = new ArrayList<>();
+        }
+        else
+        {
+            setStatistic();
         }
         Collections.reverse(userSchemas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -49,5 +60,47 @@ public class SchemaScreen extends AppCompatActivity {
 
 
 
+    }
+
+    public void setStatistic() {
+        if(userSchemas == null || userSchemas.size() == 0)
+        {
+            txtMaxHeight.setText(0+"");
+            txtMinHeight.setText(0+"");
+            txtMaxWeight.setText(0+"");
+            txtMinWeight.setText(0+"");
+            return;
+        }
+        double max = userSchemas.get(0).getHeight();
+        double min = userSchemas.get(0).getHeight();
+        for(UserSchema u : userSchemas)
+        {
+            if(u.getHeight() > max)
+            {
+                max = u.getHeight();
+            }
+            if(u.getHeight() < min)
+            {
+                min = u.getHeight();
+            }
+        }
+        txtMaxHeight.setText(max+"");
+        txtMinHeight.setText(min+"");
+
+        max = userSchemas.get(0).getWeight();
+        min = userSchemas.get(0).getWeight();
+        for(UserSchema u : userSchemas)
+        {
+            if(u.getWeight() > max)
+            {
+                max = u.getWeight();
+            }
+            if(u.getWeight() < min)
+            {
+                min = u.getWeight();
+            }
+        }
+        txtMaxWeight.setText(max+"");
+        txtMinWeight.setText(min+"");
     }
 }

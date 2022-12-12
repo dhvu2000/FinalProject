@@ -36,10 +36,10 @@
             android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessScreen1"
             android:exported="false" />
         <activity
-            android:name=".Views.CountingTimerScreen"
+            android:name=".Views.TimerScreen.CountingTimerScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.TimerScreen"
+            android:name=".Views.TimerScreen.TimerPageFragment"
             android:exported="false" />
         <activity
             android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkoutProcessScreen2"
