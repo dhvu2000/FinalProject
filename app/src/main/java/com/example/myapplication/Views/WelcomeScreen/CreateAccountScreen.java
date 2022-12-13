@@ -109,10 +109,10 @@ public class CreateAccountScreen extends AppCompatActivity {
                     String email = txtEmail.getText().toString();
                     String password = txtPassword.getText().toString();
                     String dob = TimeFormatter.FormatDateTime(pickedDate);
-                    String sex = "male";
+                    String sex = "nam";
                     if(choiceFemale.isChecked())
                     {
-                        sex = "female";
+                        sex = "nữ";
                     }
                     Users u = new Users(username,dob,password,email,sex,"member",null, new ArrayList<>());
                     System.out.println("Created User:" + u);

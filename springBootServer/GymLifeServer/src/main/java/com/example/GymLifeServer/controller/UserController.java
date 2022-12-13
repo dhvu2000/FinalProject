@@ -89,6 +89,13 @@ public class UserController {
         return userRepository.save(user);
     }
 
+    @PostMapping("/user/update")
+    public Users updateUser(@RequestBody Users user)
+    {
+        System.out.println(user);
+        return userRepository.save(user);
+    }
+
     @PostMapping("/user/log_in")
     public Users logInUser(@RequestBody Users u)
     {

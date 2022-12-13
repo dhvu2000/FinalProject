@@ -1,5 +1,24 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Gym Life</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Frequency Choice -->
+    <string name="frequency_question">Tần suất tập trong 1 tuần của bạn là: </string>
+    <string name="frequency_choice1">dưới 4 lần/ tuần</string>
+    <string name="frequency_choice2">từ 4-5 lần/ tuần</string>
+    <string name="frequency_choice3">trên 5 lần</string>
+    <!-- Place Choice -->
+    <string name="place_question">Bạn thường hay tập tại đâu?</string>
+    <string name="place_choice1">tại nhà</string>
+    <string name="place_choice2">tại phòng gym</string>
+    <!-- Purpose Choice -->
+    <string name="purpose_question">Bạn tập luyện để: </string>
+    <string name="purpose_choice1">tăng cơ</string>
+    <string name="purpose_choice2">giảm mỡ</string>
+    <string name="purpose_choice3">tăng cường sức bền</string>
+    <!-- Exeperience Year Choice -->
+    <string name="experience_year_question">Cho tới hiện tại, bạn đã tập luyện được bao lâu rồi?</string>
+    <string name="experience_year_choice1">dưới 1 năm</string>
+    <string name="experience_year_choice2">từ 1 đến 2 năm</string>
+    <string name="experience_year_choice3">2 năm trở lên</string>
 </resources>

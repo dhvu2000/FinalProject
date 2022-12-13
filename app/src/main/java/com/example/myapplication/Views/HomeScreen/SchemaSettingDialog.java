@@ -19,8 +19,10 @@ import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.UserSchemaApi;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Supporter.TimeFormatter;
+import com.example.myapplication.Views.AccountScreen.InforScreen;
 import com.example.myapplication.Views.MainActivity;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import retrofit2.Call;
@@ -33,7 +35,6 @@ public class SchemaSettingDialog extends DialogFragment {
 
     double height;
     double weight;
-    UserSchema userAnalysedInfor;
     EditText txtHeight, txtWeight;
     TextView txtNotice;
     Button btnOk;
@@ -55,16 +56,6 @@ public class SchemaSettingDialog extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View view =  inflater.inflate(R.layout.dialog_schema_setting,container,false);
-
-        userAnalysedInfor = (UserSchema) new SharePreferenceManager(getContext()).getObject("UserInfor", UserSchema.class);
-        if(userAnalysedInfor != null)
-        {
-            userAnalysedInfor.setId(0);
-        }
-        else
-        {
-            userAnalysedInfor = new UserSchema();
-        }
 
         txtWeight = view.findViewById(R.id.txtWeight);
         txtHeight = view.findViewById(R.id.txtHeight);
@@ -120,6 +111,7 @@ public class SchemaSettingDialog extends DialogFragment {
     private void saveSchemaToDB()
     {
         String date = TimeFormatter.FormatDateTime(new Date());
+        SharePreferenceManager sharePreferenceManager = new SharePreferenceManager(getContext());
         UserSchema userSchema = new UserSchema(height, weight, date);
         Users u = (Users) new SharePreferenceManager(getContext()).getObject("User", Users.class);
         userSchema.setUser(u);
@@ -127,7 +119,21 @@ public class SchemaSettingDialog extends DialogFragment {
         call.enqueue(new Callback<UserSchema>() {
             @Override
             public void onResponse(Call<UserSchema> call, Response<UserSchema> response) {
-                ((MainActivity)getActivity()).updateSchema(response.body());
+                UserSchema schema = response.body();
+                if(u.getSchemas() ==  null)
+                {
+                    u.setSchemas(new ArrayList<>());
+                }
+                u.getSchemas().add(schema);
+                sharePreferenceManager.saveObject("User",u);
+                if(getActivity() instanceof MainActivity)
+                {
+                    ((MainActivity)getActivity()).updateSchema();
+                }
+                else if (getActivity() instanceof InforScreen)
+                {
+                    ((InforScreen)getActivity()).setUser();
+                }
                 dismiss();
             }
 

@@ -54,7 +54,7 @@
             android:name=".Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.TargetChoiceScreen"
+            android:name=".Views.ChoiceScreen.ChoiceScreen"
             android:exported="false" />
         <activity
             android:name=".Views.WelcomeScreen.LogInScreen"

@@ -325,18 +325,16 @@ public class MainActivity extends AppCompatActivity
         onMission = true;
     }
 
-    public void updateSchema(UserSchema userSchema)
+    public void updateSchema()
     {
-        Users u = (Users) sharePreferenceManager.getObject("User", Users.class);
-        if(u.getSchemas() ==  null)
-        {
-            u.setSchemas(new ArrayList<>());
-        }
-        u.getSchemas().add(userSchema);
-        sharePreferenceManager.saveObject("User",u);
         FragmentManager manager = getSupportFragmentManager();
         fragment = manager.findFragmentById(R.id.frameLayout);
         ((HomePageFragment) fragment).updateSchema();
+    }
+
+    public void movePage(int pageId)
+    {
+        bottomNavigationView.setSelectedItemId(pageId);
     }
 
 

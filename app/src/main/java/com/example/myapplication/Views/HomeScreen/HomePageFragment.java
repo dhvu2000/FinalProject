@@ -20,6 +20,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.Supporter.NotificationCreator;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Supporter.TimeFormatter;
+import com.example.myapplication.Views.MainActivity;
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GridLabelRenderer;
@@ -118,6 +119,16 @@ public class HomePageFragment extends Fragment {
 
         txtEmail.setText(user.getEmail());
         txtUserName.setText(user.getUsername());
+
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(getActivity() instanceof MainActivity)
+                {
+                    ((MainActivity)getActivity()).movePage(R.id.btnAccount);
+                }
+            }
+        });
     }
 
     public void updateSchema()

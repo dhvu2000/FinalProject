@@ -55,46 +55,52 @@
         android:shadowRadius="1.5" />
 
     <TextView
-        android:id="@+id/txtQuestion1"
+        android:id="@+id/txtQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Your target:"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="50dp"
-        android:layout_marginStart="35dp"
         android:textColor="@color/white"
         android:textSize="18dp"
         android:layout_marginBottom="20dp"/>
 
-    <ToggleButton
-        android:textOn="Build muscle"
-        android:textOff="Build muscle"
-        android:id="@+id/btnMuscleChoice"
+    <RadioGroup
         android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Upper body"
-        android:textAllCaps="false"
-        android:textSize="18dp"
-        android:padding="15dp"
-        android:gravity="left"
-        android:textStyle="bold"
-        android:background="@drawable/rounded_white"/>
+        android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/choice1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            android:layout_marginEnd="50dp"/>
 
-    <ToggleButton
-        android:textOn="Lose weight"
-        android:textOff="Lose weight"
-        android:id="@+id/btnLoseWeightChoice"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:textSize="18dp"
-        android:padding="15dp"
-        android:gravity="left"
-        android:textStyle="bold"
-        android:background="@drawable/rounded_white"/>
+        <RadioButton
+            android:id="@+id/choice2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+        <RadioButton
+            android:id="@+id/choice3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+        <RadioButton
+            android:id="@+id/choice4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="choice"
+            android:textColor="@color/white"
+            android:textSize="16dp" />
+
+    </RadioGroup>
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_margin="20dp"

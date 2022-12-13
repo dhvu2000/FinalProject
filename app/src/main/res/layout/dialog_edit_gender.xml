@@ -10,7 +10,7 @@
 
     <TextView
         android:id="@+id/txtName4"
-        android:layout_width="wrap_content"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:text="Giới tính:"
         android:visibility="visible"
@@ -43,6 +43,7 @@
     </RadioGroup>
 
     <Button
+        android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sửa"
@@ -50,6 +51,16 @@
         android:textColor="@color/black"
         android:backgroundTint="@color/lightgrey"
         android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/txtNotice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#FBCEB1"
+        android:text=""
+        android:textSize="14dp"
+        android:textStyle="bold|italic"/>
 
 
 </LinearLayout>

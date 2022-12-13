@@ -23,6 +23,9 @@ public interface UsersApi {
     @POST("/user/save")
     Call<Users> save(@Body Users user);
 
+    @POST("/user/update")
+    Call<Users> update(@Body Users user);
+
     @POST("/user/log_in")
     Call<Users> logInUser(@Body Users u);
 
