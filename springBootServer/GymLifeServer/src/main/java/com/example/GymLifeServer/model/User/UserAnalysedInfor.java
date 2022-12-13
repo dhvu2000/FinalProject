@@ -20,7 +20,7 @@ public class UserAnalysedInfor implements Serializable {
     private String focusedArea;
     @Column
     private String updatedDate;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name="user_id", nullable=false)
     @JsonBackReference
     private Users user;

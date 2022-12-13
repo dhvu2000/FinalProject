@@ -22,7 +22,7 @@ public class Users implements Serializable {
 
     private String img;
 
-    private List<UserAnalysedInfor> infor;
+    private UserAnalysedInfor infor;
 
     private List<UserSchema> schemas;
 
@@ -32,7 +32,7 @@ public class Users implements Serializable {
 
     public Users(int id, String username, String dob,
                  String password, String email, String gender,
-                 String type, List<UserAnalysedInfor> infor) {
+                 String type, UserAnalysedInfor infor) {
         this.id = id;
         this.username = username;
         this.dob = dob;
@@ -45,7 +45,7 @@ public class Users implements Serializable {
 
     public Users(String username, String dob,
                  String password, String email, String gender,
-                 String type, List<UserAnalysedInfor> infor, List<UserSchema> schemas) {
+                 String type, UserAnalysedInfor infor, List<UserSchema> schemas) {
         this.username = username;
         this.dob = dob;
         this.password = password;
@@ -72,11 +72,11 @@ public class Users implements Serializable {
         this.img = img;
     }
 
-    public List<UserAnalysedInfor> getInfor() {
+    public UserAnalysedInfor getInfor() {
         return infor;
     }
 
-    public void setInfor(List<UserAnalysedInfor> infor) {
+    public void setInfor(UserAnalysedInfor infor) {
         this.infor = infor;
     }
 

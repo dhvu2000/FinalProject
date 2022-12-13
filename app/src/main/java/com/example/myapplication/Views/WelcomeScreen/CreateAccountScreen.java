@@ -114,7 +114,7 @@ public class CreateAccountScreen extends AppCompatActivity {
                     {
                         sex = "female";
                     }
-                    Users u = new Users(username,dob,password,email,sex,"member",new ArrayList<>(), new ArrayList<>());
+                    Users u = new Users(username,dob,password,email,sex,"member",null, new ArrayList<>());
                     System.out.println("Created User:" + u);
                     saveUserToDB(u);
                 };
