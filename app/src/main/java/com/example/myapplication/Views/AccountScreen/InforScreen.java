@@ -101,8 +101,9 @@ public class InforScreen extends AppCompatActivity {
 //        txtQ5 = findViewById(R.id.txtQ5);
         img = findViewById(R.id.img);
         btnBack = findViewById(R.id.btnBack);
-
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        FirebaseStorage fbs = FirebaseStorage.getInstance();
+        fbs.setMaxUploadRetryTimeMillis(3000);
+        mStorageRef = fbs.getReference("uploads");
         sharePreferenceManager = new SharePreferenceManager(this);
 
         setUser();
@@ -123,7 +124,6 @@ public class InforScreen extends AppCompatActivity {
         {
             txtWeight.setText( "-.-");
             txtHeight.setText( "-.-");
-            return;
         }
 
         if(user.getImg()!=null && !user.getImg().isEmpty())

@@ -40,6 +40,8 @@ import com.gun0912.tedpermission.normal.TedPermission;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +63,7 @@ public class AddExerciseDialog extends DialogFragment {
     private EditText txtIntroduction;
     private EditText txtCalories;
     private ImageView img;
+    private int UploadRunOutTimer;
     int SELECT_PICTURE = 200;
     private StorageReference mStorageRef;
     RetrofitApi retrofitApi = new RetrofitApi();
@@ -91,7 +94,9 @@ public class AddExerciseDialog extends DialogFragment {
         btnSave = addExerciseDialog.findViewById(R.id.btnSave);
         txtNote = addExerciseDialog.findViewById(R.id.note);
         img = addExerciseDialog.findViewById(R.id.img);
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+        FirebaseStorage fbs = FirebaseStorage.getInstance();
+        fbs.setMaxUploadRetryTimeMillis(3000);
+        mStorageRef = fbs.getReference("uploads");
         users = (Users) new SharePreferenceManager(getActivity()).getObject("User", Users.class);
         txtName = addExerciseDialog.findViewById(R.id.txtName);
         txtIntroduction = addExerciseDialog.findViewById(R.id.txtIntroduction);
@@ -274,15 +279,18 @@ public class AddExerciseDialog extends DialogFragment {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             System.out.println("Upload img successfully");
-                            Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();
+                            Task<Uri> urlTask = taskSnapshot.getStorage().getDownloadUrl();;//wait for the task done;
                             while (!urlTask.isSuccessful());//wait for the task done;
                             Uri downloadUrl = urlTask.getResult();
                             System.out.println(downloadUrl);
                             uploadUrl = downloadUrl.toString();
                             if(!uploadUrl.equals(null) && !uploadUrl.equals(""))
+                            if(urlTask.isSuccessful())
                             {
                                 exercise.setImg(uploadUrl);
                                 saveExerciseToDB();
+                                System.out.println(downloadUrl);
+                                uploadUrl = downloadUrl.toString();
                             }
                         }
                     })
@@ -290,7 +298,7 @@ public class AddExerciseDialog extends DialogFragment {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             System.out.println("Upload img fail");
-                            txtNote.setText("Save Fail");
+                            txtNote.setText("Upload image fail");
                         }
                     });
         }
