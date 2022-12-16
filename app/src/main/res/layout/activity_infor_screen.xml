@@ -45,15 +45,15 @@
                 android:gravity="center"
                 android:src="@drawable/avatar" />
 
-            <Button
-                android:id="@+id/btnUserAnalysedCreate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity = "center"
-                android:text="Tạo thông tin tập luyện"
-                android:textAllCaps="false"
-                android:background="@drawable/rounded_blue"
-                android:layout_marginBottom="20dp"/>
+<!--            <Button-->
+<!--                android:id="@+id/btnUserAnalysedCreate"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity = "center"-->
+<!--                android:text="Tạo thông tin tập luyện"-->
+<!--                android:textAllCaps="false"-->
+<!--                android:background="@drawable/rounded_blue"-->
+<!--                android:layout_marginBottom="20dp"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"

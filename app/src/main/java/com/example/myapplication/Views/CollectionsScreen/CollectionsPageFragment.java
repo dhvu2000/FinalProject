@@ -44,9 +44,8 @@ public class CollectionsPageFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_collections_page, container, false);
         List<Fragment> list = new ArrayList<>();
-        list.add(new SetsSidePage());
         list.add(new RoutineSidePage());
-
+        list.add(new SetsSidePage());
         txtSearch = view.findViewById(R.id.txtSearch);
         viewPager = view.findViewById(R.id.pager);
         pagerAdapter = new CollectionScreenSlider(getParentFragmentManager(), list);

@@ -36,9 +36,9 @@ public class CollectionScreenSlider extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         if(position == 0)
         {
-            return "SETS";
+            return "Lịch trình";
         }
-        else return "ROUTINE";
+        else return "Bài tập đơn";
     }
 
     public void deleteRoutine(int position)

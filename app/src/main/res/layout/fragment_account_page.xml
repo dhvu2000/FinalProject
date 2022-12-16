@@ -30,7 +30,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="30dp"
             android:gravity="center"
-            android:text="Admin"
+            android:text="Tên người dùng"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/black"
             android:textStyle="bold" />

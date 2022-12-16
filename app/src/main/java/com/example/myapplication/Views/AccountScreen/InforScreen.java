@@ -100,7 +100,6 @@ public class InforScreen extends AppCompatActivity {
         txtQ4 = findViewById(R.id.txtQ4);
 //        txtQ5 = findViewById(R.id.txtQ5);
         img = findViewById(R.id.img);
-        btnUserAnalysedCreate = findViewById(R.id.btnUserAnalysedCreate);
         btnBack = findViewById(R.id.btnBack);
 
         mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
@@ -148,12 +147,10 @@ public class InforScreen extends AppCompatActivity {
     private void setUserAnalysedInfor() {
         if(user.getInfor() == null)
         {
-            btnUserAnalysedCreate.setVisibility(View.VISIBLE);
             areaUserAnalyseInfor.setVisibility(View.GONE);
         }
         else
         {
-            btnUserAnalysedCreate.setVisibility(View.GONE);
             areaUserAnalyseInfor.setVisibility(View.VISIBLE);
 
             //fill infor

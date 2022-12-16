@@ -40,6 +40,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -161,7 +162,7 @@ public class ExercisePageFragment extends Fragment{
             exercises.clear();
             for(Exercise i: dbList)
             {
-                if(i.getName().contains(key))
+                if(i.getName().toLowerCase().contains(key.toLowerCase()))
                 {
                     exercises.add(i);
                 }
