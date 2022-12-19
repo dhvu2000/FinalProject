@@ -1,4 +1,4 @@
-package com.example.myapplication.Views;
+package com.example.myapplication.Views.RedundantScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,12 @@ import android.os.Bundle;
 
 import com.example.myapplication.R;
 
-public class InformationScreen1 extends AppCompatActivity {
+public class AccountConfirmScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_information_screen1_firstly);
+        getSupportActionBar().hide();
+        setContentView(R.layout.activity_account_confirm_screen);
     }
 }

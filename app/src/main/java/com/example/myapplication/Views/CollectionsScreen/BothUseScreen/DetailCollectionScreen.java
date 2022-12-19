@@ -115,7 +115,6 @@ public class DetailCollectionScreen extends AppCompatActivity {
 //        new NotificationCreator(this).receivedDeleteNotification(MainActivity.REMINDER_CHANNEL_ID);
         notificationCreator.setReminder(MainActivity.REMINDER_ALARM_ID,c.getTimeInMillis(),"Reminder",
                 "Long time since your last work out", MainActivity.REMINDER_CHANNEL_ID, MainActivity.REPEATED_TIME );
-
     }
 
     public void setWorkOutSet(){
@@ -138,7 +137,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
 
         if(workOutSet.getExercises()!= null && workOutSet.getExercises().size() != 0)
         {
-            txtExerciseNum.setText("Number of exercise: "+ workOutSet.getExercises().size());
+            txtExerciseNum.setText("Số lượng động tác: "+ workOutSet.getExercises().size());
             setExercises.addAll(workOutSet.getExercises());
         }
         else

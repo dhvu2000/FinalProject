@@ -173,13 +173,13 @@ public class CountingTimerScreen extends AppCompatActivity {
         {
             pauseTimer();
             btnPauseContinue.setImageResource(R.drawable.continue_icon);
-            txtBtnPauseContinue.setText("Continue");
+            txtBtnPauseContinue.setText("Tiếp tục");
         }
         else
         {
             startTimer();
             btnPauseContinue.setImageResource(R.drawable.pause_icon);
-            txtBtnPauseContinue.setText("Pause");
+            txtBtnPauseContinue.setText("Dừng");
         }
     }
 
@@ -189,7 +189,7 @@ public class CountingTimerScreen extends AppCompatActivity {
         {
             startVoice(R.raw.countdown);
         }
-        txtTime.setText(timeLeft+ " s");
+        txtTime.setText(timeLeft+ " giây");
         int progress = timeLeft * 100 /waitTime ;
         progressBar.setProgress(progress);
     }

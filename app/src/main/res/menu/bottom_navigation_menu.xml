@@ -18,7 +18,7 @@
         android:id="@+id/btnTimer"
         android:enabled="true"
         android:icon="@drawable/timer_icon"
-        android:title="Đếm giờ"/>
+        android:title="Đếm thời gian"/>
     <item
         android:id="@+id/btnAccount"
         android:enabled="true"

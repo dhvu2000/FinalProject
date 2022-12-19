@@ -1,4 +1,4 @@
-package com.example.myapplication.Views;
+package com.example.myapplication.Views.RedundantScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 

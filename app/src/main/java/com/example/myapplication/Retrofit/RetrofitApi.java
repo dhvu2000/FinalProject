@@ -23,7 +23,7 @@ public class RetrofitApi {
     public  RetrofitApi()
     {
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.195:9000")
+                .baseUrl("http://10.170.58.185:9000")
                 .addConverterFactory(GsonConverterFactory.create(new Gson()))
                 .build();
 

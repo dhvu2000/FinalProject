@@ -21,10 +21,13 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".RecordScreen"
+            android:exported="false" />
+        <activity
             android:name=".Views.HomeScreen.SchemaScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessEnd"
+            android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkOutProcessEndScreen"
             android:exported="false" />
         <activity
             android:name=".Views.CollectionsScreen.BothUseScreen.DetailCollectionScreen"
@@ -48,7 +51,7 @@
             android:name=".Views.CollectionsScreen.BothUseScreen.UpdateSaveCollectionScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.SettingNewRountineScreen"
+            android:name=".Views.RedundantScreen.SettingNewRountineScreen"
             android:exported="false" />
         <activity
             android:name=".Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen"
@@ -60,13 +63,13 @@
             android:name=".Views.WelcomeScreen.LogInScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.FrequencyChoiceScreen"
+            android:name=".Views.RedundantScreen.FrequencyChoiceScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.WorkoutAreaChoiceScreen"
+            android:name=".Views.RedundantScreen.WorkoutAreaChoiceScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.InformationScreen1"
+            android:name=".Views.RedundantScreen.InformationScreen1"
             android:exported="false" />
         <activity
             android:name=".Views.WelcomeScreen.WelcomeScreen"
@@ -75,7 +78,7 @@
             android:name=".Views.WelcomeScreen.CreateAccountScreen"
             android:exported="false" />
         <activity
-            android:name=".Views.AccountConfirmScreen"
+            android:name=".Views.RedundantScreen.AccountConfirmScreen"
             android:exported="false" />
         <activity
             android:name=".Views.MainActivity"

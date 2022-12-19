@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.example.myapplication.R;
 import com.example.myapplication.Supporter.TimeFormatter;
 
-public class WorkOutProcessEnd extends AppCompatActivity {
+public class WorkOutProcessEndScreen extends AppCompatActivity {
 
     TextView txtFinish, txtCongrats, txtTime, txtCalories;
     Button btnDone;

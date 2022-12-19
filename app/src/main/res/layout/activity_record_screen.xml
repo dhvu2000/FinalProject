@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Views.HomeScreen.SchemaScreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_blue_bar">
+        <Button
+            android:id="@+id/btnBack"
+            android:background="#00FFFFFF"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="0dp"
+            android:text=" Back"
+            android:textAllCaps="false"
+            android:textSize="14dp"
+            android:textAlignment="textStart"
+            android:textColor="@color/white"
+            android:layout_marginBottom="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:text="Nhật ký hoạt động"
+            android:textColor="@color/white"
+            android:paddingHorizontal="20dp"
+            android:paddingBottom="20dp"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_white"
+        android:padding="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:text="Tổng lượng calories đã đốt:"
+                android:textSize="15dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtTotal"
+                android:layout_width="0dp"
+                android:lines="1"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0 "
+                android:textSize="18dp"
+                android:textColor="@color/bluesky"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:text="Calories đốt trung bình trong 1 ngày:"
+                android:textSize="15dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtPerDay"
+                android:layout_width="0dp"
+                android:lines="1"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0 "
+                android:textSize="18dp"
+                android:textColor="@color/bluesky"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:text="Calories đốt trung bình trong 1 tuần:"
+                android:textSize="15dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtPerWeek"
+                android:layout_width="0dp"
+                android:lines="1"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0 "
+                android:textSize="18dp"
+                android:textColor="@color/bluesky"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="4">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:text="Calories đốt trung bình trong 1 tháng:"
+                android:textSize="15dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/txtPerMonth"
+                android:layout_width="0dp"
+                android:lines="1"
+                android:textStyle="bold"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="0 "
+                android:textSize="18dp"
+                android:textColor="@color/bluesky"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:orientation="horizontal"
+        android:weightSum="8"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+        <TextView
+            android:id="@+id/colDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Ngày giờ"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_weight="3"/>
+        <TextView
+            android:id="@+id/colWeight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Calories"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:layout_marginEnd="20dp"/>
+        <TextView
+            android:id="@+id/txtHeight"
+            android:paddingEnd="2dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Thời gian"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:textStyle="bold"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C5C5C5"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="10dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

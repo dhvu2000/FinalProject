@@ -150,8 +150,8 @@ public class WorkOutProcessScreen1 extends AppCompatActivity {
     private void setTxt()
     {
         SetExercise setExercise = workOutSet.getExercises().get(sequence);
-        txtProgressTime.setText(timeLeft + " secs");
-        txtNextExerciseName.setText("Next: "+ setExercise.getExercise().getName());
+        txtProgressTime.setText(timeLeft + " giây");
+        txtNextExerciseName.setText("Tiếp: "+ setExercise.getExercise().getName());
         if(setExercise.getRepNum() != 0) txtReps.setText("x"+setExercise.getRepNum());
         else txtReps.setVisibility(View.INVISIBLE);
         if(setExercise.getTimeLength() != 0) txtTime.setText(setExercise.getTimeLength()+" secs");
@@ -263,13 +263,13 @@ public class WorkOutProcessScreen1 extends AppCompatActivity {
 
             pauseTimer();
             btnPauseContinue.setImageResource(R.drawable.continue_icon);
-            txtBtnPauseContinue.setText("Continue");
+            txtBtnPauseContinue.setText("Tiếp tục");
         }
         else
         {
             startTimer();
             btnPauseContinue.setImageResource(R.drawable.pause_icon);
-            txtBtnPauseContinue.setText("Pause");
+            txtBtnPauseContinue.setText("Dừng");
         }
     }
 
@@ -310,7 +310,7 @@ public class WorkOutProcessScreen1 extends AppCompatActivity {
     }
 
     private void moveToEnd() {
-        Intent intent = new Intent(this, WorkOutProcessEnd.class);
+        Intent intent = new Intent(this, WorkOutProcessEndScreen.class);
         intent.putExtra("calories", calories);
         intent.putExtra("time", time);
         if(sequence == workOutSet.getExercises().size()) intent.putExtra("done", true);

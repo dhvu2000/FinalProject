@@ -28,7 +28,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingVertical="0dp"
-                    android:text=" Back"
+                    android:text=" Quay lại"
                     android:textAllCaps="false"
                     android:textSize="14dp"
                     android:textAlignment="textStart"
@@ -38,7 +38,7 @@
                     android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="New Set"
+                    android:text="Bài tập"
                     android:textColor="@color/white"
                     android:layout_marginStart="20dp"
                     android:textSize="30dp"
@@ -48,7 +48,7 @@
                     android:id="@+id/txtExerciseNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Number of exercise: 0"
+                    android:text="Số lượng bài tập: 0"
                     android:textColor="@color/white"
                     android:layout_marginStart="20dp"
                     android:textSize="14dp"
@@ -78,7 +78,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="save"
+                        android:text="Lưu"
                         android:textColor="@color/white"/>
                 </LinearLayout>
 
@@ -102,7 +102,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="delete"
+                        android:text="Xóa"
                         android:textColor="@color/white"/>
                 </LinearLayout>
 
@@ -242,7 +242,8 @@
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="+ Add new"
+        android:text="+ Thêm mới"
+        android:textAllCaps="false"
         android:textSize="16dp"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="10dp"/>

@@ -112,7 +112,7 @@
                 android:id="@+id/txtBtnPauseContinue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pause"
+                android:text="Dừng"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/btnPauseContinue"
@@ -120,10 +120,11 @@
                 app:layout_constraintLeft_toLeftOf="@id/btnPauseContinue" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/areaBtnStop"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_weight="1">
 
             <ImageButton
@@ -140,12 +141,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stop"
+                android:text="Kết thúc"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
-                app:layout_constraintTop_toBottomOf="@+id/btnStop"
+                app:layout_constraintLeft_toLeftOf="@id/btnStop"
                 app:layout_constraintRight_toRightOf="@id/btnStop"
-                app:layout_constraintLeft_toLeftOf="@id/btnStop" />
+                app:layout_constraintTop_toBottomOf="@+id/btnStop" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -168,7 +169,7 @@
                 android:id="@+id/txtBtnSkip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Skip"
+                android:text="Bỏ qua"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/btnSkip"

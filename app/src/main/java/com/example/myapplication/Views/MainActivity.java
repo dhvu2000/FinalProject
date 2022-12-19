@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity
         frameLayout = findViewById(R.id.frameLayout);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         sharePreferenceManager = new SharePreferenceManager(this);
+
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onStart() {
-        super.onStart();;
+        super.onStart();
     }
 
     public void getUser()

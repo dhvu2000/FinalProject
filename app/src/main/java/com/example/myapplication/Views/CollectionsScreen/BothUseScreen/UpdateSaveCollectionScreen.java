@@ -234,7 +234,7 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
         if(setExe.getId() != 0) deletedList.add(setExe.getId());
         setExercises.remove(position);
         recyclerView.getAdapter().notifyDataSetChanged();
-        txtExerciseNum.setText("Number of exercise: "+ workOutSet.getExercises().size());
+        txtExerciseNum.setText("Số lượng động tác: "+ workOutSet.getExercises().size());
 
     }
 
@@ -253,10 +253,10 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
     private void openDeleteAlertDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Do you want to delete the exercise");
+        builder.setMessage("Bạn có thật sự muốn xóa động tác?");
         builder.setCancelable(true);
         builder.setPositiveButton(
-                "Yes",
+                "Có",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //delete the exercise
@@ -264,7 +264,7 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
                     }
                 });
         builder.setNegativeButton(
-                "No",
+                "Không",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
@@ -297,12 +297,12 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
 
                 @Override
                 public void onFailure(Call<Void> call, Throwable t) {
-                    showNotice("Delete collection fail");
+                    showNotice("Xóa thất bại");
                 }
             });
         }
         else {
-            showNotice("this collection has not exist yet");
+            showNotice("Bài tập này chưa tồn tại");
         }
 
     }
@@ -320,7 +320,7 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Routine> call, Throwable t) {
-                System.out.println("Update Fail: Network Error");
+                System.out.println("Chỉnh sửa thất bại: Lỗi mạng!");
                 finish();
             }
         });

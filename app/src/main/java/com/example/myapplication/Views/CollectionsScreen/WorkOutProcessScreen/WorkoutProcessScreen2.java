@@ -3,12 +3,10 @@ package com.example.myapplication.Views.CollectionsScreen.WorkOutProcessScreen;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import android.app.AlarmManager;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -140,7 +138,7 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
         {
             areaTime.setVisibility(View.GONE);
             areaBtnPauseContinue.setVisibility(View.GONE);
-            txtBtnSkip.setText("Next");
+            txtBtnSkip.setText("Tiếp tục");
         }
     }
 
@@ -240,19 +238,19 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
         {
             pauseTimer();
             btnPauseContinue.setImageResource(R.drawable.continue_icon);
-            txtBtnPauseContinue.setText("Continue");
+            txtBtnPauseContinue.setText("Tiếp tục");
         }
         else
         {
             startTimer();
             btnPauseContinue.setImageResource(R.drawable.pause_icon);
-            txtBtnPauseContinue.setText("Pause");
+            txtBtnPauseContinue.setText("Dừng");
         }
     }
 
 
     private void moveToEnd() {
-        Intent intent = new Intent(WorkoutProcessScreen2.this, WorkOutProcessEnd.class);
+        Intent intent = new Intent(WorkoutProcessScreen2.this, WorkOutProcessEndScreen.class);
         intent.putExtra("calories", calories);
         intent.putExtra("time", time);
         if(sequence == workOutSet.getExercises().size()) intent.putExtra("done", true);
@@ -338,7 +336,7 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
             int distance = rds.get(currentDayPos + 1).getSequence() - rds.get(currentDayPos).getSequence();
             c.add(Calendar.DATE, distance);
             notificationCreator.setNextRoutineReminder(MainActivity.ROUTINE_ALARM_ID,c.getTimeInMillis(),rds.get(currentDayPos + 1).getName(),
-                    "Your next work-out is coming",  MainActivity.ROUTINE_CHANNEL_ID);
+                    "Bài tập tiếp theo của bạn đang tới",  MainActivity.ROUTINE_CHANNEL_ID);
         }
     }
 

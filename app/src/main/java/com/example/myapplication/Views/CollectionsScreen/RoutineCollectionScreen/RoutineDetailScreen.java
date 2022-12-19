@@ -161,7 +161,7 @@ public class RoutineDetailScreen extends AppCompatActivity {
     private void updateRoutine() {
         if(routine.getDays() == null || routine.getDays().size() == 0) routine.setDayNum(0);
         else routine.setDayNum(routine.getDays().get(routine.getDays().size()-1).getSequence());
-        txtDaysNum.setText("Days: "+routine.getDayNum());
+        txtDaysNum.setText("Số ngày: "+routine.getDayNum());
         new SharePreferenceManager(RoutineDetailScreen.this).saveRoutine(routine);
         Call<Routine> call  = routineApi.save(routine);
         call.enqueue(new Callback<Routine>() {
@@ -180,10 +180,10 @@ public class RoutineDetailScreen extends AppCompatActivity {
     private void openDeleteAlertDialog()
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Do you want to delete the exercise");
+        builder.setMessage("Bạn có muốn xóa?");
         builder.setCancelable(true);
         builder.setPositiveButton(
-                "Yes",
+                "Có",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //delete the exercise
@@ -191,7 +191,7 @@ public class RoutineDetailScreen extends AppCompatActivity {
                     }
                 });
         builder.setNegativeButton(
-                "No",
+                "Không",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
@@ -213,7 +213,7 @@ public class RoutineDetailScreen extends AppCompatActivity {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 System.out.println(t.getMessage());
-                showNotice("Delete Fail: Network Error");
+                showNotice("Xóa thất bại: Lỗi mạng!");
             }
         });
     }
