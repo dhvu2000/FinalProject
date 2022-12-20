@@ -50,7 +50,7 @@ public class SetExerciseAdapter extends RecyclerView.Adapter<SetExerciseHolder> 
         }
         holder.txtName.setText(setExercise.getExercise().getName());
         holder.txtRep.setText("reps: "+setExercise.getRepNum());
-        holder.txtTime.setText("time (sec):"+ setExercise.getTimeLength());
+        holder.txtTime.setText("số giây:"+ setExercise.getTimeLength());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

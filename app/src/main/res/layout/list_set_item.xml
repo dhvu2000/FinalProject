@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/routineCardView"
+    android:id="@+id/setCardView"
     android:layout_width="350dp"
     android:layout_gravity="center|top"
     android:layout_height="100dp"
@@ -38,10 +38,10 @@
             android:textColor="@color/white"/>
 
         <TextView
-            android:id="@+id/txtDaysNum"
+            android:id="@+id/txtExerciseNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Số ngày: 0"
+            android:text="0 động tác"
             android:textColor="@color/white"/>
     </LinearLayout>
 

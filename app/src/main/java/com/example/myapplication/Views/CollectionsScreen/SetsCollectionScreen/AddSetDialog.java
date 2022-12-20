@@ -1,4 +1,4 @@
-package com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen;
+package com.example.myapplication.Views.CollectionsScreen.SetsCollectionScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,24 +16,29 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
+import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.RoutineApi;
 import com.example.myapplication.Retrofit.UsersApi;
+import com.example.myapplication.Retrofit.WorkOutSetApi;
 import com.example.myapplication.Supporter.SharePreferenceManager;
+import com.example.myapplication.Views.CollectionsScreen.BothUseScreen.DetailCollectionScreen;
+import com.example.myapplication.Views.CollectionsScreen.BothUseScreen.UpdateSaveCollectionScreen;
+import com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen;
 import com.example.myapplication.Views.MainActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddRoutineDialog extends DialogFragment {
+public class AddSetDialog extends DialogFragment {
 
     EditText txtName;
-    TextView txtNote;
+    TextView txtNote, txtHead;
     Button btnAdd;
     RetrofitApi retrofitApi = new RetrofitApi();
-    RoutineApi routineApi = retrofitApi.getRetrofit().create(RoutineApi.class);
+    WorkOutSetApi workOutSetApi = retrofitApi.getRetrofit().create(WorkOutSetApi.class);
     Users user;
 
     @Override
@@ -46,49 +51,43 @@ public class AddRoutineDialog extends DialogFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         super.onCreateView(inflater, container, savedInstanceState);
-         View  view = inflater.inflate(R.layout.dialog_add_routine,container,false);
-         btnAdd = view.findViewById(R.id.btnAdd);
-         txtName = view.findViewById(R.id.txtName);
-         txtNote = view.findViewById(R.id.note);
+        super.onCreateView(inflater, container, savedInstanceState);
+        View  view = inflater.inflate(R.layout.dialog_add_routine,container,false);
+        btnAdd = view.findViewById(R.id.btnAdd);
+        txtName = view.findViewById(R.id.txtName);
+        txtNote = view.findViewById(R.id.note);
+        txtHead = view.findViewById(R.id.txtHead);
 
-         btnAdd.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 String name = txtName.getText().toString();
-                 Routine routine = new Routine(name,user, MainActivity.getRandomImg(),0,0,null);
-                 if(routine.getName() == null || routine.getName().isEmpty())
-                 {
-                     showNotice("Xin vui lòng nhập tên");
-                     return;
-                 }
-                 addRoutineToDB(routine);
-             }
-         });
-         return  view;
-    }
+        txtHead.setText("Tên bài tập:");
 
-    private void addRoutineToDB(Routine routine)
-    {
-        Call<Routine> call = routineApi.save(routine);
-        call.enqueue(new Callback<Routine>() {
+
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onResponse(Call<Routine> call, Response<Routine> response) {
-                System.out.println(response.body().getName()+" "+response.body().getId());
-                new SharePreferenceManager(getContext()).saveRoutine(response.body());
-                Intent intent = new Intent(getActivity(),RoutineDetailScreen.class);
-                intent.putExtra("Routine", response.body());
+            public void onClick(View view) {
+                String name = txtName.getText().toString();
+                if(name.trim() == null || name.trim().isEmpty())
+                {
+                    showNotice("Xin vui lòng nhập tên");
+                    return;
+                }
+
+                WorkOutSet workOutSet = new WorkOutSet();
+                workOutSet.setName(name);
+                workOutSet.setType("single");
+                workOutSet.setImg(MainActivity.getRandomImg());
+                workOutSet.setCreatedBy(user);
+                Intent intent = new Intent(getActivity(), UpdateSaveCollectionScreen.class);
+                intent.putExtra("type","single");
+                //remember to put Routine inside Routine Day
+                intent.putExtra("set",workOutSet);
                 startActivity(intent);
                 dismiss();
             }
-
-            @Override
-            public void onFailure(Call<Routine> call, Throwable t) {
-                System.out.println(t.getMessage());
-                showNotice(t.getMessage());
-            }
         });
+        return  view;
     }
+
 
     private void showNotice(String s)
     {

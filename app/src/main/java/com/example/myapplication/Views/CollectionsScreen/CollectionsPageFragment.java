@@ -84,6 +84,11 @@ public class CollectionsPageFragment extends Fragment {
         ((CollectionScreenSlider)pagerAdapter).deleteRoutine(position);
     }
 
+    public void deleteSet(int position)
+    {
+        ((CollectionScreenSlider)pagerAdapter).deleteSet(position);
+    }
+
     private void showNotice(String s)
     {
         if(getActivity()!= null)

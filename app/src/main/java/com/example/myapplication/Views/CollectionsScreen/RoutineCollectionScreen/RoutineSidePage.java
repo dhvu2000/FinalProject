@@ -23,7 +23,6 @@ import com.example.myapplication.Views.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -97,7 +96,7 @@ public class RoutineSidePage extends Fragment {
     {
         Routine r = routines.get(position);
         //delete in db
-        Call<Void> call = routineApi.deleteRoutineById(r.getId());
+        Call<Void> call = routineApi.deleteRoutine(r.getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -116,7 +115,7 @@ public class RoutineSidePage extends Fragment {
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 System.out.println(t.getMessage());
-                showNotice("Delete Fail: Network Error");
+                showNotice("Xóa lỗi: lỗi mạng");
             }
         });
     }

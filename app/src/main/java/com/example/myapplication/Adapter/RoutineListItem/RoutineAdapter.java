@@ -50,7 +50,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineHolder> {
             Picasso.get().load(R.drawable.add_image).into(holder.img);
         }
         if(routine.getName()!= null) holder.txtName.setText(routine.getName());
-        holder.txtDaysNum.setText("Days: "+routine.getDayNum());
+        holder.txtDaysNum.setText("Số buổi: "+routine.getDayNum());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -77,10 +77,10 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineHolder> {
     private void openDeleteAlertDialog(int position)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Do you want to delete the exercise");
+        builder.setMessage("Bạn có muốn xóa?");
         builder.setCancelable(true);
         builder.setPositiveButton(
-                "Yes",
+                "Có",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //delete the exercise
@@ -89,7 +89,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineHolder> {
                     }
                 });
         builder.setNegativeButton(
-                "No",
+                "Không",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();

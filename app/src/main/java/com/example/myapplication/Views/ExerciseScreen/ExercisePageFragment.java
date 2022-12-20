@@ -1,46 +1,30 @@
 package com.example.myapplication.Views.ExerciseScreen;
 
-import android.app.Activity;
-import android.content.ContentResolver;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.ExerciseListItem.ExerciseAdapter;
-import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.ExerciseApi;
 import com.example.myapplication.Retrofit.RetrofitApi;
-import com.example.myapplication.Retrofit.UsersApi;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.MainActivity;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -139,7 +123,7 @@ public class ExercisePageFragment extends Fragment{
     public void deleteExercise(int position)
     {
         Exercise deletedExercise = exercises.get(position);
-        Call<Void> call = exerciseApi.deleteExerciseById(deletedExercise.getId());
+        Call<Void> call = exerciseApi.deleteExercise(deletedExercise.getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

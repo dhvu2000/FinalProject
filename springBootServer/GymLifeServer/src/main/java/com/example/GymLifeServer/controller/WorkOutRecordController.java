@@ -16,7 +16,7 @@ public class WorkOutRecordController {
     private WorkOutRecordRepository workOutRecordRepository;
 
     @GetMapping("/work-out-record/get-by-user/{userId}")
-    private ArrayList<WorkOutRecord> getRoutineActByUser(@PathVariable int userId)
+    private ArrayList<WorkOutRecord> getWorkOutRecordByUser(@PathVariable int userId)
     {
         ArrayList<WorkOutRecord> records = new ArrayList<>();
         ArrayList<WorkOutRecord> res = new ArrayList<>();
@@ -34,7 +34,7 @@ public class WorkOutRecordController {
     }
 
     @PostMapping("/work-out-record/save")
-    private WorkOutRecord saveExercise(@RequestBody WorkOutRecord routineAct)
+    private WorkOutRecord saveWorkOutRecord(@RequestBody WorkOutRecord routineAct)
     {
         return workOutRecordRepository.save(routineAct);
     }

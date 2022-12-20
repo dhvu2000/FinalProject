@@ -203,7 +203,7 @@ public class RoutineDetailScreen extends AppCompatActivity {
 
     private void deleteRoutine()
     {
-        Call<Void> call = routineApi.deleteRoutineById(routine.getId());
+        Call<Void> call = routineApi.deleteRoutine(routine.getId());
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

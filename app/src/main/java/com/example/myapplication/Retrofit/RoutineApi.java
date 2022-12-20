@@ -20,5 +20,5 @@ public interface RoutineApi {
     Call<Routine> save(@Body Routine user);
 
     @DELETE("/routine/delete/{Id}")
-    Call<Void> deleteRoutineById(@Path("Id") int Id);
+    Call<Void> deleteRoutine(@Path("Id") int Id);
 }

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="Thông tin cá nhân"
             android:layout_marginStart="30dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20dp"
             android:textStyle="bold"/>
     </LinearLayout>
     <ScrollView
@@ -45,15 +45,6 @@
                 android:gravity="center"
                 android:src="@drawable/avatar" />
 
-<!--            <Button-->
-<!--                android:id="@+id/btnUserAnalysedCreate"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity = "center"-->
-<!--                android:text="Tạo thông tin tập luyện"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:background="@drawable/rounded_blue"-->
-<!--                android:layout_marginBottom="20dp"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -295,142 +286,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/areaAnalysedInfor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_white"
-                android:orientation="vertical"
-                android:layout_marginBottom="40dp">
-                <LinearLayout
-                    android:id="@+id/areaQ1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="20dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Mục tiêu:"
-                        android:textSize="16dp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/txtQ1"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="John Cena"
-                        android:textSize="16dp"
-                        android:gravity="right"
-                        android:textColor="@color/bluesky"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#C5C5C5"
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginBottom="10dp"/>
-                <LinearLayout
-                    android:id="@+id/areaQ2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="20dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Tần suất tập:"
-                        android:textSize="16dp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/txtQ2"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="John Cena"
-                        android:textSize="16dp"
-                        android:gravity="right"
-                        android:textColor="@color/bluesky"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#C5C5C5"
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginBottom="10dp"/>
-                <LinearLayout
-                    android:id="@+id/areaQ3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="20dp">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Vùng tập trung:"
-                        android:textSize="16dp"
-                        android:textColor="@color/black"
-                        android:textStyle="bold"/>
-                    <TextView
-                        android:id="@+id/txtQ3"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="Ngực, Thân trên, Thân dưới"
-                        android:textSize="16dp"
-                        android:gravity="right"
-                        android:textColor="@color/bluesky"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="#C5C5C5"
-                    android:layout_marginHorizontal="15dp"
-                    android:layout_marginBottom="10dp"/>
-                <LinearLayout
-                    android:id="@+id/areaQ4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:weightSum="2"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="30dp"
-                    android:paddingVertical="20dp">
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Other Quiz:"
-                        android:textColor="@color/black"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtQ4"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="..."
-                        android:textSize="16dp"
-                        android:gravity="right"
-                        android:textColor="@color/bluesky"
-                        android:textStyle="bold"/>
-                </LinearLayout>
-            </LinearLayout>
             
 
         </LinearLayout>

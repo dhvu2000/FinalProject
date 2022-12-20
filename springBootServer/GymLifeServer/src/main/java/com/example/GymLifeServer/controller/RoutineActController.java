@@ -34,7 +34,7 @@ public class RoutineActController {
     }
 
     @PostMapping("/routine-act/save")
-    private RoutineAct saveExercise(@RequestBody RoutineAct routineAct)
+    private RoutineAct saveRoutineAct(@RequestBody RoutineAct routineAct)
     {
         return routineActRepository.save(routineAct);
     }

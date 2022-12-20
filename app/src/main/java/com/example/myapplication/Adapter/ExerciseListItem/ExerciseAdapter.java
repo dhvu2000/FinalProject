@@ -109,10 +109,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
     private void openDeleteAlertDialog(int position)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("What you want to the exercise?");
+        builder.setMessage("Bạn muốn làm gì với đông tác này?");
         builder.setCancelable(true);
         builder.setPositiveButton(
-                "Delete",
+                "Xóa",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //delete the exercise
@@ -121,7 +121,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
                     }
                 });
         builder.setNegativeButton(
-                "Fix",
+                "Sửa",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Exercise e = exercises.get(position);
@@ -129,7 +129,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
                         addExerciseDialog.show(((AppCompatActivity)context).getSupportFragmentManager(), "AddExerciseDialog");
                     }
                 });
-        builder.setNeutralButton("Cancel",
+        builder.setNeutralButton("Hủy",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {

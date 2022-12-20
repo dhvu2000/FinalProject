@@ -20,12 +20,18 @@ import com.example.myapplication.Model.User.UserSchema;
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
+import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineAct;
+import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutRecord;
+import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.ExerciseApi;
 import com.example.myapplication.Retrofit.NotificationApi;
 import com.example.myapplication.Retrofit.RetrofitApi;
+import com.example.myapplication.Retrofit.RoutineActApi;
 import com.example.myapplication.Retrofit.RoutineApi;
 import com.example.myapplication.Retrofit.UsersApi;
+import com.example.myapplication.Retrofit.WorkOutRecordApi;
+import com.example.myapplication.Retrofit.WorkOutSetApi;
 import com.example.myapplication.Supporter.NotificationCreator;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.AccountScreen.AccountPageFragment;
@@ -98,9 +104,15 @@ public class MainActivity extends AppCompatActivity
     Users user;
     ArrayList<Routine> routines = new ArrayList<>();
     ArrayList<Exercise> exercises = new ArrayList<>();
+    ArrayList<WorkOutSet> workOutSets = new ArrayList<>();
+    ArrayList<WorkOutRecord> records = new ArrayList<>();
+    ArrayList<RoutineAct> progress = new ArrayList<>();
     UsersApi usersApi = retrofitApi.getRetrofit().create(UsersApi.class);
     ExerciseApi exerciseApi = retrofitApi.getRetrofit().create((ExerciseApi.class));
     RoutineApi routineApi = retrofitApi.getRetrofit().create(RoutineApi.class);
+    WorkOutSetApi workOutSetApi = retrofitApi.getRetrofit().create(WorkOutSetApi.class);
+    WorkOutRecordApi workOutRecordApi = retrofitApi.getRetrofit().create(WorkOutRecordApi.class);
+    RoutineActApi routineActApi = retrofitApi.getRetrofit().create(RoutineActApi.class);
     SharePreferenceManager sharePreferenceManager;
     private boolean onMission = false;
     private int request;
@@ -240,7 +252,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onResponse(Call<ArrayList<Routine>> call, Response<ArrayList<Routine>> response) {
                 routines = response.body();
-                loadAllSuccess();
+                getWorkOutSets();
             }
 
             @Override
@@ -251,17 +263,88 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    public void getWorkOutSets()
+    {
+        int id = 0;
+        if(user != null){
+            id = user.getId();
+        }
+        Call<ArrayList<WorkOutSet>> call = workOutSetApi.getWorkOutSetByUserId(id);
+        call.enqueue(new Callback<ArrayList<WorkOutSet>>() {
+            @Override
+            public void onResponse(Call<ArrayList<WorkOutSet>> call, Response<ArrayList<WorkOutSet>> response) {
+                workOutSets = response.body();
+                getRecords();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<WorkOutSet>> call, Throwable t) {
+                System.out.println("fail get Sets" + t.getMessage());
+                loadDefault();
+            }
+        });
+    }
+
+    public void getRecords()
+    {
+        int id = 0;
+        if(user != null){
+            id = user.getId();
+        }
+        Call<ArrayList<WorkOutRecord>> call = workOutRecordApi.getWorkOutRecordByUserId(id);
+        call.enqueue(new Callback<ArrayList<WorkOutRecord>>() {
+            @Override
+            public void onResponse(Call<ArrayList<WorkOutRecord>> call, Response<ArrayList<WorkOutRecord>> response) {
+                records = response.body();
+                getRoutineActs();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<WorkOutRecord>> call, Throwable t) {
+                System.out.println("fail get records" + t.getMessage());
+                loadDefault();
+            }
+        });
+    }
+
+    public void getRoutineActs()
+    {
+        int id = 0;
+        if(user != null){
+            id = user.getId();
+        }
+        Call<ArrayList<RoutineAct>> call = routineActApi.getRoutineActByUserId(id);
+        call.enqueue(new Callback<ArrayList<RoutineAct>>() {
+            @Override
+            public void onResponse(Call<ArrayList<RoutineAct>> call, Response<ArrayList<RoutineAct>> response) {
+                progress = response.body();
+                loadAllSuccess();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<RoutineAct>> call, Throwable t) {
+                System.out.println("fail get rountine acts" + t.getMessage());
+                loadDefault();
+            }
+        });
+    }
+
     private void loadDefault()
     {
         Exercise[] data1 = (Exercise[]) sharePreferenceManager.getObject("Exercises", Exercise[].class);
         Routine[] data2 = (Routine[]) sharePreferenceManager.getObject("Routines", Routine[].class);
-        if(data1 != null || data2 != null)
+        WorkOutSet[] data3 = (WorkOutSet[]) sharePreferenceManager.getObject("Sets", WorkOutSet[].class);
+        if(data1 != null || data2 != null || data3 != null)
         {
             if(onMission == false)
             {
                 loadDefaultFragment();
             }
             onMission = true;
+        }
+        else
+        {
+            showNotice("Lỗi mang !");
         }
     }
 
@@ -295,6 +378,12 @@ public class MainActivity extends AppCompatActivity
         ((CollectionsPageFragment) fragment).deleteRoutine(position);
     }
 
+    public void sendDeleteSetInCollectionPage(int position){
+        FragmentManager manager = getSupportFragmentManager();
+        fragment = manager.findFragmentById(R.id.frameLayout);
+        ((CollectionsPageFragment) fragment).deleteSet(position);
+    }
+
     public void showNotice(String s)
     {
         Toast.makeText(MainActivity.this,s, Toast.LENGTH_LONG).show();
@@ -310,8 +399,11 @@ public class MainActivity extends AppCompatActivity
     private void loadAllSuccess()
     {
         sharePreferenceManager.saveObject("User",user);
-        sharePreferenceManager.saveObject("Exercises",exercises.toArray());
-        sharePreferenceManager.saveObject("Routines",routines.toArray());
+        if(exercises != null) sharePreferenceManager.saveObject("Exercises",exercises.toArray());
+        if(routines != null) sharePreferenceManager.saveObject("Routines",routines.toArray());
+        if(workOutSets != null) sharePreferenceManager.saveObject("Sets",workOutSets.toArray());
+        if(records != null) sharePreferenceManager.saveObject("Records",records.toArray());
+        if(progress != null) sharePreferenceManager.saveObject("Progress",progress.toArray());
         if(onMission == false)
         {
             loadDefaultFragment();

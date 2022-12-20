@@ -24,6 +24,8 @@ import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.RoutineApi;
 import com.example.myapplication.Retrofit.RoutineDayApi;
+import com.example.myapplication.Retrofit.SetExerciseApi;
+import com.example.myapplication.Retrofit.WorkOutSetApi;
 import com.example.myapplication.Supporter.RepeatListener;
 import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen.PickDayDialog;
@@ -50,6 +52,8 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
     private RetrofitApi retrofitApi = new RetrofitApi();
     private RoutineDayApi routineDayApi = retrofitApi.getRetrofit().create(RoutineDayApi.class);
     private RoutineApi routineApi = retrofitApi.getRetrofit().create(RoutineApi.class);
+    private WorkOutSetApi workOutSetApi = retrofitApi.getRetrofit().create(WorkOutSetApi.class);
+    private SetExerciseApi setExerciseApi = retrofitApi.getRetrofit().create(SetExerciseApi.class);
 
 
     @Override
@@ -101,7 +105,7 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
 
         if(workOutSet.getExercises()!= null && workOutSet.getExercises().size() != 0)
         {
-            txtExerciseNum.setText("Number of exercise: "+ workOutSet.getExercises().size());
+            txtExerciseNum.setText("Số lượng động tác: "+ workOutSet.getExercises().size());
         }
         else
         {
@@ -133,15 +137,26 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(setExercises == null || setExercises.size() ==  0)
+                {
+                    showNotice("Xin hãy thêm động tác");
+                    return;
+                }
+                int preTime = Integer.parseInt(txtPre.getText().toString());
+                int restTime = Integer.parseInt(txtRest.getText().toString());
                 if(type != null && type.equals("routine"))
                 {
-                    int preTime = Integer.parseInt(txtPre.getText().toString());
-                    int restTime = Integer.parseInt(txtRest.getText().toString());
                     RoutineDay routineDay = (RoutineDay) workOutSet;
                     //set Pre, Rest
                     routineDay.setPreTime(preTime);
                     routineDay.setRestTime(restTime);
                     openPickDaysDialog(routineDay);
+                }
+                else
+                {
+                    workOutSet.setPreTime(preTime);
+                    workOutSet.setRestTime(restTime);
+                    deleteSetExercises();
                 }
             }
         });
@@ -160,6 +175,44 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void saveSingleSetToDB() {
+        Call<WorkOutSet> call = workOutSetApi.saveWorkOutSet(workOutSet);
+        call.enqueue(new Callback<WorkOutSet>() {
+            @Override
+            public void onResponse(Call<WorkOutSet> call, Response<WorkOutSet> response) {
+                WorkOutSet workOutSet = response.body();
+                new SharePreferenceManager(UpdateSaveCollectionScreen.this).saveWorkOutSet(workOutSet);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<WorkOutSet> call, Throwable t) {
+                showNotice("Lưu thất bại: Mạng lỗi");
+            }
+        });
+    }
+
+    private void deleteSetExercises()
+    {
+        String nums = "";
+        for(int i : deletedList)
+        {
+            nums += (i+",");
+        }
+        Call<Void> call = setExerciseApi.deleteAllSetExerciseById(nums);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                saveSingleSetToDB();;
+            }
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                showNotice("Lữu lỗi: Lỗi mạng");
+                System.out.println(t.getMessage());
+            }
+        });
     }
 
     private void openPickDaysDialog(RoutineDay routineDay)
@@ -225,7 +278,7 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
         input.setSequence(sequence);
         setExercises.add(input);
         recyclerView.getAdapter().notifyDataSetChanged();
-        txtExerciseNum.setText("Number of exercise: "+ setExercises.size());
+        txtExerciseNum.setText("Số lượng động tác: "+ setExercises.size());
     }
 
     public void deleteSetExercise(int position)
@@ -277,32 +330,51 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
     private void deleteCollection() {
         if(workOutSet != null && workOutSet.getId() != 0)
         {
-            Call<Void> call = routineDayApi.deleteRoutineDayById(workOutSet.getId());
-            call.enqueue(new Callback<Void>() {
-                @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    if(type != null && type.equals("routine"))
-                    {
-                        Routine routine = ((RoutineDay) workOutSet).getRoutine();
-                        for( int i = 0; i < routine.getDays().size() ; i++)
-                        {
-                            if(routine.getDays().get(i).getId() == workOutSet.getId())
-                            {
-                                routine.getDays().remove(i);
-                            }
-                        }
-                        updateRoutine(routine);
-                    }
-                }
+            if(type != null && type.equals("routine")){
+                Call<Void> call = routineDayApi.deleteRoutineDayById(workOutSet.getId());
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
 
-                @Override
-                public void onFailure(Call<Void> call, Throwable t) {
-                    showNotice("Xóa thất bại");
-                }
-            });
+                            Routine routine = ((RoutineDay) workOutSet).getRoutine();
+                            for( int i = 0; i < routine.getDays().size() ; i++)
+                            {
+                                if(routine.getDays().get(i).getId() == workOutSet.getId())
+                                {
+                                    routine.getDays().remove(i);
+                                }
+                            }
+                            updateRoutine(routine);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        System.out.println("Xóa thất bại:" + t.getMessage());
+                        showNotice("Xóa thất bại: Mạng lỗi!");
+                    }
+                });
+            }
+            else
+            {
+                Call<Void> call = workOutSetApi.deleteWorkOutSet(workOutSet.getId());
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+                        new SharePreferenceManager(UpdateSaveCollectionScreen.this).deleteWorkOutSet(workOutSet.getId());
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        System.out.println("Xóa thất bại:" + t.getMessage());
+                        showNotice("Xóa thất bại: Mạng lỗi!");
+                    }
+                });
+            }
+
         }
         else {
-            showNotice("Bài tập này chưa tồn tại");
+            showNotice("Bài tập này chưa tồn tại trong hệ thống");
         }
 
     }

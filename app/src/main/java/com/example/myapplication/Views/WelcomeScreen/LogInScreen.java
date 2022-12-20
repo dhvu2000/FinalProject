@@ -57,7 +57,7 @@ public class LogInScreen extends AppCompatActivity {
     }
 
     private void checkLogin(String username, String pass) {
-        Users u = new Users(username,"",pass,"null","","", null, null);
+        Users u = new Users(username,"",pass,"null","","", null);
         System.out.println(u);
         Call<Users> call = usersApi.logInUser(u);
         call.enqueue(new Callback<Users>() {

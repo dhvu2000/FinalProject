@@ -1,4 +1,4 @@
-package com.example.myapplication.Adapter.RoutineDayListItem;
+package com.example.myapplication.Adapter.SetListItem;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -11,56 +11,58 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
-import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
+import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import com.example.myapplication.R;
 import com.example.myapplication.Views.CollectionsScreen.BothUseScreen.DetailCollectionScreen;
 import com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen;
+import com.example.myapplication.Views.MainActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
+public class SetAdapter extends RecyclerView.Adapter<SetHolder> {
 
-    List<RoutineDay> routineDays;
-    Routine routine;
-    Context context;
 
-    public RoutineDayAdapter(List<RoutineDay> routineDays, Routine routine, Context context) {
-        this.routineDays = routineDays;
-        this.routine = routine;
+    private List<WorkOutSet> workOutSets;
+    private Context context;
+
+    public SetAdapter(List<WorkOutSet> workOutSets, Context context)
+    {
+        this.workOutSets = workOutSets;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public RoutineDayHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public SetHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_routine_day_item,parent,false);
+                .inflate(R.layout.list_set_item,parent,false);
 
-        return new RoutineDayHolder(view);
+        return new SetHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RoutineDayHolder holder, int position) {
-        RoutineDay routineDay = routineDays.get(position);
+    public void onBindViewHolder(@NonNull SetHolder holder, int position) {
+        WorkOutSet workOutSet = workOutSets.get(position);
 
-        holder.txtDay.setText("Buổi "+routineDay.getSequence());
-
-        int exerciseNum = 0;
-        if(routineDay.getExercises() != null)
+        if(workOutSet.getImg()!=null && !workOutSet.getImg().isEmpty())
         {
-            exerciseNum = routineDay.getExercises().size();
+            Picasso.get().load(workOutSet.getImg()).into(holder.img);
+        }else
+        {
+            Picasso.get().load(R.drawable.add_image).into(holder.img);
         }
-        holder.txtExerciseNum.setText(exerciseNum +" động tác");
+
+        holder.txtName.setText(workOutSet.getName());
+        holder.txtExerciseNum.setText(workOutSet.getExercises().size()+ " động tác");
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                routineDay.setRoutine(routine);
                 Intent intent = new Intent(context, DetailCollectionScreen.class);
-                intent.putExtra("type","routine");
+                intent.putExtra("type","single");
                 //remember to put Routine inside Routine Day
-                intent.putExtra("set",routineDay);
+                intent.putExtra("set",workOutSet);
                 context.startActivity(intent);
             }
         });
@@ -76,20 +78,19 @@ public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
 
     @Override
     public int getItemCount() {
-        return routineDays.size();
+        return workOutSets.size();
     }
 
     private void openDeleteAlertDialog(int position)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Bạn có muốn xóa");
+        builder.setMessage("Bạn có muốn xóa?");
         builder.setCancelable(true);
         builder.setPositiveButton(
                 "Có",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        //delete the exercise
-                        ((RoutineDetailScreen)context).deleteRoutineDay(position);
+                        ((MainActivity)context).sendDeleteSetInCollectionPage(position);
                         dialog.dismiss();
                     }
                 });

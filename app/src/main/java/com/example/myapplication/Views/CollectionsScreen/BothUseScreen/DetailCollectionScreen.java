@@ -77,12 +77,23 @@ public class DetailCollectionScreen extends AppCompatActivity {
         btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                RoutineDay routineDay = (RoutineDay) workOutSet;
-                Intent intent = new Intent(DetailCollectionScreen.this, UpdateSaveCollectionScreen.class);
-                intent.putExtra("type",type);
-                //remember to put Routine inside Routine Day
-                intent.putExtra("set",routineDay);
-                startActivity(intent);
+                if(type.equals("routine"))
+                {
+                    RoutineDay routineDay = (RoutineDay) workOutSet;
+                    Intent intent = new Intent(DetailCollectionScreen.this, UpdateSaveCollectionScreen.class);
+                    intent.putExtra("type",type);
+                    //remember to put Routine inside Routine Day
+                    intent.putExtra("set",routineDay);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Intent intent = new Intent(DetailCollectionScreen.this, UpdateSaveCollectionScreen.class);
+                    intent.putExtra("type",type);
+                    //remember to put Routine inside Routine Day
+                    intent.putExtra("set",workOutSet);
+                    startActivity(intent);
+                }
                 finish();
             }
         });
@@ -93,7 +104,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
                 sendNotification();
                 if(workOutSet == null || workOutSet.getExercises().size() == 0)
                 {
-                    Toast.makeText(DetailCollectionScreen.this, "No exercise yet", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailCollectionScreen.this, "Không có động tác tập", Toast.LENGTH_LONG).show();
                     return;
                 }
                 Intent intent = new Intent(DetailCollectionScreen.this, WorkOutProcessScreen1.class);
@@ -123,7 +134,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
         if(type != null && type.equals("routine"))
         {
             workOutSet = (RoutineDay) intent.getSerializableExtra("set");
-            if(((RoutineDay)workOutSet).getSequence() != 0) txtName.setText("Day " + ((RoutineDay)workOutSet).getSequence());
+            if(((RoutineDay)workOutSet).getSequence() != 0) txtName.setText("Buổi " + ((RoutineDay)workOutSet).getSequence());
         }
         else
         {

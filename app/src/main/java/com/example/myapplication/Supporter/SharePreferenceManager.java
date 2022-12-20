@@ -7,6 +7,10 @@ import com.example.myapplication.Model.User.UserSchema;
 import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
+import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineAct;
+import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutRecord;
+import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
+import com.example.myapplication.Retrofit.WorkOutSetApi;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -69,6 +73,28 @@ public class SharePreferenceManager {
         return saveObject("Routines", routines);
     }
 
+    public boolean saveWorkOutSet(WorkOutSet workOutSet)
+    {
+        ArrayList<WorkOutSet> workOutSets = new ArrayList<>();
+        WorkOutSet[] data = (WorkOutSet[]) getObject("Sets", WorkOutSet[].class);
+        if (data != null) workOutSets = new ArrayList<>(Arrays.asList(data));
+        boolean checkNew = true;
+        for(int i =  0; i < workOutSets.size(); i++)
+        {
+            WorkOutSet r = workOutSets.get(i);
+            if(r.getId() == workOutSet.getId())
+            {
+                workOutSets.set(i, workOutSet);
+                checkNew = false;
+            }
+        }
+        if(checkNew)
+        {
+            workOutSets.add(workOutSet);
+        }
+        return saveObject("Sets", workOutSets);
+    }
+
     public boolean deleteRoutine(int id)
     {
         ArrayList<Routine> routines = new ArrayList<>();
@@ -81,11 +107,32 @@ public class SharePreferenceManager {
                 Routine r = routines.get(i);
                 if(r.getId() == id)
                 {
+                    deleteRecordByRoutine(r);
                     routines.remove(i);
                 }
             }
         }
         return saveObject("Routines", routines);
+    }
+
+    public boolean deleteWorkOutSet(int id)
+    {
+        ArrayList<WorkOutSet> sets = new ArrayList<>();
+        WorkOutSet[] data = (WorkOutSet[]) getObject("Sets", WorkOutSet[].class);
+        if (data != null)
+        {
+            sets = new ArrayList<>(Arrays.asList(data));
+            for(int i =  0; i < sets.size(); i++)
+            {
+                WorkOutSet w = sets.get(i);
+                if(w.getId() == id)
+                {
+                    deleteRecordBySet(w);
+                    sets.remove(i);
+                }
+            }
+        }
+        return saveObject("Sets", sets);
     }
 
     public Routine getRoutine(int id)
@@ -124,6 +171,47 @@ public class SharePreferenceManager {
             exercises.add(exercise);
         }
         return saveObject("Exercises", exercises);
+    }
+
+    public boolean deleteRecordBySet(WorkOutSet workOutSet)
+    {
+        ArrayList<WorkOutRecord> records = new ArrayList<>();
+        WorkOutRecord[] data = (WorkOutRecord[]) getObject("Records", WorkOutRecord[].class);
+        if (data != null) {
+            records = new ArrayList<>(Arrays.asList(data));
+            for(int i =  0; i < records.size(); i++)
+            {
+                WorkOutRecord r = records.get(i);
+                if(r.getWorkOutSet().getId() == workOutSet.getId())
+                {
+                    records.remove(i);
+                }
+            }
+        }
+        return saveObject("Records", records);
+    }
+
+    public boolean deleteRecordByRoutine(Routine routine)
+    {
+        for(WorkOutSet i: routine.getDays())
+        {
+            deleteRecordBySet(i);
+        }
+
+        ArrayList<RoutineAct> progress = new ArrayList<>();
+        RoutineAct[] data = (RoutineAct[]) getObject("Progress", RoutineAct[].class);
+        if (data != null) {
+            progress = new ArrayList<>(Arrays.asList(data));
+            for(int i =  0; i < progress.size(); i++)
+            {
+                RoutineAct r = progress.get(i);
+                if(r.getRoutine().getId() == routine.getId())
+                {
+                    progress.remove(i);
+                }
+            }
+        }
+        return saveObject("Progress", progress);
     }
 
     public boolean deleteExercise(int id)

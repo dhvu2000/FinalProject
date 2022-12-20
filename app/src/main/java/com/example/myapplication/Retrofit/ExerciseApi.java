@@ -21,7 +21,7 @@ public interface ExerciseApi {
     Call<Exercise> save(@Body Exercise exercise);
 
     @DELETE("/exercise/delete/{exerciseId}")
-    Call<Void> deleteExerciseById(@Path("exerciseId") int exerciseId);
+    Call<Void> deleteExercise(@Path("exerciseId") int exerciseId);
 
 
 }

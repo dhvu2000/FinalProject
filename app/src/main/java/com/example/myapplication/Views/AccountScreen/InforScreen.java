@@ -52,12 +52,9 @@ import retrofit2.Retrofit;
 public class InforScreen extends AppCompatActivity {
 
 
-    LinearLayout areaUserName, areaPassword, areaEmail, areaWeight, areaHeight, areaGender, areaDOB, areaUserAnalyseInfor,
-            areaQ1, areaQ2, areaQ3, areaQ4, areaQ5;
-    TextView txtUserName, txtPassword, txtEmail, txtWeight, txtHeight, txtDOB, txtGender,
-            txtQ1, txtQ2, txtQ3, txtQ4, txtQ5;
+    LinearLayout areaUserName, areaPassword, areaEmail, areaWeight, areaHeight, areaGender, areaDOB;
+    TextView txtUserName, txtPassword, txtEmail, txtWeight, txtHeight, txtDOB, txtGender;
     CircleImageView img;
-    Button btnUserAnalysedCreate;
     ImageButton btnBack;
     RetrofitApi retrofitApi = new RetrofitApi();
     UsersApi usersApi = retrofitApi.getRetrofit().create(UsersApi.class);
@@ -81,12 +78,6 @@ public class InforScreen extends AppCompatActivity {
         areaHeight = findViewById(R.id.areaHeight);
         areaPassword = findViewById(R.id.areaPassword);
         areaWeight = findViewById(R.id.areaWeight);
-        areaUserAnalyseInfor = findViewById(R.id.areaAnalysedInfor);
-        areaQ1 = findViewById(R.id.areaQ1);
-        areaQ2 = findViewById(R.id.areaQ2);
-        areaQ3 = findViewById(R.id.areaQ3);
-        areaQ4 = findViewById(R.id.areaQ4);
-//        areaQ5 = findViewById(R.id.areaQ5);
         txtDOB = findViewById(R.id.txtDOB);
         txtEmail = findViewById(R.id.txtEmail);
         txtGender = findViewById(R.id.txtSex);
@@ -94,11 +85,6 @@ public class InforScreen extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtPassword);
         txtUserName = findViewById(R.id.txtUserName);
         txtWeight = findViewById(R.id.txtWeight);
-        txtQ1 = findViewById(R.id.txtQ1);
-        txtQ2 = findViewById(R.id.txtQ2);
-        txtQ3 = findViewById(R.id.txtQ3);
-        txtQ4 = findViewById(R.id.txtQ4);
-//        txtQ5 = findViewById(R.id.txtQ5);
         img = findViewById(R.id.img);
         btnBack = findViewById(R.id.btnBack);
         FirebaseStorage fbs = FirebaseStorage.getInstance();
@@ -141,21 +127,8 @@ public class InforScreen extends AppCompatActivity {
         Date d = TimeFormatter.convertToDate(user.getDob());
         SimpleDateFormat spd = new SimpleDateFormat("dd/MM/yyyy");
         txtDOB. setText(spd.format(d));
-        setUserAnalysedInfor();
     }
 
-    private void setUserAnalysedInfor() {
-        if(user.getInfor() == null)
-        {
-            areaUserAnalyseInfor.setVisibility(View.GONE);
-        }
-        else
-        {
-            areaUserAnalyseInfor.setVisibility(View.VISIBLE);
-
-            //fill infor
-        }
-    }
 
     private void setButtons()
     {
