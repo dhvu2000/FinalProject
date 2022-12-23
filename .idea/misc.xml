@@ -19,6 +19,7 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded_green_button.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded_grey.xml" value="0.122" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded_red_button.xml" value="0.2555" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded_shinning.xml" value="0.1605" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/rounded_white.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/roundedbutton.xml" value="0.2555" />
         <entry key="..\:/A_Big_Project/app/src/main/res/drawable/stroke_black.xml" value="0.148" />
@@ -40,7 +41,7 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen1_firstly.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_information_screen2_firstly.xml" value="0.25416666666666665" />
-        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_log_in_screen.xml" value="0.176" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_log_in_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_record_screen.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/activity_routine_detail_screen.xml" value="0.264" />
@@ -84,6 +85,7 @@
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_chosen_day_item.xml" value="0.3756218905472637" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_exercise_item.xml" value="0.264" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_find_exercise_item.xml" value="0.253125" />
+        <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_record_item.xml" value="0.24895833333333334" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_routine_day_item.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_routine_item.xml" value="0.253125" />
         <entry key="..\:/A_Big_Project/app/src/main/res/layout/list_schema_item.xml" value="0.25416666666666665" />

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:orientation="vertical"
+        android:weightSum="8"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingBottom="5dp">
+        <TextView
+            android:id="@+id/txtDayTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2021-02-03 12:00:00"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/txtSetName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buổi 2 của Lịch trình tập chân"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"
+                android:text="Lượng calo đốt:"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"
+                android:text="Thời gian tốn:"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtCalories"
+                android:textStyle="italic|bold"
+                android:text="0 calo"/>
+
+            <TextView
+                android:id="@+id/txtSpentTime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="italic|bold"
+                android:layout_height="wrap_content"
+                android:text="00:00:00"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#C5C5C5"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="10dp"/>
+
+</LinearLayout>

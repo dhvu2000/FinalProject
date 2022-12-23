@@ -2,6 +2,7 @@
     <string name="app_name">Gym Life</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="click_here"><u>Nhấn vào đây để xem thêm...</u></string>
     <!-- Frequency Choice -->
     <string name="frequency_question">Tần suất tập trong 1 tuần của bạn là: </string>
     <string name="frequency_choice1">dưới 4 lần/ tuần</string>
@@ -21,4 +22,6 @@
     <string name="experience_year_choice1">dưới 1 năm</string>
     <string name="experience_year_choice2">từ 1 đến 2 năm</string>
     <string name="experience_year_choice3">2 năm trở lên</string>
+
+
 </resources>

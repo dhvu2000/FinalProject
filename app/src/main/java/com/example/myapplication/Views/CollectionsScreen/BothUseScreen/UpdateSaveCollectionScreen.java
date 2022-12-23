@@ -90,7 +90,7 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
         if(type != null && type.equals("routine"))
         {
             workOutSet = (RoutineDay) intent.getSerializableExtra("set");
-            if(((RoutineDay)workOutSet).getSequence() != 0) txtName.setText("Day " + ((RoutineDay)workOutSet).getSequence());
+            if(((RoutineDay)workOutSet).getSequence() != 0) txtName.setText("Buổi " + ((RoutineDay)workOutSet).getSequence());
         }
         else
         {
@@ -380,7 +380,8 @@ public class UpdateSaveCollectionScreen extends AppCompatActivity {
     }
 
     private void updateRoutine(Routine routine) {
-        routine.setDayNum(routine.getDays().get(routine.getDays().size()-1).getSequence());
+        if(routine.getDays() == null || routine.getDays().size() == 0) routine.setDayNum(0);
+        else routine.setDayNum(routine.getDays().get(routine.getDays().size()-1).getSequence());
         new SharePreferenceManager(this).saveRoutine(routine);
         Call<Routine> call  = routineApi.save(routine);
         call.enqueue(new Callback<Routine>() {

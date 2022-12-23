@@ -1,6 +1,8 @@
 package com.example.myapplication.Views.CollectionsScreen.BothUseScreen;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +26,7 @@ import java.util.Arrays;
 public class FindAndAddExerciseDialog extends DialogFragment {
 
     ArrayList<Exercise> exercises = new ArrayList<>();
+    ArrayList<Exercise> dbList = new ArrayList<>();
     EditText txtSearch;
     Button btnAdd;
     RecyclerView recyclerView;
@@ -38,13 +41,51 @@ public class FindAndAddExerciseDialog extends DialogFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         populateListView();
+
+        txtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                filterExercise();
+            }
+        });
         return addSetExerciseDialog;
+    }
+
+    private void filterExercise()
+    {
+        if(txtSearch != null)
+        {
+            String key = txtSearch.getText().toString();
+            exercises.clear();
+            for(Exercise i: dbList)
+            {
+                if(i.getName().toLowerCase().contains(key.toLowerCase()))
+                {
+                    exercises.add(i);
+                }
+            }
+            recyclerView.getAdapter().notifyDataSetChanged();
+        }
     }
 
     private void populateListView()
     {
         Exercise[] data = (Exercise[]) new SharePreferenceManager(getActivity()).getObject("Exercises", Exercise[].class);
-        if(data != null && data.length != 0) exercises = new ArrayList<>(Arrays.asList(data));
+        if(data != null && data.length != 0)
+        {
+            exercises = new ArrayList<>(Arrays.asList(data));
+            dbList = new ArrayList<>(Arrays.asList(data));
+        }
         FindAndAddExerciseAdapter adapter = new FindAndAddExerciseAdapter(exercises, getActivity());
         recyclerView.setAdapter(adapter);
     }

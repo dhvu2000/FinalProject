@@ -21,7 +21,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RecordScreen"
+            android:name=".Views.HomeScreen.RecordScreen"
             android:exported="false" />
         <activity
             android:name=".Views.HomeScreen.SchemaScreen"
@@ -40,9 +40,6 @@
             android:exported="false" />
         <activity
             android:name=".Views.TimerScreen.CountingTimerScreen"
-            android:exported="false" />
-        <activity
-            android:name=".Views.TimerScreen.TimerPageFragment"
             android:exported="false" />
         <activity
             android:name=".Views.CollectionsScreen.WorkOutProcessScreen.WorkoutProcessScreen2"

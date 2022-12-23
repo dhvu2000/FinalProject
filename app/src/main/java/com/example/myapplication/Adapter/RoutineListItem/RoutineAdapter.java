@@ -23,11 +23,18 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineHolder> {
 
     List<Routine> routines;
     Context context;
+    boolean isEditable = true;
 
     public RoutineAdapter(List<Routine> routines, Context context)
     {
         this.context = context;
         this.routines = routines;
+    }
+
+    public RoutineAdapter(List<Routine> routines, Context context, boolean isEditable) {
+        this.routines = routines;
+        this.context = context;
+        this.isEditable = isEditable;
     }
 
     @NonNull
@@ -59,11 +66,13 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineHolder> {
                 context.startActivity(intent);
             }
         });
-
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                openDeleteAlertDialog(holder.getAdapterPosition());
+                if(isEditable)
+                {
+                    openDeleteAlertDialog(holder.getAdapterPosition());
+                }
                 return false;
             }
         });

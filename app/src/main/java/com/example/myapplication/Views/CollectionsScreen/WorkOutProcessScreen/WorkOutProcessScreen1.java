@@ -326,23 +326,24 @@ public class WorkOutProcessScreen1 extends AppCompatActivity {
             ((RoutineDay) workOutSet).setRoutine(null);
         }
         WorkOutRecord workOutRecord = new WorkOutRecord(user,workOutSet, datetime, time, calories);
+        updateRecordToSharedPreference(workOutRecord);
         Call<WorkOutRecord> call = workOutRecordApi.save(workOutRecord);
         call.enqueue(new Callback<WorkOutRecord>() {
             @Override
             public void onResponse(Call<WorkOutRecord> call, Response<WorkOutRecord> response) {
-                updateSharedPreference();
-                moveToEnd();
+
             }
 
             @Override
             public void onFailure(Call<WorkOutRecord> call, Throwable t) {
                 System.out.println(t.getMessage());
-                moveToEnd();
             }
         });
+        moveToEnd();
     }
 
-    private void updateSharedPreference() {
+    private void updateRecordToSharedPreference(WorkOutRecord wr) {
+        new SharePreferenceManager(WorkOutProcessScreen1.this).addRecord(wr);
     }
 
 }

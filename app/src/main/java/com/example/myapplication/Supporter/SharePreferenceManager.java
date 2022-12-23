@@ -214,6 +214,24 @@ public class SharePreferenceManager {
         return saveObject("Progress", progress);
     }
 
+    public boolean addRoutineAct(RoutineAct routineAct)
+    {
+        ArrayList<RoutineAct> progress = new ArrayList<>();
+        RoutineAct[] data = (RoutineAct[]) getObject("Progress", RoutineAct[].class);
+        if (data != null) progress = new ArrayList<>(Arrays.asList(data));
+        progress.add(routineAct);
+        return saveObject("Progress", progress);
+    }
+
+    public boolean addRecord(WorkOutRecord record)
+    {
+        ArrayList<WorkOutRecord> records = new ArrayList<>();
+        WorkOutRecord[] data = (WorkOutRecord[]) getObject("Records", WorkOutRecord[].class);
+        if (data != null) records = new ArrayList<>(Arrays.asList(data));
+        records.add(record);
+        return saveObject("Records", records);
+    }
+
     public boolean deleteExercise(int id)
     {
         ArrayList<Exercise> exercises = new ArrayList<>();

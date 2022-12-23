@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.myapplication.Adapter.RoutineDayListItem.RoutineDayAdapter;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
+import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineAct;
 import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitApi;
@@ -26,6 +27,7 @@ import com.example.myapplication.Views.CollectionsScreen.BothUseScreen.UpdateSav
 import com.example.myapplication.Views.MainActivity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -100,11 +102,65 @@ public class RoutineDetailScreen extends AppCompatActivity {
 
     public void populateRoutineDaysList(List<RoutineDay> list)
     {
+        ArrayList<RoutineDay> renderList = new ArrayList<>();
+        int sequenceTrace = 1;
+        int pos = 0;
+
         if(list != null)
         {
-            RoutineDayAdapter adapter = new RoutineDayAdapter(list, routine,this );
-            recyclerView.setAdapter(adapter);
+            while(pos < list.size())
+            {
+                RoutineDay rd = list.get(pos);
+                if(sequenceTrace == rd.getSequence())
+                {
+                    renderList.add(rd);
+                    pos ++;
+                }
+                else
+                {
+                    RoutineDay tmp = new RoutineDay();
+                    tmp.setSequence(sequenceTrace);
+                    renderList.add(tmp);
+                }
+                sequenceTrace ++;
+            }
         }
+        RoutineDayAdapter adapter = new RoutineDayAdapter(renderList, routine,getCurrentSequence(),this );
+        recyclerView.setAdapter(adapter);
+        ((LinearLayoutManager)recyclerView.getLayoutManager()).scrollToPositionWithOffset(getCurrentSequence()-1,70);
+    }
+
+    public int getCurrentSequence()
+    {
+        int sequence = 0;
+        int reachedSequence = 0;
+        if(routine.getDays() != null && routine.getDays().size() > 0)
+        {
+            sequence = routine.getDays().get(0).getSequence();
+        }
+        RoutineAct[] data = (RoutineAct[]) new SharePreferenceManager(RoutineDetailScreen.this).getObject("Progress", RoutineAct[].class);
+        if(data !=  null && routine.getDays().size() > 0)
+        {
+            ArrayList<RoutineAct> progress = new ArrayList<>(Arrays.asList(data));
+            for(int i = progress.size() - 1; i >= 0; i--)
+            {
+                if(progress.get(i).getRoutine().getId() == routine.getId())
+                {
+                    reachedSequence = progress.get(i).getProgress();
+                    break;
+                }
+            }
+
+            for(RoutineDay i : routine.getDays())
+            {
+                if(i.getSequence() > reachedSequence)
+                {
+                    sequence = i.getSequence();
+                    break;
+                }
+            }
+        }
+        return sequence;
     }
 
     public void setRoutine()
@@ -121,7 +177,7 @@ public class RoutineDetailScreen extends AppCompatActivity {
         if(routine != null)
         {
             txtName.setText(routine.getName());
-            txtDaysNum.setText("Days: "+routine.getDayNum());
+            txtDaysNum.setText("Số buổi: "+routine.getDayNum());
         }
     }
 
@@ -139,15 +195,22 @@ public class RoutineDetailScreen extends AppCompatActivity {
         }
     }
 
-    public void deleteRoutineDay(int position)
+
+    public void deleteRoutineDay(int dayID)
     {
-        RoutineDay deleteOne = routine.getDays().get(position);
-        Call<Void> call = routineDayApi.deleteRoutineDayById(deleteOne.getId());
+        Call<Void> call = routineDayApi.deleteRoutineDayById(dayID);
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                routine.getDays().remove(position);
-                recyclerView.getAdapter().notifyDataSetChanged();
+                for(int i = 0 ; i < routine.getDays().size(); i++)
+                {
+                    if(routine.getDays().get(i).getId() == dayID)
+                    {
+                        routine.getDays().remove(i);
+                    }
+                }
+                sortDays();
+                populateRoutineDaysList(routine.getDays());
                 updateRoutine();
             }
 
@@ -158,10 +221,11 @@ public class RoutineDetailScreen extends AppCompatActivity {
         });
     }
 
+
     private void updateRoutine() {
         if(routine.getDays() == null || routine.getDays().size() == 0) routine.setDayNum(0);
         else routine.setDayNum(routine.getDays().get(routine.getDays().size()-1).getSequence());
-        txtDaysNum.setText("Số ngày: "+routine.getDayNum());
+        txtDaysNum.setText("Số buổi: "+routine.getDayNum());
         new SharePreferenceManager(RoutineDetailScreen.this).saveRoutine(routine);
         Call<Routine> call  = routineApi.save(routine);
         call.enqueue(new Callback<Routine>() {

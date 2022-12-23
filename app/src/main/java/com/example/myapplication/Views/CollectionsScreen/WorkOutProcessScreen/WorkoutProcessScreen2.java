@@ -282,7 +282,6 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
             {
                 saveRecord();
             }
-            updateSharedPreference();
             moveToEnd();
         }
         else{
@@ -299,11 +298,12 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
         Routine routine = ((RoutineDay) workOutSet).getRoutine();
         routine.setDays(null);
         RoutineAct routineAct = new RoutineAct(actTime, progress, user, routine);
+        updateRoutineActToSharedPreference(routineAct);
+        saveRecord();
         Call<RoutineAct> call = routineActApi.save(routineAct);
         call.enqueue(new Callback<RoutineAct>() {
             @Override
             public void onResponse(Call<RoutineAct> call, Response<RoutineAct> response) {
-                saveRecord();
             }
 
             @Override
@@ -313,10 +313,13 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
         });
     }
 
+    private void updateRoutineActToSharedPreference(RoutineAct routineAct) {
+        new SharePreferenceManager(this).addRoutineAct(routineAct);
+    }
+
     private void sendNotification() {
         RoutineDay routineDay = (RoutineDay)workOutSet;
         SharePreferenceManager sharePreferenceManager = new SharePreferenceManager(this);
-        String oldWorkOutID = (String) sharePreferenceManager.getObject("OldWorkOutID",  String.class);
         ArrayList<RoutineDay> rds = (ArrayList<RoutineDay>) routineDay.getRoutine().getDays();
         int currentDayPos =  -1;
         for(int i = 0; i < rds.size() - 1; i++)
@@ -340,9 +343,6 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
         }
     }
 
-    private void updateSharedPreference() {
-
-    }
 
     private void saveRecord() {
         Users user = (Users) new SharePreferenceManager(this).getObject("User", Users.class);
@@ -352,7 +352,7 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
             ((RoutineDay) workOutSet).setRoutine(null);
         }
         WorkOutRecord workOutRecord = new WorkOutRecord(user,workOutSet, datetime, time, calories);
-        updateSharedPreference();
+        updateRecordToSharedPreference(workOutRecord);
         Call<WorkOutRecord> call = workOutRecordApi.save(workOutRecord);
         call.enqueue(new Callback<WorkOutRecord>() {
             @Override
@@ -364,6 +364,11 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
                 System.out.println(t.getMessage());
             }
         });
+    }
+
+    private void updateRecordToSharedPreference(WorkOutRecord wr) {
+        new SharePreferenceManager(this).addRecord(wr);
+
     }
 
     private void startVoice(int mp3Id)
@@ -393,7 +398,7 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
                     @Override
                     public void run()
                     {
-                        double calPerSec = workOutSet.getExercises().get(sequence).getExercise().getCalories()/60;
+                        double calPerSec = workOutSet.getExercises().get(sequence).getExercise().getCalories()/3600;
                         calories += calPerSec;
                         time ++;
                     }

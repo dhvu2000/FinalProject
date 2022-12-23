@@ -25,11 +25,13 @@ public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
     List<RoutineDay> routineDays;
     Routine routine;
     Context context;
+    int currentSequence;
 
-    public RoutineDayAdapter(List<RoutineDay> routineDays, Routine routine, Context context) {
+    public RoutineDayAdapter(List<RoutineDay> routineDays, Routine routine, int currentSequence, Context context) {
         this.routineDays = routineDays;
         this.routine = routine;
         this.context = context;
+        this.currentSequence = currentSequence;
     }
 
     @NonNull
@@ -45,33 +47,46 @@ public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
     public void onBindViewHolder(@NonNull RoutineDayHolder holder, int position) {
         RoutineDay routineDay = routineDays.get(position);
 
-        holder.txtDay.setText("Buổi "+routineDay.getSequence());
-
-        int exerciseNum = 0;
-        if(routineDay.getExercises() != null)
+        if(routineDay.getExercises() ==  null || routineDay.getExercises().size() == 0)
         {
-            exerciseNum = routineDay.getExercises().size();
+            holder.txtDay.setText("Buổi "+routineDay.getSequence() + ": NGHỈ NGƠI");
+            holder.txtExerciseNum.setText("");
         }
-        holder.txtExerciseNum.setText(exerciseNum +" động tác");
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                routineDay.setRoutine(routine);
-                Intent intent = new Intent(context, DetailCollectionScreen.class);
-                intent.putExtra("type","routine");
-                //remember to put Routine inside Routine Day
-                intent.putExtra("set",routineDay);
-                context.startActivity(intent);
+        else
+        {
+            if(routineDay.getSequence() == currentSequence)
+            {
+                holder.cardView.setBackgroundResource(R.drawable.rounded_shinning);
             }
-        });
+            holder.txtDay.setText("Buổi "+routineDay.getSequence());
 
-        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                openDeleteAlertDialog(holder.getAdapterPosition());
-                return false;
+            int exerciseNum = 0;
+            if(routineDay.getExercises() != null)
+            {
+                exerciseNum = routineDay.getExercises().size();
             }
-        });
+            holder.txtExerciseNum.setText(exerciseNum +" động tác");
+            holder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    routineDay.setRoutine(routine);
+                    Intent intent = new Intent(context, DetailCollectionScreen.class);
+                    intent.putExtra("type","routine");
+                    //remember to put Routine inside Routine Day
+                    intent.putExtra("set",routineDay);
+                    context.startActivity(intent);
+                }
+            });
+
+            holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    openDeleteAlertDialog(routineDay.getId());
+                    return false;
+                }
+            });
+        }
+
     }
 
     @Override
@@ -79,7 +94,7 @@ public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
         return routineDays.size();
     }
 
-    private void openDeleteAlertDialog(int position)
+    private void openDeleteAlertDialog(int dayID)
     {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Bạn có muốn xóa");
@@ -89,7 +104,7 @@ public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //delete the exercise
-                        ((RoutineDetailScreen)context).deleteRoutineDay(position);
+                        ((RoutineDetailScreen)context).deleteRoutineDay(dayID);
                         dialog.dismiss();
                     }
                 });

@@ -40,7 +40,6 @@ public class SettingExerciseDialog extends DialogFragment {
 
         img = addSetExerciseDialog.findViewById(R.id.img);
         txtName = addSetExerciseDialog.findViewById(R.id.txtName);
-        txtGuide = addSetExerciseDialog.findViewById(R.id.txtGuide);
         txtRepNum = addSetExerciseDialog.findViewById(R.id.txtRepsNum);
         txtTime = addSetExerciseDialog.findViewById(R.id.txtTime);
         btnOk = addSetExerciseDialog.findViewById(R.id.btnOk);
@@ -57,7 +56,6 @@ public class SettingExerciseDialog extends DialogFragment {
             Picasso.get().load(R.drawable.add_image).into(img);
         }
         txtName.setText(exercise.getName());
-//        txtGuide.setText(exercise.getGuideline());
         setButtons();
 
 
