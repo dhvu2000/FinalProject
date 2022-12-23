@@ -8,6 +8,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.SystemClock;
 
@@ -202,6 +203,7 @@ public class NotificationCreator extends FirebaseMessagingService {
                 new NotificationCompat.Builder(context, channelID)
                         .setSmallIcon(R.drawable.icon)
                         .setContentTitle(title)
+                        .setLargeIcon(BitmapFactory. decodeResource (context.getResources() , R.drawable. icon ))
                         .setContentText(messageBody)
                         .setAutoCancel(true)
                         .setDefaults(Notification.DEFAULT_ALL)

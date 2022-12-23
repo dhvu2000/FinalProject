@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Exercise's name:"
+                android:text="Tên động tác:"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -51,7 +51,7 @@
                     android:layout_weight="1"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:text="Calories per hour:"
+                    android:text="Calo/ giờ:"
                     android:textSize="16dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"/>
@@ -72,7 +72,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Introduction:"
+                android:text="Giới thiệu:"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -92,7 +92,7 @@
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:text="Guide:"
+                android:text="Hướng dẫn:"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
@@ -113,7 +113,7 @@
                 android:id="@+id/btnSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Save"
+                android:text="Lưu"
                 android:layout_gravity="center"
                 android:layout_marginBottom="5dp"/>
             <TextView

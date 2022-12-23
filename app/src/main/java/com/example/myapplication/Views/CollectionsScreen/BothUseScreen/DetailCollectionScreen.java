@@ -124,8 +124,11 @@ public class DetailCollectionScreen extends AppCompatActivity {
         System.out.println("Current time: "+ c);
         c.add(Calendar.DATE,  2);
 //        new NotificationCreator(this).receivedDeleteNotification(MainActivity.REMINDER_CHANNEL_ID);
-        notificationCreator.setReminder(MainActivity.REMINDER_ALARM_ID,c.getTimeInMillis(),"Reminder",
-                "Long time since your last work out", MainActivity.REMINDER_CHANNEL_ID, MainActivity.REPEATED_TIME );
+        c.add(Calendar.MINUTE, 3);
+        long repeatedTime = MainActivity.REPEATED_TIME;
+//        long repeatedTime = 120000;
+        notificationCreator.setReminder(MainActivity.REMINDER_ALARM_ID,c.getTimeInMillis(),"",
+                "Lâu rồi không thấy bạn tập luyện", MainActivity.REMINDER_CHANNEL_ID, repeatedTime );
     }
 
     public void setWorkOutSet(){

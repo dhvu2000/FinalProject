@@ -330,13 +330,13 @@ public class WorkoutProcessScreen2 extends AppCompatActivity {
             }
         }
         Calendar c = Calendar.getInstance();
-        c.add(Calendar.MILLISECOND, 30000);
         NotificationCreator notificationCreator = new NotificationCreator(this);
         notificationCreator.deleteNotificationChannel(MainActivity.ROUTINE_ALARM_ID,MainActivity.ROUTINE_CHANNEL_ID);
         System.out.println("now: "+ new Date());
         if(currentDayPos != -1)
         {
             int distance = rds.get(currentDayPos + 1).getSequence() - rds.get(currentDayPos).getSequence();
+//            c.add(Calendar.MINUTE, 5);
             c.add(Calendar.DATE, distance);
             notificationCreator.setNextRoutineReminder(MainActivity.ROUTINE_ALARM_ID,c.getTimeInMillis(),rds.get(currentDayPos + 1).getName(),
                     "Bài tập tiếp theo của bạn đang tới",  MainActivity.ROUTINE_CHANNEL_ID);
