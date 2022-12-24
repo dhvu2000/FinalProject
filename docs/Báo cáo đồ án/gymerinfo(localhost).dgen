@@ -1,0 +1,319 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Devart (www.devart.com), Data-Generator document file -->
+<!-- Modifying this generated file will probably render it invalid -->
+<DataGenDocument Version="6.1">
+  <ConnectionModel>
+    <PropertyValue Name="Database">59f90733-4d68-4fdf-82a7-f0fcbf5460aa</PropertyValue>
+    <PropertyValue Name="ConnectionString" xml:space="preserve">User Id=root;Host=localhost;Character Set=utf8</PropertyValue>
+    <PropertyValue Name="ExecutionTimeout">0</PropertyValue>
+  </ConnectionModel>
+  <Settings>
+    <Provider>59f90733-4d68-4fdf-82a7-f0fcbf5460aa</Provider>
+    <AllowNulls>true</AllowNulls>
+    <IncludeNullsPercent>10</IncludeNullsPercent>
+    <AllowEmptyString>false</AllowEmptyString>
+    <IncludeEmptyStringPercent>10</IncludeEmptyStringPercent>
+    <DatabaseName>gymerinfo</DatabaseName>
+    <PopulationType>RowsCount</PopulationType>
+    <RowsToGenerate>1000</RowsToGenerate>
+    <ProportionOfExistingData>10</ProportionOfExistingData>
+    <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
+    <GenerateUniqueValues>false</GenerateUniqueValues>
+    <TruncateTables>true</TruncateTables>
+    <DistributionMode>Seed</DistributionMode>
+    <Seed>1</Seed>
+    <LastSeedValue>0</LastSeedValue>
+    <Language>US</Language>
+    <ShowDataPreview>true</ShowDataPreview>
+  </Settings>
+  <Tables>
+    <Table Name="gymerneed">
+      <Checked>true</Checked>
+      <Settings>
+        <Truncate>true</Truncate>
+        <RowsToGenerate>0</RowsToGenerate>
+        <PopulationDetails>
+          <PopulationType>RowsCount</PopulationType>
+          <RowsCount>1000</RowsCount>
+          <LookupProportion>30</LookupProportion>
+          <ProportionOfExistingData>10</ProportionOfExistingData>
+          <TimeTicksToPopulate>100000000</TimeTicksToPopulate>
+        </PopulationDetails>
+      </Settings>
+      <Columns>
+        <Column Name="ID">
+          <Checked>true</Checked>
+          <DataType>INT</DataType>
+          <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>0</NullProportion>
+            <Unique>true</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Increment xmlns:q1="http://www.w3.org/2001/XMLSchema" p6:type="q1:int">1</Increment>
+            <ValueDistributionMode>Sequential</ValueDistributionMode>
+            <SeedValue>1</SeedValue>
+            <MinValue>1</MinValue>
+            <MaxValue>9999999</MaxValue>
+            <UseDefault>false</UseDefault>
+          </GeneratorOptions>
+          <GeneratorType>MySqlIntegerGenerator</GeneratorType>
+          <GeneratorName>ID (sequential)</GeneratorName>
+          <GeneratorDescription>1, 2, 3, 4, ..., 9, 10, 11, 12, ...</GeneratorDescription>
+          <GeneratorCategory>Business</GeneratorCategory>
+        </Column>
+        <Column Name="gender">
+          <Checked>true</Checked>
+          <DataType>VARCHAR</DataType>
+          <GeneratorOptions p6:type="MySqlWeightedListGeneratorSingleValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowEmptyStrings>false</AllowEmptyStrings>
+            <EmptyStringProportion>10</EmptyStringProportion>
+            <ColumnDataTypeName>VARCHAR</ColumnDataTypeName>
+            <Scale>0</Scale>
+            <Precision>0</Precision>
+            <Length>255</Length>
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>10</NullProportion>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>1</SeedValue>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Values>
+              <WeightedListItem>
+                <Value xmlns:q2="http://www.w3.org/2001/XMLSchema" p6:type="q2:string">Nam</Value>
+                <Weight>25</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q3="http://www.w3.org/2001/XMLSchema" p6:type="q3:string">Nữ</Value>
+                <Weight>15</Weight>
+              </WeightedListItem>
+            </Values>
+          </GeneratorOptions>
+          <GeneratorType>MySqlWeightedListGeneratorSingleValues</GeneratorType>
+          <GeneratorName>Weighted List (simple)</GeneratorName>
+          <GeneratorDescription>values list with specified frequency of occurrence</GeneratorDescription>
+          <Length>255</Length>
+        </Column>
+        <Column Name="age">
+          <Checked>true</Checked>
+          <DataType>INT</DataType>
+          <GeneratorOptions p6:type="MySqlIntegerGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>10</NullProportion>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Increment xmlns:q4="http://www.w3.org/2001/XMLSchema" p6:type="q4:int">1</Increment>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>1</SeedValue>
+            <MinValue>15</MinValue>
+            <MaxValue>70</MaxValue>
+            <UseDefault>false</UseDefault>
+            <DefaultValue>NULL</DefaultValue>
+          </GeneratorOptions>
+          <GeneratorType>MySqlIntegerGenerator</GeneratorType>
+          <GeneratorName>int</GeneratorName>
+          <GeneratorDescription>fill with 32-bit signed integer values</GeneratorDescription>
+        </Column>
+        <Column Name="bmi">
+          <Checked>true</Checked>
+          <DataType>VARCHAR</DataType>
+          <GeneratorOptions p6:type="MySqlWeightedListGeneratorSingleValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowEmptyStrings>false</AllowEmptyStrings>
+            <EmptyStringProportion>10</EmptyStringProportion>
+            <ColumnDataTypeName>VARCHAR</ColumnDataTypeName>
+            <Scale>0</Scale>
+            <Precision>0</Precision>
+            <Length>255</Length>
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>10</NullProportion>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>1</SeedValue>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Values>
+              <WeightedListItem>
+                <Value xmlns:q5="http://www.w3.org/2001/XMLSchema" p6:type="q5:string">Overweight</Value>
+                <Weight>25</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q6="http://www.w3.org/2001/XMLSchema" p6:type="q6:string">Underweight</Value>
+                <Weight>15</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q7="http://www.w3.org/2001/XMLSchema" p6:type="q7:string">Good</Value>
+                <Weight>15</Weight>
+              </WeightedListItem>
+            </Values>
+          </GeneratorOptions>
+          <GeneratorType>MySqlWeightedListGeneratorSingleValues</GeneratorType>
+          <GeneratorName>Weighted List (simple)</GeneratorName>
+          <GeneratorDescription>values list with specified frequency of occurrence</GeneratorDescription>
+          <Length>255</Length>
+        </Column>
+        <Column Name="workOutFrequence">
+          <Checked>true</Checked>
+          <DataType>VARCHAR</DataType>
+          <GeneratorOptions p6:type="MySqlWeightedListGeneratorSingleValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowEmptyStrings>false</AllowEmptyStrings>
+            <EmptyStringProportion>10</EmptyStringProportion>
+            <ColumnDataTypeName>VARCHAR</ColumnDataTypeName>
+            <Scale>0</Scale>
+            <Precision>0</Precision>
+            <Length>255</Length>
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>10</NullProportion>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>2</SeedValue>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Values>
+              <WeightedListItem>
+                <Value xmlns:q8="http://www.w3.org/2001/XMLSchema" p6:type="q8:string">dưới 4 lần/ tuần</Value>
+                <Weight>25</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q9="http://www.w3.org/2001/XMLSchema" p6:type="q9:string">từ 4-5 lần/ tuần</Value>
+                <Weight>15</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q10="http://www.w3.org/2001/XMLSchema" p6:type="q10:string">trên 5 lần</Value>
+                <Weight>15</Weight>
+              </WeightedListItem>
+            </Values>
+          </GeneratorOptions>
+          <GeneratorType>MySqlWeightedListGeneratorSingleValues</GeneratorType>
+          <GeneratorName>Weighted List (simple)</GeneratorName>
+          <GeneratorDescription>values list with specified frequency of occurrence</GeneratorDescription>
+          <Length>255</Length>
+        </Column>
+        <Column Name="workPlace">
+          <Checked>true</Checked>
+          <DataType>VARCHAR</DataType>
+          <GeneratorOptions p6:type="MySqlWeightedListGeneratorSingleValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowEmptyStrings>false</AllowEmptyStrings>
+            <EmptyStringProportion>10</EmptyStringProportion>
+            <ColumnDataTypeName>VARCHAR</ColumnDataTypeName>
+            <Scale>0</Scale>
+            <Precision>0</Precision>
+            <Length>255</Length>
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>10</NullProportion>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>3</SeedValue>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Values>
+              <WeightedListItem>
+                <Value xmlns:q11="http://www.w3.org/2001/XMLSchema" p6:type="q11:string">tại nhà</Value>
+                <Weight>25</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q12="http://www.w3.org/2001/XMLSchema" p6:type="q12:string">tại phòng gym</Value>
+                <Weight>25</Weight>
+              </WeightedListItem>
+            </Values>
+          </GeneratorOptions>
+          <GeneratorType>MySqlWeightedListGeneratorSingleValues</GeneratorType>
+          <GeneratorName>Weighted List (simple)</GeneratorName>
+          <GeneratorDescription>values list with specified frequency of occurrence</GeneratorDescription>
+          <Length>255</Length>
+        </Column>
+        <Column Name="target">
+          <Checked>true</Checked>
+          <DataType>VARCHAR</DataType>
+          <GeneratorOptions p6:type="MySqlWeightedListGeneratorSingleValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowEmptyStrings>false</AllowEmptyStrings>
+            <EmptyStringProportion>10</EmptyStringProportion>
+            <ColumnDataTypeName>VARCHAR</ColumnDataTypeName>
+            <Scale>0</Scale>
+            <Precision>0</Precision>
+            <Length>255</Length>
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>10</NullProportion>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>4</SeedValue>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Values>
+              <WeightedListItem>
+                <Value xmlns:q13="http://www.w3.org/2001/XMLSchema" p6:type="q13:string">tăng cơ</Value>
+                <Weight>25</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q14="http://www.w3.org/2001/XMLSchema" p6:type="q14:string">giảm mỡ</Value>
+                <Weight>15</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q15="http://www.w3.org/2001/XMLSchema" p6:type="q15:string">tăng cường sức bền</Value>
+                <Weight>10</Weight>
+              </WeightedListItem>
+            </Values>
+          </GeneratorOptions>
+          <GeneratorType>MySqlWeightedListGeneratorSingleValues</GeneratorType>
+          <GeneratorName>Weighted List (simple)</GeneratorName>
+          <GeneratorDescription>values list with specified frequency of occurrence</GeneratorDescription>
+          <Length>255</Length>
+        </Column>
+        <Column Name="focusedArea">
+          <Checked>true</Checked>
+          <DataType>VARCHAR</DataType>
+          <GeneratorOptions p6:type="MySqlRegularExpressionGeneratorOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowEmptyStrings>false</AllowEmptyStrings>
+            <EmptyStringProportion>0</EmptyStringProportion>
+            <AllowNulls>true</AllowNulls>
+            <NullProportion>100</NullProportion>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>5</SeedValue>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Expression>[0-9A-Z]+</Expression>
+          </GeneratorOptions>
+          <GeneratorType>MySqlStringRegularExpressionGenerator</GeneratorType>
+          <GeneratorName>Reg Exp</GeneratorName>
+          <GeneratorDescription>values based on a regular expression</GeneratorDescription>
+          <Length>255</Length>
+        </Column>
+        <Column Name="experiencedYear">
+          <Checked>true</Checked>
+          <DataType>VARCHAR</DataType>
+          <GeneratorOptions p6:type="MySqlWeightedListGeneratorSingleValuesOptions" xmlns:p6="http://www.w3.org/2001/XMLSchema-instance">
+            <AllowEmptyStrings>false</AllowEmptyStrings>
+            <EmptyStringProportion>10</EmptyStringProportion>
+            <ColumnDataTypeName>VARCHAR</ColumnDataTypeName>
+            <Scale>0</Scale>
+            <Precision>0</Precision>
+            <Length>255</Length>
+            <AllowNulls>false</AllowNulls>
+            <NullProportion>10</NullProportion>
+            <ValueDistributionMode>Seed</ValueDistributionMode>
+            <SeedValue>1</SeedValue>
+            <Unique>false</Unique>
+            <IsAlwaysUnique>false</IsAlwaysUnique>
+            <Values>
+              <WeightedListItem>
+                <Value xmlns:q16="http://www.w3.org/2001/XMLSchema" p6:type="q16:string">dưới 1 năm</Value>
+                <Weight>25</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q17="http://www.w3.org/2001/XMLSchema" p6:type="q17:string">từ 1 đến 2 năm</Value>
+                <Weight>15</Weight>
+              </WeightedListItem>
+              <WeightedListItem>
+                <Value xmlns:q18="http://www.w3.org/2001/XMLSchema" p6:type="q18:string">2 năm trở lên</Value>
+                <Weight>10</Weight>
+              </WeightedListItem>
+            </Values>
+          </GeneratorOptions>
+          <GeneratorType>MySqlWeightedListGeneratorSingleValues</GeneratorType>
+          <GeneratorName>Weighted List (simple)</GeneratorName>
+          <GeneratorDescription>values list with specified frequency of occurrence</GeneratorDescription>
+          <Length>255</Length>
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <SynchronizationOptions p2:type="DataSyncOptionGroup" xmlns:p2="http://www.w3.org/2001/XMLSchema-instance">
+    <SynchronizeType>File</SynchronizeType>
+    <SynchronizationFileName>C:\Users\Admin\Desktop\Báo cáo đồ án\DataGeneration_202212120847.sql</SynchronizationFileName>
+    <BulkInsert>false</BulkInsert>
+  </SynchronizationOptions>
+</DataGenDocument>
