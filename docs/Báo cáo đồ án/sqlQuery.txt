@@ -1,0 +1,37 @@
+INSERT INTO `gymlifedb`.`users` (`dob`, `email`, `gender`, `password`, `type`, `username`) 
+VALUES ('2000-12-15', 'hoangvu.15122000@gmail.con', 'male', '12345678', 'admin', 'vudh');
+
+ALTER TABLE `gymlifedb`.`work_out_record` 
+DROP FOREIGN KEY `FKa83dn1qpohqxhh3gifhb41h51`,
+DROP FOREIGN KEY `FKc8qwftvpjjp1wpbl7fyjxqumj`;
+ALTER TABLE `gymlifedb`.`work_out_record` 
+ADD CONSTRAINT `FKa83dn1qpohqxhh3gifhb41h51`
+  FOREIGN KEY (`set_id`)
+  REFERENCES `gymlifedb`.`work_out_set` (`id`)
+  ON DELETE CASCADE,
+ADD CONSTRAINT `FKc8qwftvpjjp1wpbl7fyjxqumj`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `gymlifedb`.`users` (`id`)
+  ON DELETE CASCADE;
+
+
+ALTER TABLE `gymlifedb`.`routine_act` 
+DROP FOREIGN KEY `FK8pncllptc4ek771mtuqsdx06r`,
+DROP FOREIGN KEY `FKdev5fefo1r4yeq7469mh0uuaj`;
+ALTER TABLE `gymlifedb`.`routine_act` 
+ADD CONSTRAINT `FK8pncllptc4ek771mtuqsdx06r`
+  FOREIGN KEY (`routine_id`)
+  REFERENCES `gymlifedb`.`routine` (`id`)
+  ON DELETE CASCADE,
+ADD CONSTRAINT `FKdev5fefo1r4yeq7469mh0uuaj`
+  FOREIGN KEY (`user_id`)
+  REFERENCES `gymlifedb`.`users` (`id`)
+  ON DELETE CASCADE;
+
+ALTER TABLE `gymlifedb`.`set_exercise` 
+DROP FOREIGN KEY `FK5b10kll1xfhuwm4libymqve9a`;
+ALTER TABLE `gymlifedb`.`set_exercise` 
+ADD CONSTRAINT `FK5b10kll1xfhuwm4libymqve9a`
+  FOREIGN KEY (`exercise_id`)
+  REFERENCES `gymlifedb`.`exercise` (`id`)
+  ON DELETE CASCADE;
