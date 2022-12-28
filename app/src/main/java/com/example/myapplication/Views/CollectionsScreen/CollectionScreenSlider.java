@@ -72,10 +72,10 @@ public class CollectionScreenSlider extends FragmentStatePagerAdapter {
             {
                 ((RoutineSidePage)f).listenToKeyChange(s);
             }
-//            else if(f instanceof SetsSidePage)
-//            {
-//                ((SetsSidePage)f).listenToKeyChange(s);
-//            }
+            else if(f instanceof SetsSidePage)
+            {
+                ((SetsSidePage)f).listenToKeyChange(s);
+            }
         }
     }
 }

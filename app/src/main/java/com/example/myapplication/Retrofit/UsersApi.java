@@ -26,6 +26,12 @@ public interface UsersApi {
     @POST("/user/update")
     Call<Users> update(@Body Users user);
 
+    @POST("/user/update/name")
+    Call<Users> updateUserName(@Body Users user);
+
+    @POST("/user/update/email")
+    Call<Users> updateUserMail(@Body Users user);
+
     @POST("/user/log_in")
     Call<Users> logInUser(@Body Users u);
 

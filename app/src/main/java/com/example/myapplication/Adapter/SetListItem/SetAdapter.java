@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Model.User.Users;
+import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import com.example.myapplication.R;
+import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.CollectionsScreen.BothUseScreen.DetailCollectionScreen;
 import com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen;
 import com.example.myapplication.Views.MainActivity;
@@ -67,13 +70,16 @@ public class SetAdapter extends RecyclerView.Adapter<SetHolder> {
             }
         });
 
-        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                openDeleteAlertDialog(holder.getAdapterPosition());
-                return false;
-            }
-        });
+        if(isTrueUser(workOutSet))
+        {
+            holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    openDeleteAlertDialog(holder.getAdapterPosition());
+                    return false;
+                }
+            });
+        }
     }
 
     @Override
@@ -103,5 +109,16 @@ public class SetAdapter extends RecyclerView.Adapter<SetHolder> {
                 });
         AlertDialog alert11 = builder.create();
         alert11.show();
+    }
+
+
+    public boolean isTrueUser(WorkOutSet set)
+    {
+        Users u = (Users) new SharePreferenceManager(context).getObject("User", Users.class);
+        if(u.getId() == set.getCreatedBy().getId())
+        {
+            return true;
+        }
+        return false;
     }
 }

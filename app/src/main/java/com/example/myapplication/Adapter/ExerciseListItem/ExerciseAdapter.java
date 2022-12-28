@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.R;
+import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.ExerciseScreen.AddExerciseDialog;
 import com.example.myapplication.Views.ExerciseScreen.DetailExerciseDialog;
 import com.example.myapplication.Views.MainActivity;
@@ -72,14 +74,18 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
             }
         });
 
-        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                openDeleteAlertDialog(holder.getAdapterPosition());
-                longClicked = true;
-                return false;
-            }
-        });
+        if(isTrueUser(exercise))
+        {
+            holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    openDeleteAlertDialog(holder.getAdapterPosition());
+                    longClicked = true;
+                    return false;
+                }
+            });
+        }
+
 
 //        holder.cardView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
@@ -138,5 +144,15 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseHolder> {
                 });
         AlertDialog alert11 = builder.create();
         alert11.show();
+    }
+
+    public boolean isTrueUser(Exercise exercise)
+    {
+        Users u = (Users) new SharePreferenceManager(context).getObject("User", Users.class);
+        if(u.getId() == exercise.getCreatedBy().getId())
+        {
+            return true;
+        }
+        return false;
     }
 }

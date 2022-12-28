@@ -11,8 +11,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
+import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
 import com.example.myapplication.R;
+import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen;
 import com.example.myapplication.Views.MainActivity;
 import com.squareup.picasso.Picasso;
@@ -66,16 +69,20 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineHolder> {
                 context.startActivity(intent);
             }
         });
-        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if(isEditable)
-                {
-                    openDeleteAlertDialog(holder.getAdapterPosition());
+
+        if(isTrueUser(routine))
+        {
+            holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View view) {
+                    if(isEditable)
+                    {
+                        openDeleteAlertDialog(holder.getAdapterPosition());
+                    }
+                    return false;
                 }
-                return false;
-            }
-        });
+            });
+        }
     }
 
     @Override
@@ -106,5 +113,15 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineHolder> {
                 });
         AlertDialog alert11 = builder.create();
         alert11.show();
+    }
+
+    public boolean isTrueUser(Routine r)
+    {
+        Users u = (Users) new SharePreferenceManager(context).getObject("User", Users.class);
+        if(u.getId() == r.getCreatedBy().getId())
+        {
+            return true;
+        }
+        return false;
     }
 }

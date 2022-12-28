@@ -121,10 +121,24 @@ public class SetsSidePage extends Fragment {
         });
     }
 
-    public  void listenToKeyChange(String s)
+    public void filterList(String key)
     {
-//        System.out.println("Sets Side "+s);
+        workOuSets.clear();
+        for(WorkOutSet ws: dbList)
+        {
+            if(ws.getName().toLowerCase().contains(key.toLowerCase()))
+            {
+                workOuSets.add(ws);
+            }
+        }
+        populateListView(workOuSets);
     }
+
+    public void listenToKeyChange(String key)
+    {
+        filterList(key);
+    }
+
 
     public void showNotice(String s)
     {

@@ -11,8 +11,8 @@ import java.util.ArrayList;
 @RestController
 public class UserController {
 
-    private String EMAIL_EXIST = "Email has already existed";
-    private String USERNAME_EXIST = "Username has already existed";
+    private String EMAIL_EXIST = "Email này đã tồn tại, mời chọn email khác";
+    private String USERNAME_EXIST = "Tên tài khoản này đã tồn tài, mời nhập tên khác";
     private int EMAIL_EXIST_CODE = -2;
     private int USERNAME_EXIST_CODE = -1;
     @Autowired
@@ -92,6 +92,34 @@ public class UserController {
     @PostMapping("/user/update")
     public Users updateUser(@RequestBody Users user)
     {
+        System.out.println(user);
+        return userRepository.save(user);
+    }
+
+    @PostMapping("/user/update/name")
+    public Users updateUserName(@RequestBody Users user)
+    {
+        if (!checkName(user.getUsername()))
+        {
+            Users res = new Users();
+            res.setId(USERNAME_EXIST_CODE);
+            res.setUsername(USERNAME_EXIST);
+            return  res;
+        }
+        System.out.println(user);
+        return userRepository.save(user);
+    }
+
+    @PostMapping("/user/update/email")
+    public Users updateUserMail(@RequestBody Users user)
+    {
+        if(!checkEmail(user.getEmail()))
+        {
+            Users res = new Users();
+            res.setId(EMAIL_EXIST_CODE);
+            res.setUsername(EMAIL_EXIST);
+            return  res;
+        }
         System.out.println(user);
         return userRepository.save(user);
     }

@@ -12,9 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.myapplication.Model.User.Users;
+import com.example.myapplication.Model.WorkOutUnit.Exercise;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
 import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
 import com.example.myapplication.R;
+import com.example.myapplication.Supporter.SharePreferenceManager;
 import com.example.myapplication.Views.CollectionsScreen.BothUseScreen.DetailCollectionScreen;
 import com.example.myapplication.Views.CollectionsScreen.RoutineCollectionScreen.RoutineDetailScreen;
 
@@ -78,13 +81,17 @@ public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
                 }
             });
 
-            holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    openDeleteAlertDialog(routineDay.getId());
-                    return false;
-                }
-            });
+            if(isTrueUser(routineDay))
+            {
+                holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+                        openDeleteAlertDialog(routineDay.getId());
+                        return false;
+                    }
+                });
+            }
+
         }
 
     }
@@ -117,5 +124,15 @@ public class RoutineDayAdapter extends RecyclerView.Adapter<RoutineDayHolder> {
                 });
         AlertDialog alert11 = builder.create();
         alert11.show();
+    }
+
+    public boolean isTrueUser(RoutineDay rd)
+    {
+        Users u = (Users) new SharePreferenceManager(context).getObject("User", Users.class);
+        if(u.getId() == rd.getCreatedBy().getId())
+        {
+            return true;
+        }
+        return false;
     }
 }

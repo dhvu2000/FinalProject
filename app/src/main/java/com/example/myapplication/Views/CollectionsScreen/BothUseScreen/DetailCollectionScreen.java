@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.SetExerciseItem.SetExerciseAdapter;
+import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.SetExercise;
 import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
@@ -35,7 +36,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
 
     private Button btnBack;
     private ImageButton btnChange, btnStart;
-    private TextView txtName, txtExerciseNum, txtPre, txtRest;
+    private TextView txtName, txtExerciseNum, txtPre, txtRest, txtBtnChange;
     private RecyclerView recyclerView;
     private WorkOutSet workOutSet;
     private String type;
@@ -55,6 +56,7 @@ public class DetailCollectionScreen extends AppCompatActivity {
         txtExerciseNum = findViewById(R.id.txtExerciseNum);
         txtPre = findViewById(R.id.txtPreTime);
         txtRest = findViewById(R.id.txtRestTime);
+        txtBtnChange = findViewById(R.id.txtBtnChange);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         sharePreferenceManager = new SharePreferenceManager(this);
@@ -67,6 +69,11 @@ public class DetailCollectionScreen extends AppCompatActivity {
     }
 
     private void setButtons() {
+        if(!isTrueUser(workOutSet))
+        {
+            btnChange.setVisibility(View.GONE);
+            txtBtnChange.setVisibility(View.GONE);
+        }
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -177,5 +184,15 @@ public class DetailCollectionScreen extends AppCompatActivity {
                 return b.compareTo(a);
             }
         });
+    }
+
+    public boolean isTrueUser(WorkOutSet set)
+    {
+        Users u = (Users) new SharePreferenceManager(this).getObject("User", Users.class);
+        if(u.getId() == set.getCreatedBy().getId())
+        {
+            return true;
+        }
+        return false;
     }
 }

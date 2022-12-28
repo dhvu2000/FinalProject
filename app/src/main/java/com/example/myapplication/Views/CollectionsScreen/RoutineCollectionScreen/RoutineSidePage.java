@@ -23,6 +23,7 @@ import com.example.myapplication.Views.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -120,9 +121,22 @@ public class RoutineSidePage extends Fragment {
         });
     }
 
-    public void listenToKeyChange(String s)
+    public void filterList(String key)
     {
-        System.out.println("Rountine page "+ s);
+        routines.clear();
+        for(Routine r: dbList)
+        {
+            if(r.getName().toLowerCase().contains(key.toLowerCase()))
+            {
+                routines.add(r);
+            }
+        }
+        populateListView(routines);
+    }
+
+    public void listenToKeyChange(String key)
+    {
+        filterList(key);
     }
 
     public void showNotice(String s)

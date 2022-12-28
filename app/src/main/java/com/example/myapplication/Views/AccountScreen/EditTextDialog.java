@@ -36,6 +36,11 @@ public class EditTextDialog  extends DialogFragment {
     RetrofitApi retrofitApi = new RetrofitApi();
     UsersApi usersApi = retrofitApi.getRetrofit().create(UsersApi.class);
 
+
+    private int EMAIL_EXIST_CODE = -2;
+    private int USERNAME_EXIST_CODE = -1;
+    private String EMAIL_FORMAT = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+
     private int type;
 
     public EditTextDialog(int type) {
@@ -119,16 +124,24 @@ public class EditTextDialog  extends DialogFragment {
         else if(!old.equals(newTyping))
         {
             user.setUsername(newTyping);
-            Call<Users> call = usersApi.update(user);
+            Call<Users> call = usersApi.updateUserName(user);
             call.enqueue(new Callback<Users>() {
                 @Override
                 public void onResponse(Call<Users> call, Response<Users> response) {
-                    user = response.body();
-                    sharePreferenceManager.saveObject("User", user);
-                    if(getActivity() instanceof InforScreen)
+                    if(response.body().getId() == USERNAME_EXIST_CODE)
                     {
-                        ((InforScreen)getActivity()).setUser();
-                        dismiss();
+                        txtEditText.requestFocus();
+                        showNotice(response.body().getUsername());
+                    }
+                    else
+                    {
+                        user = response.body();
+                        sharePreferenceManager.saveObject("User", user);
+                        if(getActivity() instanceof InforScreen)
+                        {
+                            ((InforScreen)getActivity()).setUser();
+                            dismiss();
+                        }
                     }
                 }
 
@@ -148,29 +161,38 @@ public class EditTextDialog  extends DialogFragment {
     private void editEmail()
     {
         String newTyping = txtEditText.getText().toString();
-        if(newTyping.trim().equals(""))
+        if(!newTyping.matches(EMAIL_FORMAT))
         {
-            txtNotice.setText("Hãy điền thông tin!");
+            txtNotice.setText("Thông tin điền không hợp lệ!");
+            txtEditText.requestFocus();
         }
         else if(!old.equals(newTyping))
         {
             user.setEmail(newTyping);
-            Call<Users> call = usersApi.update(user);
+            Call<Users> call = usersApi.updateUserMail(user);
             call.enqueue(new Callback<Users>() {
                 @Override
                 public void onResponse(Call<Users> call, Response<Users> response) {
-                    user = response.body();
-                    sharePreferenceManager.saveObject("User", user);
-                    if(getActivity() instanceof InforScreen)
+                    if(response.body().getId() == EMAIL_EXIST_CODE)
                     {
-                        ((InforScreen)getActivity()).setUser();
-                        dismiss();
+                        txtEditText.requestFocus();
+                        showNotice(response.body().getUsername());
+                    }
+                    else
+                    {
+                        user = response.body();
+                        sharePreferenceManager.saveObject("User", user);
+                        if(getActivity() instanceof InforScreen)
+                        {
+                            ((InforScreen)getActivity()).setUser();
+                            dismiss();
+                        }
                     }
                 }
 
                 @Override
                 public void onFailure(Call<Users> call, Throwable t) {
-                    showNotice("Network Error!");
+                    showNotice("Lỗi mạng!");
                     System.out.println("Edit user information fail: "+ t.getMessage());
                 }
             });

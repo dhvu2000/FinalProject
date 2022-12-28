@@ -28,6 +28,7 @@ public class CollectionsPageFragment extends Fragment {
     EditText txtSearch;
     private ViewPager viewPager;
     private PagerAdapter pagerAdapter;
+    boolean start = false;
 
     public CollectionsPageFragment() {
         // Required empty public constructor
@@ -64,10 +65,9 @@ public class CollectionsPageFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(txtSearch != null)
+                if(start == true)
                 {
-                    String key = txtSearch.getText().toString();
-                    ((CollectionScreenSlider)pagerAdapter).listenToKeyChange(key);
+                    notifyKeychanged();
                 }
 
             }
@@ -84,6 +84,13 @@ public class CollectionsPageFragment extends Fragment {
         ((CollectionScreenSlider)pagerAdapter).deleteRoutine(position);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        txtSearch.setText("");
+        start = true;
+    }
+
     public void deleteSet(int position)
     {
         ((CollectionScreenSlider)pagerAdapter).deleteSet(position);
@@ -93,5 +100,15 @@ public class CollectionsPageFragment extends Fragment {
     {
         if(getActivity()!= null)
             Toast.makeText(getActivity(),s,Toast.LENGTH_LONG).show();
+    }
+
+    private void notifyKeychanged()
+    {
+        if(txtSearch != null)
+        {
+            String key = txtSearch.getText().toString();
+            ((CollectionScreenSlider)pagerAdapter).listenToKeyChange(key);
+
+        }
     }
 }

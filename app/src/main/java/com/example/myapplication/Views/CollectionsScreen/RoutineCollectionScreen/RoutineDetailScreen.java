@@ -15,9 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapter.RoutineDayListItem.RoutineDayAdapter;
+import com.example.myapplication.Model.User.Users;
 import com.example.myapplication.Model.WorkOutUnit.Routine.Routine;
 import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineAct;
 import com.example.myapplication.Model.WorkOutUnit.Routine.RoutineDay;
+import com.example.myapplication.Model.WorkOutUnit.WorkOutSet.WorkOutSet;
 import com.example.myapplication.R;
 import com.example.myapplication.Retrofit.RetrofitApi;
 import com.example.myapplication.Retrofit.RoutineApi;
@@ -42,7 +44,7 @@ public class RoutineDetailScreen extends AppCompatActivity {
     Routine routine;
     Button btnBack, btnAdd;
     ImageButton btnDelete;
-    TextView txtName, txtDaysNum;
+    TextView txtName, txtDaysNum, txtBtnDelete;
     RecyclerView recyclerView;
     RetrofitApi retrofitApi = new RetrofitApi();
     RoutineDayApi routineDayApi = retrofitApi.getRetrofit().create(RoutineDayApi.class);
@@ -59,6 +61,7 @@ public class RoutineDetailScreen extends AppCompatActivity {
         btnDelete = findViewById(R.id.btnDelete);
         txtName = findViewById(R.id.txtName);
         txtDaysNum = findViewById(R.id.txtDaysNum);
+        txtBtnDelete = findViewById(R.id.txtBtnDelete);
 
         recyclerView = findViewById(R.id.routineDayList_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -169,6 +172,12 @@ public class RoutineDetailScreen extends AppCompatActivity {
             routine = (Routine) getIntent().getSerializableExtra("Routine");
             routine = new SharePreferenceManager(this).getRoutine(routine.getId());
             if(routine.getDays() == null) routine.setDays(new ArrayList<>());
+            if(!isTrueUser(routine))
+            {
+                btnDelete.setVisibility(View.GONE);
+                txtBtnDelete.setVisibility(View.GONE);
+                btnAdd.setVisibility(View.GONE);
+            }
         }
         catch (Exception e)
         {
@@ -280,6 +289,16 @@ public class RoutineDetailScreen extends AppCompatActivity {
                 showNotice("Xóa thất bại: Lỗi mạng!");
             }
         });
+    }
+
+    public boolean isTrueUser(Routine r)
+    {
+        Users u = (Users) new SharePreferenceManager(this).getObject("User", Users.class);
+        if(u.getId() == r.getCreatedBy().getId())
+        {
+            return true;
+        }
+        return false;
     }
 
 
